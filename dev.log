@@ -1,0 +1,1515 @@
+
+> voice-api@1.0.0 dev
+> next dev
+
+  ▲ Next.js 14.2.30
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 1253ms
+ ○ Compiling / ...
+ ✓ Compiled / in 560ms (276 modules)
+ GET /_next/static/webpack/01a9ca36bdf9a171.webpack.hot-update.json 404 in 670ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET / 200 in 667ms
+ GET / 200 in 8ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 17ms
+ GET /sw.js 404 in 26ms
+ ✓ Compiled /api/aws-status in 52ms (75 modules)
+ GET /api/aws-status 200 in 1045ms
+ GET /sw.js 404 in 14ms
+ GET /api/aws-status 200 in 648ms
+ GET / 200 in 17ms
+ GET /api/aws-status 200 in 526ms
+ GET / 200 in 15ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 17ms
+ GET /api/aws-status 200 in 562ms
+ GET /api/aws-status 200 in 539ms
+ GET /sw.js 404 in 19ms
+ ✓ Compiled /api/upload in 112ms (82 modules)
+Upload request received
+Starting Rekognition for: s3://voice-description-api-input-production-pmhnxlix/f9e92c96-7ac9-49e2-b525-68dba8266bbb Request Method GET Status Code 404 Not Found
+❌ Rekognition error: InvalidS3ObjectException: Unable to get object metadata from S3. Check object key, region and/or access permissions.
+    at de_InvalidS3ObjectExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-rekognition/dist-cjs/index.js:2946:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-rekognition/dist-cjs/index.js:2801:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async handler (webpack-internal:///(api)/./pages/api/upload.ts:169:35)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/trace/trace.js:154:20) {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 400,
+    requestId: 'b8bcbc5a-86a0-4e12-8f7e-ae18f2c52657',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  Code: 'InvalidS3ObjectException',
+  Logref: undefined,
+  __type: 'InvalidS3ObjectException'
+}
+ POST /api/upload 500 in 604ms
+ GET / 200 in 26ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 11ms
+ GET /api/aws-status 200 in 637ms
+ GET /api/aws-status 200 in 527ms
+ GET /sw.js 404 in 8ms
+Upload request received
+Starting Rekognition for: s3://speechlab-test-files-public/BarackObamaKeynote.mp4
+✅ Rekognition segmentation started: 1f9c345644961e348bc796924dc2f6db920e1406dfee943e24d80f97fec5aa16
+Upload successful, job created: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ POST /api/upload 200 in 371ms
+ ✓ Compiled /api/status/[jobId] in 58ms (84 modules)
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 78ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 6ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 7ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 7ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 7ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 10ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 15ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 4ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 3ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 7ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 6ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 10ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 3ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 6ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 2ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 20ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 7ms
+ GET / 200 in 53ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 6ms
+ GET /api/aws-status 200 in 655ms
+ GET /api/aws-status 200 in 518ms
+ GET /sw.js 404 in 24ms
+ ✓ Compiled in 732ms (304 modules)
+ GET / 200 in 146ms
+📊 Status request for job: 54b9f91e-73d0-4aa2-bbd3-ed3274ffd299
+ GET /api/status/54b9f91e-73d0-4aa2-bbd3-ed3274ffd299 404 in 24ms
+ GET /api/aws-status 200 in 884ms
+ GET /api/aws-status 200 in 551ms
+ GET / 200 in 26ms
+ GET /api/aws-status 200 in 557ms
+ GET /api/aws-status 200 in 829ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 31ms
+Upload request received
+Starting Rekognition for: s3://speechlab-test-files-public/BarackObamaKeynote.mp4
+✅ Rekognition segmentation started: bbd57dfd9433b1fb8a0864ed102c46792ffbb0f55b3de27320699efeb3992732
+Upload successful, job created: 946b1357-0d53-4138-8d03-3414011b17ff
+ POST /api/upload 200 in 513ms
+📊 Status request for job: 946b1357-0d53-4138-8d03-3414011b17ff
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 946b1357-0d53-4138-8d03-3414011b17ff, step: segmentation
+📹 Checking Rekognition job bbd57dfd9433b1fb8a0864ed102c46792ffbb0f55b3de27320699efeb3992732
+Rekognition status: IN_PROGRESS
+ GET /api/status/946b1357-0d53-4138-8d03-3414011b17ff 200 in 319ms
+Upload request received
+Starting Rekognition for: s3://speechlab-test-files-public/BarackObamaKeynote.mp4
+✅ Rekognition segmentation started: f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Upload successful, job created: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+ POST /api/upload 200 in 164ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 75ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 81ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 71ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 76ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 78ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 78ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 81ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 76ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 79ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 79ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 77ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 92ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 94ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 80ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 85ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 87ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 90ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 83ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 92ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: IN_PROGRESS
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 94ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: segmentation
+📹 Checking Rekognition job f8753dad4cc15d1203c2ab85d91c0769fd91a3fb0c239335933aaaa5785e6e49
+Rekognition status: SUCCEEDED
+✅ Found 9 video segments
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 201ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: analysis
+🧠 Starting Bedrock analysis for 5 segments
+Analyzing segment 1: 0.033s - 1s
+❌ Bedrock error for segment 1: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:125:45)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:276:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: '73aee48a-0edd-471e-8b52-9d0e23daead5',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+Analyzing segment 2: 1.034s - 81.514s
+❌ Bedrock error for segment 2: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:125:45)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:276:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: '26d4547f-4cf4-45ee-8f63-29cc06e91587',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+Analyzing segment 3: 81.547s - 92.825s
+❌ Bedrock error for segment 3: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:125:45)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:276:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: 'd3b85720-79af-412f-9222-6cca5b9c493c',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 933ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: processing, step: synthesis
+🔍 Processing pipeline for job 4a86c12e-debf-44ed-9556-d24b5e9f4a64, step: synthesis
+🎤 Starting Polly synthesis for 3 descriptions
+Synthesizing text: At 0 seconds: Scene 1: Video content from 0.033 to 1 seconds ... At 1 seconds: Scene 2: Video conten...
+✅ Audio and text saved to S3
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 1404ms
+📊 Status request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+Current job status: completed, step: completed
+ GET /api/status/4a86c12e-debf-44ed-9556-d24b5e9f4a64 200 in 9ms
+ ✓ Compiled /api/results/[jobId]/audio in 192ms (84 modules)
+🎵 Audio result request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+🎧 Downloading audio from S3: 4a86c12e-debf-44ed-9556-d24b5e9f4a64/audio.mp3
+✅ Retrieved audio file (123740 bytes)
+ GET /api/results/4a86c12e-debf-44ed-9556-d24b5e9f4a64/audio 200 in 781ms
+ ✓ Compiled /api/results/[jobId]/text in 71ms (80 modules)
+📄 Text result request for job: 4a86c12e-debf-44ed-9556-d24b5e9f4a64
+📥 Downloading text from S3: 4a86c12e-debf-44ed-9556-d24b5e9f4a64/description.txt
+✅ Retrieved text content (202 characters)
+ GET /api/results/4a86c12e-debf-44ed-9556-d24b5e9f4a64/text 200 in 360ms
+ ✓ Compiled /api/aws-status in 37ms (74 modules)
+ GET /api/aws-status 200 in 1088ms
+ ✓ Compiled in 434ms (218 modules)
+ ✓ Compiled in 86ms (218 modules)
+ ✓ Compiled in 69ms (218 modules)
+ ✓ Compiled /api/upload in 30ms (78 modules)
+Upload request received
+Starting Rekognition for: s3://speechlab-test-files-public/BarackObamaKeynote.mp4
+ ✓ Compiled in 36ms (218 modules)
+✅ Rekognition segmentation started: a24e9bd56d9b84330ec69d898490fec93394ce890066913e452b9bdde1aafb2d
+Upload successful, job created: 8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74
+ POST /api/upload 200 in 538ms
+ ✓ Compiled in 86ms (218 modules)
+ ✓ Compiled /api/status/[jobId] in 226ms (82 modules)
+📊 Status request for job: 8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74, step: segmentation
+📹 Checking Rekognition job a24e9bd56d9b84330ec69d898490fec93394ce890066913e452b9bdde1aafb2d
+Rekognition status: IN_PROGRESS
+ GET /api/status/8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74 200 in 622ms
+ ✓ Compiled in 43ms (218 modules)
+ ✓ Compiled in 232ms (300 modules)
+ ✓ Compiled in 1725ms (300 modules)
+📊 Status request for job: 8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74, step: segmentation
+📹 Checking Rekognition job a24e9bd56d9b84330ec69d898490fec93394ce890066913e452b9bdde1aafb2d
+Rekognition status: SUCCEEDED
+✅ Found 9 video segments
+ GET /api/status/8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74 200 in 444ms
+ ✓ Compiled in 167ms (218 modules)
+📊 Status request for job: 8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job 8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.033s - 1s
+🎬 Extracting frame at 0.5165s from s3://speechlab-test-files-public/BarackObamaKeynote.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/BarackObamaKeynote.mp4
+✅ Extracted video data (34778584 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+ GET / 200 in 53ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1752ms (276 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 1777ms
+ ✓ Compiled /api/aws-status in 92ms (75 modules)
+ GET /api/aws-status 200 in 960ms
+ GET /api/aws-status 200 in 969ms
+ ✓ Compiled /api/upload in 128ms (83 modules)
+Upload request received
+Starting Rekognition for: s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+ ✓ Compiled in 50ms (219 modules)
+✅ Rekognition segmentation started: 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Upload successful, job created: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+ POST /api/upload 200 in 613ms
+ ✓ Compiled /api/status/[jobId] in 165ms (304 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 440ms
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+ ✓ Compiled in 46ms (219 modules)
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 98ms
+ ✓ Compiled in 114ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 85ms
+ ✓ Compiled in 70ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 87ms
+ ✓ Compiled in 104ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 132ms
+ ✓ Compiled in 120ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 118ms
+ ✓ Compiled in 62ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 85ms
+ ✓ Compiled in 71ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 97ms
+ ✓ Compiled in 60ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 97ms
+ ✓ Compiled in 257ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 64ms
+ ✓ Compiled in 48ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 73ms
+ ✓ Compiled in 76ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 75ms
+ ✓ Compiled in 59ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 75ms
+ ✓ Compiled in 57ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 90ms
+ ✓ Compiled in 182ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 92ms
+ ✓ Compiled in 59ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 72ms
+ ✓ Compiled in 75ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 83ms
+ ✓ Compiled in 64ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 76ms
+ ✓ Compiled in 55ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 94ms
+ ✓ Compiled in 121ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 88ms
+ ✓ Compiled in 228ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 77ms
+ ✓ Compiled in 58ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 73ms
+ ✓ Compiled in 96ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 66ms
+ ✓ Compiled in 61ms (219 modules)
+ GET /api/status/8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74 200 in 120143ms
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 63ms
+ ✓ Compiled in 168ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 86ms
+ ✓ Compiled in 97ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 71ms
+ ✓ Compiled in 43ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 68ms
+ ✓ Compiled in 66ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 99ms
+ ✓ Compiled in 70ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 62ms
+ ✓ Compiled in 66ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 70ms
+ ✓ Compiled in 109ms (219 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 86ms
+ ✓ Compiled in 48ms (218 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 82ms
+ ✓ Compiled in 29ms (218 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 76ms
+ ✓ Compiled in 36ms (218 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 80ms
+ ✓ Compiled in 39ms (218 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 86ms
+ ✓ Compiled in 51ms (218 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 70ms
+ ✓ Compiled in 49ms (218 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: IN_PROGRESS
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 70ms
+ ✓ Compiled in 57ms (218 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: segmentation
+📹 Checking Rekognition job 22257503166d4499439c611ed8fc5b02a77359e5184267a28cb914610a158cc0
+Rekognition status: SUCCEEDED
+✅ Found 142 video segments
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 278ms
+ ✓ Compiled in 61ms (218 modules)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.083s - 1.96s
+🎬 Extracting frame at 1.0215s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.083s - 1.96s
+🎬 Extracting frame at 1.0215s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.083s - 1.96s
+🎬 Extracting frame at 1.0215s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.083s - 1.96s
+🎬 Extracting frame at 1.0215s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+❌ Bedrock/frame extraction error for segment 1: ValidationException: Input is too long.
+    at de_ValidationExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1750:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1567:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:145:49)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:403:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 400,
+    requestId: '4f644c08-c93e-4e69-8e28-302e5c92934c',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+❌ Claude 3 error for segment 1: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:199:48)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:403:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: 'f0c0420d-8283-4ccf-b43c-38485394f98d',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+❌ Titan also failed for segment 1: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:219:51)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:403:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: 'd6f4912d-b404-4da7-bbf3-d17e1d1d80da',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+Analyzing segment 2: 2.002s - 14.347s
+🎬 Extracting frame at 8.174499999999998s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.083s - 1.96s
+🎬 Extracting frame at 1.0215s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 2)
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+📊 Status request for job: 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job 2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.083s - 1.96s
+🎬 Extracting frame at 1.0215s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 76460ms
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 72369ms
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 78473ms
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 80476ms
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 74479ms
+ GET /api/status/2ec9ced5-fd3e-49b7-967a-27a7e15b3c8b 200 in 82478ms
+ GET / 200 in 39ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 681ms (276 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 715ms
+ ✓ Compiled /api/aws-status in 44ms (75 modules)
+ GET /api/aws-status 200 in 906ms
+ GET /api/aws-status 200 in 913ms
+ ✓ Compiled /api/upload in 41ms (83 modules)
+Upload request received
+Starting Rekognition for: s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+ ✓ Compiled in 60ms (219 modules)
+✅ Rekognition segmentation started: 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Upload successful, job created: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+ POST /api/upload 200 in 488ms
+ ✓ Compiled /api/status/[jobId] in 350ms (304 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Rekognition status: IN_PROGRESS
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 670ms
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+ ✓ Compiled in 88ms (219 modules)
+Rekognition status: IN_PROGRESS
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 90ms
+ ✓ Compiled in 35ms (219 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Rekognition status: IN_PROGRESS
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 86ms
+ ✓ Compiled in 33ms (219 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Rekognition status: IN_PROGRESS
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 79ms
+ ✓ Compiled in 52ms (219 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Rekognition status: IN_PROGRESS
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 77ms
+ ✓ Compiled in 160ms (219 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Rekognition status: IN_PROGRESS
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 106ms
+ ✓ Compiled in 65ms (219 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Rekognition status: IN_PROGRESS
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 89ms
+ ✓ Compiled in 63ms (219 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Rekognition status: IN_PROGRESS
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 77ms
+ ✓ Compiled in 53ms (219 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Rekognition status: IN_PROGRESS
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 84ms
+ ✓ Compiled in 65ms (219 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Rekognition status: IN_PROGRESS
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 78ms
+ ✓ Compiled in 78ms (219 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Rekognition status: IN_PROGRESS
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 84ms
+ ✓ Compiled in 105ms (219 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Rekognition status: IN_PROGRESS
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 102ms
+ ✓ Compiled in 64ms (219 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Rekognition status: IN_PROGRESS
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 82ms
+ ✓ Compiled in 58ms (219 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: segmentation
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: segmentation
+📹 Checking Rekognition job 546ebbafeba4f7b40628218bf7f43a54acd073ae18f957a63dfe3f8cef317a9f
+Rekognition status: SUCCEEDED
+✅ Found 142 video segments
+ GET /api/status/dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0 200 in 273ms
+ ✓ Compiled in 87ms (219 modules)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.083s - 1.96s
+🎬 Extracting frame at 1.0215s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.083s - 1.96s
+🎬 Extracting frame at 1.0215s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.083s - 1.96s
+🎬 Extracting frame at 1.0215s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.083s - 1.96s
+🎬 Extracting frame at 1.0215s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.083s - 1.96s
+🎬 Extracting frame at 1.0215s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+❌ Bedrock/frame extraction error for segment 1: ValidationException: Input is too long.
+    at de_ValidationExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1750:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1567:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:145:49)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:403:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 400,
+    requestId: '64b10890-fa3e-449c-8175-78c389dfb906',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 2,
+    totalRetryDelay: 42
+  }
+}
+❌ Claude 3 error for segment 1: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:199:48)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:403:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: '903eff00-6828-467e-8844-3be988e09480',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+📊 Status request for job: dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job dbbb8cd1-4e96-4a4b-972d-785ff37bf7b0, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.083s - 1.96s
+🎬 Extracting frame at 1.0215s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+❌ Titan also failed for segment 1: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:219:51)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:403:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: '5290a3aa-c0ed-42f5-bf22-0ff33f8fb849',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+Analyzing segment 2: 2.002s - 14.347s
+🎬 Extracting frame at 8.174499999999998s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 2)
+❌ Bedrock/frame extraction error for segment 1: ValidationException: Input is too long.
+    at de_ValidationExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1750:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1567:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:145:49)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:403:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 400,
+    requestId: 'a915806e-05cc-46d3-aa37-96974810b6c0',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 2,
+    totalRetryDelay: 8
+  }
+}
+❌ Claude 3 error for segment 1: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:199:48)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:403:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: '818e7bcc-3697-4545-b892-96ff0ce4a114',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+❌ Titan also failed for segment 1: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:219:51)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:403:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: '809f1e51-2a6e-442b-bed0-881af042b089',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+Analyzing segment 2: 2.002s - 14.347s
+🎬 Extracting frame at 8.174499999999998s from s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4
+✅ Extracted video data (35481982 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 2)
+📊 Status request for job: 8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job 8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.033s - 1s
+🎬 Extracting frame at 0.5165s from s3://speechlab-test-files-public/BarackObamaKeynote.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/BarackObamaKeynote.mp4
+✅ Extracted video data (34778584 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 1)
+❌ Bedrock/frame extraction error for segment 1: ValidationException: Input is too long.
+    at de_ValidationExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1750:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1567:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:145:49)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:403:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 400,
+    requestId: '906af586-c8e7-4990-9e5c-d94721d007e0',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+❌ Claude 3 error for segment 1: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:199:48)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:403:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: 'a1a4b221-792a-4e87-8099-7d6a99115687',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+❌ Titan also failed for segment 1: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:219:51)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:403:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: '31346ba1-f3dc-4c4b-8bda-d7679e04f4c7',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+Analyzing segment 2: 1.034s - 81.514s
+🎬 Extracting frame at 41.273999999999994s from s3://speechlab-test-files-public/BarackObamaKeynote.mp4
+📥 Downloading video segment from S3: speechlab-test-files-public/BarackObamaKeynote.mp4
+✅ Extracted video data (34778584 bytes) for Nova Pro analysis
+🧠 Sending video data to Nova Pro for analysis (segment 2)
+ GET /api/status/8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74 200 in 120184ms
+ ✓ Compiled in 178ms (274 modules)
+ ✓ Compiled in 96ms (218 modules)
+ ✓ Compiled in 75ms (218 modules)
+ ✓ Compiled /api/status/[jobId] in 58ms (76 modules)
+📊 Status request for job: 8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74
+Current job status: processing, step: analysis
+🔍 Processing pipeline for job 8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74, step: analysis
+🧠 Starting Bedrock Nova Pro analysis for 5 segments
+Analyzing segment 1: 0.033s - 1s
+🎬 Optimized frame extraction at 0.5165s from s3://speechlab-test-files-public/BarackObamaKeynote.mp4
+⚠️ Using fallback approach - frame extraction needs optimization
+❌ Bedrock/frame extraction error for segment 1: Error: Failed to extract video data for Nova Pro analysis
+    at processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:155:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:364:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/start-server.js:141:13)
+❌ Titan error for segment 1: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:192:47)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:364:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: 'fa88b93f-504b-417e-8375-a139162d0fa0',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+📝 Using contextual fallback description for segment 1
+Analyzing segment 2: 1.034s - 81.514s
+🎬 Optimized frame extraction at 41.273999999999994s from s3://speechlab-test-files-public/BarackObamaKeynote.mp4
+⚠️ Using fallback approach - frame extraction needs optimization
+❌ Bedrock/frame extraction error for segment 2: Error: Failed to extract video data for Nova Pro analysis
+    at processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:155:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:364:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/start-server.js:141:13)
+❌ Titan error for segment 2: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:192:47)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:364:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: 'c52f82f9-3ef4-48bf-9cb3-4eb481c00970',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+📝 Using contextual fallback description for segment 2
+Analyzing segment 3: 81.547s - 92.825s
+🎬 Optimized frame extraction at 87.186s from s3://speechlab-test-files-public/BarackObamaKeynote.mp4
+⚠️ Using fallback approach - frame extraction needs optimization
+❌ Bedrock/frame extraction error for segment 3: Error: Failed to extract video data for Nova Pro analysis
+    at processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:155:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:364:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/start-server.js:141:13)
+❌ Titan error for segment 3: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:192:47)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:364:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: 'bd63666a-cdf7-4ca2-ba84-ee7cb74c3224',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+📝 Using contextual fallback description for segment 3
+Analyzing segment 4: 92.859s - 183.015s
+🎬 Optimized frame extraction at 137.93699999999998s from s3://speechlab-test-files-public/BarackObamaKeynote.mp4
+⚠️ Using fallback approach - frame extraction needs optimization
+❌ Bedrock/frame extraction error for segment 4: Error: Failed to extract video data for Nova Pro analysis
+    at processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:155:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:364:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/start-server.js:141:13)
+❌ Titan error for segment 4: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:192:47)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:364:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: 'e9975692-487d-45de-b787-3871bae654d0',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+📝 Using contextual fallback description for segment 4
+Analyzing segment 5: 183.049s - 184.016s
+🎬 Optimized frame extraction at 183.5325s from s3://speechlab-test-files-public/BarackObamaKeynote.mp4
+⚠️ Using fallback approach - frame extraction needs optimization
+❌ Bedrock/frame extraction error for segment 5: Error: Failed to extract video data for Nova Pro analysis
+    at processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:155:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:364:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/lib/start-server.js:141:13)
+❌ Titan error for segment 5: AccessDeniedException: You don't have access to the model with the specified model ID.
+    at de_AccessDeniedExceptionRes (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1603:21)
+    at de_CommandError (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/client-bedrock-runtime/dist-cjs/index.js:1552:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-serde/dist-cjs/index.js:36:20
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/core/dist-cjs/index.js:193:18
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:33:22
+    at async processRealAWSPipeline (webpack-internal:///(api)/./pages/api/status/[jobId].ts:192:47)
+    at async handler (webpack-internal:///(api)/./pages/api/status/[jobId].ts:364:19)
+    at async K (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:2871)
+    at async U.render (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/compiled/next-server/pages-api.runtime.dev.js:21:3955)
+    at async DevServer.runApi (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:603:9)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/next-server.js:269:37)
+    at async DevServer.handleRequestImpl (/Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/ryanmedlin/speechlab/voiceDescriptionAPI/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: '0db0dce4-1951-4767-ae7b-390381aa8820',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  }
+}
+📝 Using contextual fallback description for segment 5
+ GET /api/status/8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74 200 in 1480ms
+ ✓ Compiled in 63ms (218 modules)
+📊 Status request for job: 8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74
+Current job status: processing, step: synthesis
+🔍 Processing pipeline for job 8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74, step: synthesis
+🎤 Starting Polly synthesis for 5 descriptions
+Synthesizing text: At 0 seconds: The video opens with an establishing shot, showing the initial scene and setting the v...
+✅ Audio and text saved to S3
+ GET /api/status/8ce0286f-ccdd-4a41-9f2c-4a2c1c6b3c74 200 in 1994ms
+ ✓ Compiled in 42ms (218 modules)
+ ✓ Compiled in 123ms (274 modules)
+ ✓ Compiled in 125ms (218 modules)
+ ✓ Compiled in 210ms (218 modules)
+[?25h
