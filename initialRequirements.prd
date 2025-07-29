@@ -1,0 +1,214 @@
+Automated Video Audio Description System Design
+Introduction and Solution Overview
+This design outlines an automated video audio description system that generates descriptive audio narration tracks for videos (e.g. for visually impaired audiences). The system leverages AWS AI services – Amazon Rekognition for video scene detection, Amazon Bedrock (Nova Pro model) for scene analysis, and Amazon Polly for text-to-speech – orchestrated by a Node.js backend. A React/Next.js front-end provides a simple interface for uploading videos and downloading the resulting description text and audio. The goal is to modularize each function (upload, segmentation, description generation, synthesis) for clarity and testability, following test-driven development (TDD) principles. We also include a lightweight demo UI and a straightforward deployment plan on a single VM. This approach closely follows techniques described by AWS’s accessible audio description prototype
+aws.amazon.com
+aws.amazon.com
+, while extending it into a full-stack web application. Key AWS Services Used:
+Amazon S3: Reliable storage for input videos and output files (text descriptions and MP3 audio)
+aws.amazon.com
+.
+Amazon Rekognition: Computer vision API to detect scene/shot segments in the video (e.g. cuts, black frames)
+aws.amazon.com
+. This partitions the video into coherent segments for analysis, improving description accuracy.
+Amazon Bedrock (Amazon Nova Pro): A multimodal generative AI model that accepts visual input and produces detailed text descriptions of each scene
+aws.amazon.com
+. Nova Pro is accessed via Amazon Bedrock’s API using the model ID (e.g. "amazon.nova-pro-v1:0"), with a suitable prompt to describe the scene.
+Amazon Polly: Text-to-speech service that converts the compiled scene descriptions into an audio narration (MP3 file)
+aws.amazon.com
+.
+High-Level Workflow: The user uploads a video (or provides an S3 link) via the front-end. The Node.js backend stores the video in S3 and invokes Rekognition to detect scene boundaries. For each scene segment, the backend extracts the video chunk and calls the Nova Pro model to generate a textual description of that scene. All scene descriptions are combined into a final script, which is then synthesized to speech with Polly, resulting in an audio description track. The user can then download the text script and the audio file from the UI. All sensitive operations (AWS calls, API keys) occur server-side for security, with the front-end only handling user input and output display. 
+https://aws.amazon.com/blogs/machine-learning/exploring-accessible-audio-descriptions-with-amazon-nova/
+System Architecture Overview – The video file is uploaded to Amazon S3 and segmented by Amazon Rekognition. Each video segment is saved temporarily and analyzed by the Amazon Bedrock Nova Pro model to produce textual descriptions, which are compiled into video_analysis.txt. Finally, Amazon Polly converts this text to speech (video_analysis.mp3).
+Modular Architecture Components
+To ensure a highly modular and testable architecture, the system is divided into distinct components, each encapsulating a major function. Each component can be developed and tested in isolation (with mock AWS services), and together they form the end-to-end pipeline. The design uses Node.js for all backend logic (with the AWS SDK for JavaScript), and React/Next.js for the front-end interface. The table below summarizes each module and its responsibilities:
+Module / Component	Responsibilities	Key Technologies/Services
+Video Input & Storage	Receive video input (file upload or S3 URI) from the UI. Handle file uploads and store the video in Amazon S3 (input bucket) for processing.	AWS S3 (SDK for upload), Node file handling
+Video Segmentation	Trigger Amazon Rekognition to detect scene segments (shot boundaries) in the video. Poll for job completion and retrieve timestamps of each segment.	Amazon Rekognition (Segment Detection API)
+aws.amazon.com
+Scene Extraction	For each segment, extract the corresponding video clip from the full video (using start/end timestamps). Save segment clips to a temp directory for analysis.	Node video processing (e.g. FFmpeg via child process or library)
+Scene Analysis	Send each video segment to Amazon Bedrock’s Nova Pro model with an appropriate prompt. Receive a detailed text description of the scene. Handle retries/backoff for rate limits.	Amazon Bedrock (Nova Pro foundation model)
+aws.amazon.com
+Description Compilation	Aggregate all scene descriptions (in chronological order) into a structured text output. Include or reference segment timestamps for context, and apply any needed text post-processing (e.g. removing repetitive phrasing).	Node file I/O (for text file creation)
+Text-to-Speech Synthesis	Convert the final compiled text description into speech using Amazon Polly. Select a voice, handle large text by chunking if needed, and obtain an MP3 audio file. Include retry logic for rate limiting.	Amazon Polly (TTS)
+aws.amazon.com
+Backend Orchestration	High-level controller that coordinates all above modules in sequence. Manages state (job status) and errors across the workflow. Provides status updates for the front-end.	Node.js (express/Next.js API), AWS SDK integration
+Front-End Demo UI	User interface for uploading video or entering S3 link. Shows progress updates (segmentation → analysis → synthesis) and provides download links for the resulting description text and audio.	React/Next.js, HTML5 file input, progress display
+Below, we detail each of these modules along with their internal design and tasks:
+1. Video Input & Storage Module
+Function: Accept videos from the user and prepare them for processing. This module will be implemented as a back-end API endpoint (e.g. POST /upload). The front-end allows either selecting a local video file or providing an S3 URI of an existing video.
+File Upload Handling: If the user uploads a file, the backend will receive it (e.g. via multipart/form-data). We use Node streams or buffers to handle potentially large files without blocking memory.
+S3 Storage: The video is saved to an AWS S3 bucket designated for inputs. This decouples processing from the upload source and is required by Rekognition’s API (Rekognition Video APIs typically operate on videos stored in S3). Using the AWS SDK for JavaScript, the module will call s3.upload() (or PutObject) with the file stream. The result is an S3 key or URI for the video
+aws.amazon.com
+.
+Direct S3 URI Input: If the user provides an S3 URI instead of a file, we can skip the upload and use that URI directly (after validating format and access). The system should ensure the backend has permission to read that S3 object (it may require the bucket to be in the same AWS account or a pre-signed URL if cross-account).
+Output: The module returns a reference ID for the video (e.g. the S3 key or an internal job ID linking to that video). This ID will be used by subsequent steps. It also immediately triggers the next step (segmentation).
+Testing (TDD): Before implementing, we write unit tests for: (a) handling a dummy file upload (use a small sample file buffer) and ensuring s3.upload is called with correct parameters, (b) handling a provided S3 URI properly (valid vs invalid URI formats), and (c) error cases (network issues or S3 permission errors). We will mock the AWS S3 SDK using Jest to simulate success and failure responses. This ensures that the module correctly returns a video identifier or propagates errors without actually calling AWS.
+2. Video Segmentation Module (Amazon Rekognition)
+Function: Use Amazon Rekognition to detect scene segments in the video. This module encapsulates all logic related to initiating and retrieving Rekognition’s video segment detection results.
+Starting Segment Detection: Using the AWS SDK, we call Rekognition’s StartSegmentDetection API on the uploaded video. We supply the S3 bucket and key of the video, and request shot detection (by setting SegmentTypes=['SHOT'])
+aws.amazon.com
+. We can also specify MinSegmentConfidence if needed to filter low-confidence segments
+aws.amazon.com
+. Rekognition will respond with a Job ID for the asynchronous segmentation task.
+Polling for Completion: Rekognition processes videos asynchronously (it may take real time proportional to video length). We must poll for job completion using GetSegmentDetection periodically. The module will implement a loop or use AWS SNS/SQS for notification – for simplicity, we will use polling in a timed interval (e.g. every few seconds) until the job is finished. The system should allow a reasonable timeout for very long videos and handle the case where Rekognition fails.
+Retrieving Segments: Once complete, GetSegmentDetection returns a list of segments with start time, end time, and duration for each detected shot/scene
+aws.amazon.com
+aws.amazon.com
+. We collect all segments (handling pagination if the result is large by checking NextToken). The output is a structured list, e.g. an array of { startTime: number, endTime: number } for each scene.
+Storing Segment Info: These segments will be passed to the extraction and analysis steps. We might also store them in a temporary JSON or in memory. If the front-end needs to display progress (e.g. number of segments total), we might send that count to the UI once known.
+Error Handling: If Rekognition returns an error (video unreadable, unsupported format, etc.), the module should catch it and flag the job as failed. The rest of the pipeline would then abort gracefully.
+Testing: We write tests for the segmentation logic by mocking Rekognition’s responses. For example, a test can simulate StartSegmentDetection returning a Job ID, then simulate GetSegmentDetection returning an “in-progress” status on first few calls and a completion with segment list on final call. The module’s polling loop can be tested by injecting a fake Rekognition client that yields predetermined responses. This ensures the code correctly handles the asynchronous nature and collects segments. Also test edge cases: no segments found (e.g. if video is one continuous shot), or API errors (should throw or return a meaningful error).
+3. Scene Extraction Module
+Function: Physically extract each scene segment from the full video file. Rekognition gives timecodes for each scene; this module will cut the video into smaller chunks corresponding to those times. This is useful because we will feed each chunk into the Nova model for analysis, reducing context and focusing on one scene at a time
+aws.amazon.com
+.
+Video Processing Tool: In Node.js, we can use a library like FFmpeg (invoked via a wrapper such as fluent-ffmpeg or via child process) to slice the video. Another option is a pure JS library, but FFmpeg is the most reliable for precise cutting. The module will likely spawn an FFmpeg process with start and duration parameters for each segment, e.g. ffmpeg -i fullVideo.mp4 -ss <start> -to <end> -c copy segmentN.mp4.
+Temporary Storage: Each segment file can be saved to a temporary directory on the server (or in memory if small). The AWS blog suggests using a temp directory for segment files
+aws.amazon.com
+. We will ensure the directory exists (create if not) and clean up files after use (to save space). Each segment could be named by the job ID and segment index (to avoid collisions if multiple jobs run).
+Optimization: If segments are short and numerous, extracting sequentially could be slow. We might consider extracting in parallel (up to a certain concurrency limit) to speed up processing. However, to keep design simple and avoid high CPU load on a small VM, we can extract one segment at a time.
+Output: For each input {startTime, endTime}, output the file path (or Buffer) of the extracted clip. These will be passed to the analysis module. If extraction fails for a segment (e.g. FFmpeg error), we should log it and either retry or skip that segment with a warning.
+Testing: Using TDD, we define tests that given a known input video and time range, the module produces a file of the expected duration. We might include a short test video in our repo for this purpose. In a controlled test, we could use a small video (few seconds) and cut a segment known to correspond to certain frames. The test can verify the output file exists and perhaps that its duration matches (using ffprobe or similar). We can also mock the fluent-ffmpeg library to simulate success or failure without actually needing a real video file in unit tests. Error path (like invalid timestamps) should return null or throw, which we test as well.
+4. Scene Analysis Module (Amazon Nova Pro via Bedrock)
+Function: Analyze each video segment to generate a textual description of the scene. This module interfaces with Amazon Bedrock to use the Amazon Nova Pro foundation model – a multimodal model that can interpret visual content and produce text
+aws.amazon.com
+aws.amazon.com
+.
+Preparing Input for Nova: Amazon Nova Pro can accept a video or image input along with an instruction prompt. For each segment clip, we will encode the video file to base64 (as required by the Bedrock API for binary data)
+aws.amazon.com
+. We then construct a request payload including the model ID (e.g. "amazon.nova-pro-v1:0") and a prompt. In our case, we use a prompt similar to “Describe what is happening in this video in detail.” (as suggested by the AWS blog)
+aws.amazon.com
+. The video content (base64 string) is attached as input to the model.
+Calling Bedrock API: Using the AWS SDK (Bedrock client), we call InvokeModel with the above payload. The response will contain the model’s generated text. We parse out the description text from the response.
+Throttling and Retry: Bedrock APIs may have rate limits, especially if analyzing many segments or using large model context
+aws.amazon.com
+. We implement a retry with exponential backoff inside this module. For example, if InvokeModel returns a throttling error or times out, catch it, wait (e.g. 2^n * base_delay seconds), and retry up to a max number of attempts
+aws.amazon.com
+. This ensures robust processing of longer videos with many segments.
+Output Handling: The raw output from Nova might contain extra formatting. For example, it could return JSON with a {"text": "description"} field or include the prompt back. We extract just the descriptive text. Also, as noted in the AWS experiment, Nova’s output might sometimes start with phrases like “In this video…” for each segment
+aws.amazon.com
+. We may apply a simple post-processing to remove or trim such repetitive introductions, to make the final narration more natural. (Alternatively, we could refine the prompt or use Bedrock’s function calling tools to shape output
+aws.amazon.com
+, but for now a simple cleanup step is sufficient.)
+Iterative Development: During TDD, we might first implement this module to accept a dummy image (for simplicity) instead of a video, to verify the integration with Bedrock. Once verified, we proceed to full video segments.
+Testing: We cannot easily call the real model in unit tests (as it requires AWS Bedrock access and is costly), so we mock the Bedrock client. We design the module interface so we can inject a fake Bedrock service for tests. Our tests will cover: (a) correct payload formation (the prompt contains the expected instruction, the video data is included), (b) handling of a successful response (mock a response with a known text and see if the module returns the expected text string), and (c) handling of errors – we simulate a throttling error on first call and success on retry, verifying that our backoff mechanism indeed retries and eventually succeeds. We also test the post-processing logic: e.g., if the fake model returns “In this video, a man is walking…”, our module should trim the leading “In this video, ” if that’s part of our cleanup rules.
+5. Description Compilation Module
+Function: Compile the individual scene descriptions and associated timestamps into a coherent text artifact. This module gathers results from the Scene Analysis step for all segments and outputs a text file (and/or structured data) representing the full video narration script.
+Aggregating Results: As each scene’s text is produced, it is appended to a results list along with that scene’s time interval. For example, we might keep an array of objects: { start: 103.136, end: 126.026, text: "The video shows a close-up of a coffee cup..." }. Once all segments are processed, we sort them by start time (they should already be in order if processed sequentially) and then format them.
+Formatting Text Output: We create a human-readable text file (e.g. video_analysis.txt). One format is to list each segment with its timestamp range followed by the description
+aws.amazon.com
+. For instance:
+Segment 103.136–126.026 seconds: The video shows a close-up of a coffee cup with steam rising from it...  
+Segment 126.059–133.566 seconds: The video starts with a person's hand covered in dirt...  
+... (and so on for all scenes) ...
+This matches the style shown in AWS’s example output
+aws.amazon.com
+. However, for the final narration we might not want to speak the timestamps or the word "Segment". So, the system could also produce a second text version without the segment labels, purely the descriptive sentences in order, which is what we’ll feed into Polly. (If we do keep timestamps in the text file for reference, we’ll ensure to strip them out or skip them when synthesizing speech.)
+Ensuring Quality: As a final pass, this module could allow hooks for manual review or additional editing rules (for instance, ensuring no two consecutive descriptions are identical, checking grammar, etc.). In an automated system, we at least ensure any placeholder text or obvious artifacts are removed. We may also choose to insert slight pauses or separators in the text (like blank lines or punctuation) to guide Polly’s speech intonation between scenes.
+Output: The primary output is video_analysis.txt saved to either an S3 output bucket or the server’s disk. Additionally, the raw aggregated text (sans timestamps) is returned for the next module (Polly).
+Testing: We test that given a set of sample scene inputs (with dummy timestamps and texts), the module correctly concatenates them in order and produces the expected formatted string. One unit test could feed two or three scene descriptions into the compiler and check that the output string contains all of them in the right order with proper newline separators and formatting. We also test the removal of any undesirable phrases (simulate an input text starting with "In this video" and verify the output removes it). If writing to a file, we test that the file is created and contains the expected content. These tests are purely in Node (no external calls), so they should run quickly.
+6. Text-to-Speech Synthesis Module (Amazon Polly)
+Function: Convert the compiled descriptive text into spoken audio using Amazon Polly. This provides the final audio description track for the video.
+Polly Configuration: We initialize an AWS Polly client in Node. We choose an appropriate voice – for example, a clear, neutral voice suitable for narration. (Amazon Polly offers many voices; the choice can be a configuration option. E.g., a female American English voice like Joanna or a voice known for commentary.)
+aws.amazon.com
+. We also decide on output format (MP3).
+Handling Large Text: If the compiled text is very long (Polly has a limit on input text length per request, typically around 3000 characters), the module should split the text into smaller chunks (e.g. by sentence or paragraph) and synthesize them separately, then concatenate the audio. However, for simplicity, if we assume moderate length or use Polly’s support for SSML and multiple <s> tags, we can attempt one request. We will implement a check on text length and if it exceeds a safe threshold, break it into chunks (ensuring we split at sentence boundaries for natural pauses).
+Synthesis Request: Use Polly’s SynthesizeSpeech API with the text input (or SSML if needed), voice ID, and output format. This returns an audio stream (or we can direct it to save to S3). In Node, we can stream this directly into a file (e.g., create a write stream to video_analysis.mp3).
+Retry Logic: Similar to Bedrock, if Polly returns a throttling error or transient error, implement a retry with backoff
+aws.amazon.com
+. Polly is generally fast, but for very large text or many requests, throttling could happen.
+Output: The resulting MP3 file is saved (either to a local file system or uploaded to S3 output bucket). The path or S3 URI of this audio file is passed back to the orchestrator so the front-end can access it. If saved locally on the server, we will expose an API endpoint to download it (or use Next.js static file serving for a known directory).
+Memory/Performance: We should stream the audio to file to avoid holding a large buffer in memory. If the system had to merge multiple chunks, we’ll append each chunk in order to the file.
+Testing: In unit tests, we avoid calling the real Polly service. We mock the Polly SDK to test our logic. For example, feed in a dummy text and have the mock synthesizeSpeech return a stream or buffer of fake audio bytes. The module should write these to an output file. We verify that the file is created and has expected size (or that our code invokes the write correctly). We also test the chunk-splitting logic: e.g., give a string longer than threshold and verify it splits into two calls, versus a short string goes as one call. For integration (later), we might perform a real Polly call on a very short text to ensure connectivity, but that would be a separate test or a manual step given costs.
+7. Backend Orchestration & Workflow Management
+Function: This is the “glue” that ties all modules together to fulfill the end-to-end process. The orchestrator is essentially the implementation behind an API like POST /processVideo or it could be a series of API calls and a job queue. In a synchronous script (like the AWS blog’s example
+aws.amazon.com
+), this is a single function analyze_video() that calls each step in sequence. In our web service design, we adapt this to handle asynchronous operation and progress tracking.
+Job Initiation: When the front-end requests processing (either via the upload endpoint or a separate trigger endpoint), the orchestrator creates a Job ID (e.g., a UUID) to track this processing instance. It immediately returns this ID to the client, so the client can poll for status. The Job ID is associated with a state object stored server-side (could be in memory for demo, or in a lightweight database if persistence needed). The state might include: current step, progress percentage, any partial results or error info.
+Sequential Processing: The orchestrator will perform the following in order:
+Video Upload/Identify: Ensure the video is available (if a file was uploaded, it might already have been handled; if not, ensure the S3 URI is accessible). Update job status ("Uploaded to S3").
+Segmentation: Call the Video Segmentation module with the S3 video reference. Wait for completion (this could take some time, so here the orchestrator might be running in a background async context). Once done, store the segments list. Update status (e.g. "Video segmented into N scenes"). Also store the number of segments for progress calculations.
+Iterative Scene Processing: Loop through each segment: for each index i out of N:
+Extract segment video file (Scene Extraction module).
+Analyze that segment (Scene Analysis module) to get text description.
+Append the result to the compilation buffer (Description Compilation module internal buffer).
+Update job progress (for example, after each scene, we can mark i/N scenes described). Possibly send an intermediate status like "Processed scene X of N" that the front-end can show.
+(If any step fails for a particular segment, decide whether to skip that segment or fail the whole job. A robust approach is to log the error, skip that scene, and continue, then flag in the final result that one scene is missing.)
+After loop, finalize the text output (Description Compilation module finalizes the text and writes video_analysis.txt). Update status ("Compiled text description").
+Synthesis: Call the Text-to-Speech module with the compiled text. Wait for MP3 generation. Update status ("Audio synthesis completed").
+Mark the job as done, and store the paths/URLs for the output text and audio.
+Concurrency & Non-blocking: Because video processing can be lengthy, the orchestrator should run the above sequence asynchronously without blocking the web server’s main thread. In a Node environment, this could mean just using await on promises (since Node’s event loop is non-blocking for I/O). However, CPU-intensive tasks like video extraction could block the event loop. To avoid that, we might offload FFmpeg processing to a child process. For the overall flow, one simple approach is to spawn a child worker thread or process for the entire pipeline, or use a background queue library. For a single-VM demo, a straightforward method is: upon receiving the request, respond immediately with the Job ID, and then perform the workflow in the background (for example, using setImmediate() or a simple in-memory task queue). The front-end will be responsible for polling the status.
+Progress Tracking: The orchestrator updates a shared status object at each step. The front-end’s polling endpoint (e.g. GET /status/<jobId>) will read from this object to report progress. A simple structure for status could be: { status: "processing", step: "Analyzing scene 3 of 5", progress: 60% }. If using Next.js API routes, this could be stored in an in-memory Map or a global variable (for demo simplicity) keyed by jobId. In a production scenario, a distributed cache or database would be safer.
+Completion & Cleanup: Once done, the status is updated to "completed" along with download links or paths. We might also include a link to the output S3 objects or an API call to fetch them. It’s important to cleanup any temporary files (video segments, compiled text) on the server to save disk space. The orchestrator can trigger cleanup after a certain time or immediately after packaging the results. S3 inputs/outputs can also be deleted or kept depending on user needs.
+Testing: Testing the orchestrator in full requires either heavy integration testing or mocking each module. Since each component is already unit tested, for integration tests we can stub the modules to simulate a full run quickly. For example, use a fake video input (that bypasses actual upload), inject a preset list of segments (instead of calling real Rekognition), and stub the analysis to return canned descriptions. Then run the orchestrator function and verify that it produces the final text and audio outputs as expected. We will also test that the status updates occur in the correct order. Because orchestrator logic can be complex, writing tests first helps clarify the expected sequence of calls and state changes. For TDD, we might first write an integration test scenario: “given an input video with 2 scenes, the system should output a text file with 2 descriptions and an MP3, and intermediate status should go from uploading -> segmenting -> analyzing scene 1 -> analyzing scene 2 -> synthesizing -> completed.” Then implement the orchestrator to make this test pass by coordinating the already-tested modules.
+8. Front-End Demo UI (React/Next.js)
+Function: Provide a user-friendly interface to interact with the backend. The front-end is a Next.js application (React based) that allows video upload, shows processing progress, and offers the outputs for download once ready. The design is kept minimal and focused on usability.
+Video Upload Form: The homepage of the demo will contain a form where the user can either select a video file from their device (using an <input type="file">) or enter an S3 URL (an <input type="text"> for advanced users who have a video already in S3). We will validate that the file size is within acceptable limits and maybe restrict file types to common video formats (MP4, MOV, etc.).
+Submitting the Video: On form submission, the front-end will make a request to the backend. If a file was chosen, it will perform a POST (perhaps to a Next.js API route or an Express endpoint) including the file (using FormData). If an S3 URI was provided, it can call an endpoint like POST /processVideo with JSON containing that URI. In either case, the backend responds with a Job ID for the processing job (and possibly initial status).
+Progress Display: After getting the Job ID, the front-end will show a status area. We will likely implement a polling mechanism (e.g. call GET /status/<jobId> every few seconds) to retrieve the latest status of the job. The status might include which step is in progress and possibly a percentage. This is displayed to the user, for example: “Segmentation in progress…”, then “Analyzing scene 2 of 5…”, etc. Optionally, a progress bar can be shown if we can estimate overall completion (e.g., we know number of scenes, so after segmentation we can roughly say each scene analysis is X% of the job).
+Results Download: Once the status API indicates completion, the UI will present links or buttons to download the text description file and the audio MP3. If our backend stored them in S3 and made them public or pre-signed, the UI could link directly to S3. For simplicity, we might have backend routes like GET /results/<jobId>/text and .../audio which serve the file from local disk or stream from S3. The UI triggers downloads from these endpoints. We also display basic info, such as file size or an option to preview the text on the page. (For accessibility, showing the text on page might also be nice, but it’s optional since the main purpose is the audio file.)
+No Login, Secure Keys: The front-end does not manage users or authentication. All AWS credentials remain on the server – the browser never sees them. The Next.js app will make calls to our server’s API, which in turn uses AWS SDK with credentials from environment variables. This way, even though the UI is publicly accessible, the AWS usage is controlled entirely in the backend. We must also consider limiting access: if this demo is deployed publicly without auth, someone could abuse it (e.g., send extremely long videos). For a demo, we might accept this risk, but note that in production one would add user auth or request quotas.
+Testing (Front-End): We can use React testing libraries to verify that the UI behaves correctly: e.g., when a file is selected and form submitted, the appropriate API call is made (we can mock the network calls). We also test that the status polling updates the UI text. Snapshot tests can ensure the initial render vs loading vs completed states render the correct elements. Since the front-end is relatively simple, a manual test with a small video file can validate the end-to-end experience as well.
+Test-Driven Development Approach
+From the outset, we adopt TDD to ensure reliability and modularity. This means writing tests before implementation for each module described, and integrating continuously. We choose Jest as our testing framework (with support for mocking and assertions). Unit Tests for Each Module:
+Video Input: Test that uploading a sample file results in a call to S3 (mocked) and returns an ID. Test that a bad input is handled gracefully.
+Segmentation: Test that given a mock Rekognition client, the code correctly polls and returns expected segments. Include tests for edge cases (no segments, API error).
+Extraction: Test video clipping with a small dummy file or by mocking FFmpeg calls. Ensure proper file naming and cleanup.
+Analysis: Test that the Bedrock invocation is called with correct parameters (we inject a fake client). Simulate a throttling scenario and ensure retries happen. Verify output text is correctly returned and cleaned.
+Compilation: Test that a set of scene texts are joined correctly into the final script. Ensure timestamps formatting is correct and optional removal of undesired phrases works.
+Synthesis: Test that text is split if too long, Polly is called with proper input (using a fake Polly client), and that output file is written. Simulate a Polly error once to test retry.
+Orchestration: Using stubs for all modules (to avoid lengthy real processing), test that the orchestrator flows through all steps, updating status appropriately and producing final outputs.
+Front-End: Use Jest (with jsdom) or React Testing Library to simulate a user uploading a file and ensure the sequence of calls and UI updates matches expectations. This can include mocking the backend API with known responses (jobId, status sequence, final links).
+Each unit test will be written based on the module’s interface contract, essentially serving as a specification. Only after writing a test that fails (because the module is not yet implemented) do we write the minimal code to pass the test. Over iterations, this yields well-tested modules. Integration Testing: After unit tests pass, we perform integration tests. For example, run the entire pipeline on a known small video (possibly using a real call to AWS on non-mocked code, if credentials are available in a test environment). This can be a manual step for development verification due to cost (or using AWS free tier). We can use a short public domain video (as the AWS blog did with This is Coffee
+aws.amazon.com
+) to validate end-to-end functionality. The integration test would check that the final text and audio make sense (perhaps via manual inspection or simple assertions on output files existing and having non-zero length). Throughout development, we keep tests easy to run (e.g., npm test runs everything). This ensures any change that breaks a module’s contract is caught immediately. By modularizing, we also make it easier to mock AWS interactions – each service call is wrapped in one place that can be stubbed out. This TDD approach will yield a more robust system and facilitate future refactoring (for instance, swapping out Nova Pro for a different model would require only adjusting the Analysis module and its tests).
+Deployment Strategy (Single-VM Deployment)
+The system is designed to be deployable on a single virtual machine for simplicity. This could be a DigitalOcean droplet, an AWS EC2 instance, or any VM with Docker or Node.js environment. We outline a deployment approach using Docker for consistency and a shell script for the VM setup: Docker Container Deployment:
+We can containerize the Node.js backend and Next.js frontend together for ease of deployment. A possible setup is:
+A Docker image based on Node 18 LTS (which includes npm). The Dockerfile will copy the backend and frontend code into the image.
+During image build, run npm install (or yarn) to install dependencies for both backend and frontend. Also run npm run build for the Next.js app (producing an optimized production build).
+The container’s start command could be npm run start which launches the Next.js server (which will serve both the UI and the API routes). If we implemented the backend as a separate Express app, we could run that alongside the Next.js static build (but using Next.js API routes is simpler since one server can handle everything).
+We need to ensure FFmpeg is available in the container if using it. We can either use a base image that has ffmpeg (or multi-stage build to install ffmpeg binaries). For example, starting from node:18-bullseye and running apt-get install ffmpeg in the Dockerfile.
+The AWS credentials and configuration will not be baked into the image for security. Instead, we use environment variables at runtime (the VM can provide these, or we use Docker secrets). For instance, we will set AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and AWS_DEFAULT_REGION in the environment. Additionally, any configuration like S3 bucket names or AWS model IDs can be passed as env vars or a config file mounted into the container.
+Build the image (docker build -t video-audio-desc:latest .) and push to a registry or build on the target VM directly.
+Direct VM Deployment (Shell Script):
+Alternatively, a shell script can set up the environment on a fresh VM:
+Install System Dependencies: Update apt and install Node.js (or install via NodeSource). Also install FFmpeg via apt.
+Fetch Application Code: This could be done by cloning a Git repository or extracting an archive of our code.
+Configure Environment: Use secure methods to input AWS API keys (e.g., as environment variables in a .env file or through the VM’s env settings). Also specify the AWS region and any resource identifiers (like the S3 bucket name for input/output).
+Install Dependencies: Navigate to the project folder and run npm install to get Node and React dependencies.
+Build Frontend: If using Next.js, run npm run build to create the production build.
+Start Server: Run npm start (or node server.js or next start depending on setup). This should start the backend on a specified port (e.g. 3000). For a production environment, we might use a process manager like PM2 or systemd to keep the service running and auto-restart on failure.
+Networking and Access: The VM should have port 80 or 443 open. We can either run our Node server on port 80 directly or use a reverse proxy (like Nginx) in front to serve the Next.js app. For a simple demo, running on port 80 without a proxy is fine. If using HTTPS, one could integrate Let’s Encrypt via a proxy, but for this design we assume HTTP access is acceptable in a test setting. Security: Since there is no user login, the app is open. We must ensure the VM’s firewall only allows necessary ports. Also, the AWS credentials provided should have minimal permissions (access only to the specific S3 buckets, and permission to use Rekognition, Bedrock (Nova), and Polly). This reduces risk in case of compromise. The deployment script or Docker config should not hard-code secrets; use environment injection. Deployment Script Example: We can provide a simple Bash script for Ubuntu:
+#!/bin/bash
+# Install Node.js and ffmpeg
+curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+apt-get install -y nodejs ffmpeg git
+# Get code
+git clone https://github.com/yourrepo/video-audio-desc.git /opt/video-audio-desc
+cd /opt/video-audio-desc
+# Install dependencies and build
+npm install 
+npm run build   # for Next.js frontend 
+# Export environment variables (in practice, these would be set securely, not in plaintext)
+export AWS_ACCESS_KEY_ID=YOURKEY
+export AWS_SECRET_ACCESS_KEY=YOURSECRET
+export AWS_DEFAULT_REGION=us-east-1
+export INPUT_S3_BUCKET=your-input-bucket
+export OUTPUT_S3_BUCKET=your-output-bucket
+# Start the service (could use pm2 for daemon, but for simplicity:)
+npm start
+This script (to be adjusted with real values) installs requirements, retrieves the code, sets environment variables, and launches the app. We would run this script on the VM to get the system up and running. Optionally, Docker Compose could be used if we decided to run a separate Nginx container for static file serving or if splitting front/back, but given the lightweight nature, one process is sufficient. Post-Deployment Verification: Once deployed, we test the system on the VM: open the web UI, upload a small video, and watch the logs to ensure each step is executing. We verify that the output files appear either on local disk or in the output S3 bucket. Finally, download the MP3 and text from the UI to confirm all integration is successful.
+Conclusion
+In this design, we created a modular, testable architecture for automated video audio description using AWS AI services. Each subsystem (upload, segmentation, analysis, synthesis) is encapsulated and can be developed with TDD to ensure correctness. The pipeline leverages Amazon Rekognition to intelligently split video content into scenes for higher description quality
+aws.amazon.com
+, uses the Amazon Nova Pro model to generate rich scene-by-scene narratives
+aws.amazon.com
+, and produces a final audio track via Amazon Polly
+aws.amazon.com
+ – all orchestrated in a Node.js backend. The Next.js front-end provides an accessible way to utilize the system, displaying real-time progress and results. This approach drastically reduces the manual effort and cost of creating audio descriptions for videos, aligning with AWS’s demonstrated solution for improving media accessibility
+aws.amazon.com
+. By following a test-driven approach and a clear module breakdown, the system is maintainable and extensible – for example, one could swap in improved models or add features (like direct video+audio merging) with minimal impact on other components. The end result is a deployable prototype that can help content creators automatically generate audio description tracks, making videos more inclusive to visually impaired audiences, all using scalable cloud services. Sources: The design principles and workflow are informed by AWS’s technical blog on combining Rekognition, Amazon Nova, and Polly for automated audio descriptions
+aws.amazon.com
+aws.amazon.com
+, adapted here into a full-stack web application context.

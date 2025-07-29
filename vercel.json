@@ -1,0 +1,33 @@
+{
+  "env": {
+    "NODE_ENV": "production",
+    "AWS_REGION": "us-east-1",
+    "INPUT_S3_BUCKET": "voice-description-api-input-production-pmhnxlix",
+    "OUTPUT_S3_BUCKET": "voice-description-api-output-production-pmhnxlix"
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+  "regions": ["iad1"],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
+    }
+  ]
+}
