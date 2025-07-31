@@ -12281,10 +12281,10 @@
     "5c476a54-4fa5-43f1-94de-686b8ae7f4b9",
     {
       "id": "5c476a54-4fa5-43f1-94de-686b8ae7f4b9",
-      "status": "processing",
-      "step": "analysis",
-      "progress": 40,
-      "message": "Found 142 segments, starting scene analysis...",
+      "status": "completed",
+      "step": "completed",
+      "progress": 100,
+      "message": "Video analysis and audio generation completed successfully (6 audio chunks)",
       "createdAt": "2025-07-29T17:07:48.764Z",
       "s3Uri": "s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4",
       "metadata": {
@@ -14570,7 +14570,4467 @@
           "Type": "SHOT"
         }
       ],
-      "segmentCount": 142
+      "segmentCount": 142,
+      "descriptions": [
+        {
+          "startTime": 0.083,
+          "endTime": 1.96,
+          "text": "Dark screen with \"Dubbed with ElevenLabs\" text appearing at the bottom right."
+        },
+        {
+          "startTime": 2.002,
+          "endTime": 14.347,
+          "text": "Woman in black shirt exits office, man in white shirt enters, busy office setting."
+        },
+        {
+          "startTime": 14.389,
+          "endTime": 19.728,
+          "text": "Man in suit and tie opens desk drawer, revealing clutter of papers and small objects."
+        },
+        {
+          "startTime": 19.769,
+          "endTime": 30.363,
+          "text": "Man in suit and glasses, hand on doorknob, struggles to open wooden door."
+        },
+        {
+          "startTime": 30.405,
+          "endTime": 32.866,
+          "text": "A hand holds a torch with a blue flame, pointing at a wooden door."
+        },
+        {
+          "startTime": 32.907,
+          "endTime": 35.744,
+          "text": "Man in suit, glasses, holding torch, burns paper by door handle, focused expression."
+        },
+        {
+          "startTime": 35.785,
+          "endTime": 37.37,
+          "text": "Man in suit, glasses, and patterned tie stands by \"Dunder Mifflin\" sign, office setting."
+        },
+        {
+          "startTime": 37.412,
+          "endTime": 41.499,
+          "text": "Two men in suits, one kneeling, break a wooden stick on the floor, creating scattered pieces."
+        },
+        {
+          "startTime": 41.541,
+          "endTime": 44.335,
+          "text": "Man in suit, glasses, holding torch with blue flame, examining door intently."
+        },
+        {
+          "startTime": 44.377,
+          "endTime": 45.545,
+          "text": "Man in suit and tie discards small object into trash bin."
+        },
+        {
+          "startTime": 45.67,
+          "endTime": 51.968,
+          "text": "Man in suit exhales smoke, stands by door, office buzz in background."
+        },
+        {
+          "startTime": 52.01,
+          "endTime": 52.01,
+          "text": "Man in suit gestures with one hand, holding a small object in the other."
+        },
+        {
+          "startTime": 52.052,
+          "endTime": 52.093,
+          "text": "Man in black suit, tie, and watch, throws small object against wall, indoors."
+        },
+        {
+          "startTime": 52.135,
+          "endTime": 53.845,
+          "text": "A person in dark clothing stands near a flaming black barrel in a dim corridor."
+        },
+        {
+          "startTime": 54.095,
+          "endTime": 57.891,
+          "text": "Man in suit exits office, looks frustrated, framed art on wall, shelves with files."
+        },
+        {
+          "startTime": 58.141,
+          "endTime": 58.141,
+          "text": "Man in black suit exits room, office background with desks and shelves blurred."
+        },
+        {
+          "startTime": 58.183,
+          "endTime": 59.642,
+          "text": "In a busy office, two workers focus on their tasks amidst cluttered desks and background chatter."
+        },
+        {
+          "startTime": 59.684,
+          "endTime": 61.978,
+          "text": "Man in office, hand on chin, focused look, beige shirt, black tie, cluttered desk, phone, papers, warm lighting, wooden cabinets, plant in window, serious mood."
+        },
+        {
+          "startTime": 62.062,
+          "endTime": 64.105,
+          "text": "Man in brown suit writes intently at desk, surrounded by office supplies."
+        },
+        {
+          "startTime": 64.147,
+          "endTime": 65.44,
+          "text": "Steam billows from a wooden cabinet, filling a dimly lit room with shelves."
+        },
+        {
+          "startTime": 65.648,
+          "endTime": 68.359,
+          "text": "Man in suit and tie, glasses, stands in office, looks surprised, speaks."
+        },
+        {
+          "startTime": 68.401,
+          "endTime": 72.739,
+          "text": "Man in suit writes at desk, another man in blazer talks, office setting."
+        },
+        {
+          "startTime": 72.906,
+          "endTime": 72.947,
+          "text": "Blurry office scene: person moves quickly past desk with stacked papers, wooden door in background."
+        },
+        {
+          "startTime": 73.198,
+          "endTime": 74.574,
+          "text": "Blonde woman in gray shirt at office desk, reading a document, focused."
+        },
+        {
+          "startTime": 74.616,
+          "endTime": 78.203,
+          "text": "Man in glasses looks shocked, mouth open, in busy office with shelves and computers."
+        },
+        {
+          "startTime": 78.62,
+          "endTime": 78.703,
+          "text": "Blurry indoor scene with indistinct objects and a faint light source, suggesting motion."
+        },
+        {
+          "startTime": 78.787,
+          "endTime": 80.955,
+          "text": "Woman with curly hair and purple shirt sits at reception desk, looking concerned."
+        },
+        {
+          "startTime": 80.997,
+          "endTime": 81.581,
+          "text": "In a cluttered office, a beige stool stands by a shelf filled with colorful files."
+        },
+        {
+          "startTime": 81.706,
+          "endTime": 82.373,
+          "text": "Man types on keyboard at busy office desk; colleague stands nearby, observing."
+        },
+        {
+          "startTime": 82.415,
+          "endTime": 83.583,
+          "text": "Woman in office, pointing emphatically with arm extended, surrounded by framed certificates and office supplies."
+        },
+        {
+          "startTime": 83.625,
+          "endTime": 83.917,
+          "text": "In a busy office, two men sit at a cluttered desk, focused on their computers."
+        },
+        {
+          "startTime": 83.958,
+          "endTime": 84.584,
+          "text": "Man in suit shouts, hands raised, eyes wide, near computer screen displaying \"Dunder Mifflin\"."
+        },
+        {
+          "startTime": 84.626,
+          "endTime": 84.876,
+          "text": "Man in brown suit stands by white wall, facing bookshelf filled with books."
+        },
+        {
+          "startTime": 84.918,
+          "endTime": 87.17,
+          "text": "Man in suit passionately speaks in office, hands gesturing, shelves with colorful items in background."
+        },
+        {
+          "startTime": 87.378,
+          "endTime": 89.547,
+          "text": "Woman in purple shirt and black blazer stands, holding a phone, speaking urgently in an office."
+        },
+        {
+          "startTime": 89.589,
+          "endTime": 90.924,
+          "text": "Dwight, in a suit and tie, stands shocked with his mouth open, while a woman in a green shirt gestures behind him in an office setting."
+        },
+        {
+          "startTime": 90.965,
+          "endTime": 91.925,
+          "text": "In an office, a man in a suit shouts, pointing at another man, as a woman looks on, creating a tense atmosphere."
+        },
+        {
+          "startTime": 92.008,
+          "endTime": 94.594,
+          "text": "In an office, a woman in glasses looks distressed as a man gestures beside her."
+        },
+        {
+          "startTime": 94.636,
+          "endTime": 99.891,
+          "text": "Three office workers converse in a hallway, framed picture on wall, casual mood."
+        },
+        {
+          "startTime": 99.974,
+          "endTime": 100.934,
+          "text": "Man in suit passionately gestures, faces another man near a beige-framed door."
+        },
+        {
+          "startTime": 100.975,
+          "endTime": 102.519,
+          "text": "Man in suit shouts through bars, intense expression, office setting, lamp in background."
+        },
+        {
+          "startTime": 102.56,
+          "endTime": 103.728,
+          "text": "Two men in suits face each other, one looking serious, the other listening intently."
+        },
+        {
+          "startTime": 103.77,
+          "endTime": 105.396,
+          "text": "Man in black suit passionately points at cubicle, emphasizing a point."
+        },
+        {
+          "startTime": 105.438,
+          "endTime": 109.442,
+          "text": "Man in a suit, leaning, tries to open a door, fails, frowns."
+        },
+        {
+          "startTime": 109.526,
+          "endTime": 109.526,
+          "text": "Two men in suits stand near a door, one gesturing, the other listening intently."
+        },
+        {
+          "startTime": 109.567,
+          "endTime": 111.528,
+          "text": "In an office, a group of people stand around a table, with one woman holding a large object, as they engage in a lively discussion."
+        },
+        {
+          "startTime": 111.569,
+          "endTime": 113.78,
+          "text": "Man in beige shirt stands near office cubicle, peers over partition, and looks concerned."
+        },
+        {
+          "startTime": 113.822,
+          "endTime": 114.447,
+          "text": "Man in brown suit exits office, blurred motion, busy workspace, warm lighting."
+        },
+        {
+          "startTime": 114.447,
+          "endTime": 114.572,
+          "text": "Man in suit exits office, jacket flapping, past swivel chair and bulletin board."
+        },
+        {
+          "startTime": 114.572,
+          "endTime": 116.324,
+          "text": "Man in suit, hand on hip, stands in doorway, office setting, beige walls, filing cabinet, bulletin board with papers."
+        },
+        {
+          "startTime": 116.366,
+          "endTime": 117.492,
+          "text": "Two people in black suits stand by a window, facing a colorful mural."
+        },
+        {
+          "startTime": 117.534,
+          "endTime": 118.91,
+          "text": "Man in brown suit exits office, gesturing animatedly; two men in beige shirts watch, intrigued."
+        },
+        {
+          "startTime": 118.952,
+          "endTime": 120.245,
+          "text": "In an office, a woman in glasses and a green shirt leads a crowd, walking briskly past cubicles and shelves filled with office supplies."
+        },
+        {
+          "startTime": 120.286,
+          "endTime": 121.371,
+          "text": "Three people stand in an office with a clock and shelves full of files."
+        },
+        {
+          "startTime": 121.412,
+          "endTime": 123.331,
+          "text": "Man in white shirt stands still as another man grips his shoulder firmly."
+        },
+        {
+          "startTime": 123.373,
+          "endTime": 126.209,
+          "text": "Two men in an office, one pushing the other against a water cooler."
+        },
+        {
+          "startTime": 126.251,
+          "endTime": 126.292,
+          "text": "Blurry kitchen scene; green object moves rapidly, suggesting a busy, chaotic environment."
+        },
+        {
+          "startTime": 126.334,
+          "endTime": 126.376,
+          "text": "A blurred office scene with a desk, computer, and window with blinds, suggesting a busy, active environment."
+        },
+        {
+          "startTime": 126.417,
+          "endTime": 126.459,
+          "text": "A man in a black coat gestures wildly in an office with blinds and a computer."
+        },
+        {
+          "startTime": 126.501,
+          "endTime": 130.63,
+          "text": "Man in suit and tie stands in office, arms crossed, looking concerned."
+        },
+        {
+          "startTime": 130.672,
+          "endTime": 131.798,
+          "text": "Man in tan suit pushes through office door, colliding with colleagues inside."
+        },
+        {
+          "startTime": 131.84,
+          "endTime": 132.465,
+          "text": "Man in brown suit exits office, passing another man in dark coat."
+        },
+        {
+          "startTime": 132.507,
+          "endTime": 133.341,
+          "text": "Two men stand in an office, one in a green jacket, discussing quietly."
+        },
+        {
+          "startTime": 133.383,
+          "endTime": 134.968,
+          "text": "Man in beige shirt and black tie stands by door, smiling broadly, adjusting his tie."
+        },
+        {
+          "startTime": 135.009,
+          "endTime": 136.719,
+          "text": "Three men in suits stand in an office, engaged in a heated discussion."
+        },
+        {
+          "startTime": 137.011,
+          "endTime": 137.387,
+          "text": "Three men in suits stand in an office, engaged in a serious conversation."
+        },
+        {
+          "startTime": 137.428,
+          "endTime": 137.512,
+          "text": "Three men in suits stand in an office, engaged in conversation. One man, with a bald head, looks surprised. Another man, wearing glasses, looks at him. The third man, with short hair, appears to be speaking. A framed picture hangs on the wall behind them."
+        },
+        {
+          "startTime": 137.554,
+          "endTime": 140.765,
+          "text": "Three men in suits argue heatedly in an office, framed pictures behind them."
+        },
+        {
+          "startTime": 140.807,
+          "endTime": 142.684,
+          "text": "Man in suit and tie strides confidently down office hallway, adjusting his tie."
+        },
+        {
+          "startTime": 142.767,
+          "endTime": 143.476,
+          "text": "A person in dark clothing walks past a blurred background of shelves and items."
+        },
+        {
+          "startTime": 143.685,
+          "endTime": 149.524,
+          "text": "Man in brown suit exits, revealing a cluttered, dimly lit storage room."
+        },
+        {
+          "startTime": 149.566,
+          "endTime": 155.28,
+          "text": "A person in dark clothing brushes a calm cat nestled in a green bed within a drawer."
+        },
+        {
+          "startTime": 155.321,
+          "endTime": 157.073,
+          "text": "Man in suit, glasses, and tie stands in office, passionately speaking. Shelves, clock, and office supplies in background."
+        },
+        {
+          "startTime": 157.115,
+          "endTime": 158.867,
+          "text": "Man in a tan shirt and tie balances on a ladder, reaching up to adjust ceiling tiles, surrounded by office supplies and framed pictures."
+        },
+        {
+          "startTime": 158.95,
+          "endTime": 160.326,
+          "text": "A blurred indoor scene with dim lighting, showing shelves and a bright window."
+        },
+        {
+          "startTime": 160.368,
+          "endTime": 164.372,
+          "text": "In a dimly lit room, three men stand tensely, one in a suit, another in a tie, near a cluttered bookshelf."
+        },
+        {
+          "startTime": 164.414,
+          "endTime": 166.374,
+          "text": "Man in black suit, pants, and shoes, suspended mid-air, legs bent, arms flailing, above office cubicles with framed pictures, window, and potted plant."
+        },
+        {
+          "startTime": 166.499,
+          "endTime": 168.668,
+          "text": "Blonde woman in gray sweater holds a small, fluffy cat, mouth open, standing by a desk in an office."
+        },
+        {
+          "startTime": 168.71,
+          "endTime": 168.918,
+          "text": "A blurred room with a bright window, shelves, and indistinct objects, suggesting activity."
+        },
+        {
+          "startTime": 168.96,
+          "endTime": 170.378,
+          "text": "A man in a suit and tie appears, partially obscured, leaning into a doorway."
+        },
+        {
+          "startTime": 170.42,
+          "endTime": 171.171,
+          "text": "Blonde woman in black top holds a large, green-collared cat, laughing joyfully in a warmly lit room."
+        },
+        {
+          "startTime": 171.212,
+          "endTime": 171.921,
+          "text": "A man with a wide smile peeks through a narrow doorway, partially illuminated by a dim light."
+        },
+        {
+          "startTime": 171.963,
+          "endTime": 173.381,
+          "text": "Blonde woman in gray shirt holds and cuddles a gray and white cat joyfully."
+        },
+        {
+          "startTime": 173.423,
+          "endTime": 174.174,
+          "text": "A person's leg, in dark pants, extends into a dimly lit, narrow space."
+        },
+        {
+          "startTime": 174.34,
+          "endTime": 175.675,
+          "text": "Blonde woman in black top laughs loudly, standing near a colorful map."
+        },
+        {
+          "startTime": 175.717,
+          "endTime": 178.803,
+          "text": "A woman in a gray shirt stands by a cluttered office desk, mouth open in surprise."
+        },
+        {
+          "startTime": 178.845,
+          "endTime": 179.387,
+          "text": "Blonde woman in gray top, mouth wide open, stands in office with map backdrop."
+        },
+        {
+          "startTime": 179.429,
+          "endTime": 179.679,
+          "text": "Blonde woman in grey top, mouth open, stands near chair in office setting."
+        },
+        {
+          "startTime": 179.721,
+          "endTime": 181.347,
+          "text": "Man in suit and tie, hand raised, mouth open, stands in smoky office."
+        },
+        {
+          "startTime": 181.389,
+          "endTime": 182.724,
+          "text": "A person in dark clothing struggles to open a window, partially visible through blinds."
+        },
+        {
+          "startTime": 182.765,
+          "endTime": 183.6,
+          "text": "Man in suit, seated, holds office chair aloft, face obscured, in dimly lit room with window and shelf."
+        },
+        {
+          "startTime": 183.683,
+          "endTime": 185.643,
+          "text": "Man in dark suit stands in office, turns sharply, and walks away briskly."
+        },
+        {
+          "startTime": 185.727,
+          "endTime": 187.854,
+          "text": "Man in suit throws can at vending machine, can hits and bounces off machine."
+        },
+        {
+          "startTime": 187.896,
+          "endTime": 190.064,
+          "text": "Man in dark coat stands before vending machine, selecting an item."
+        },
+        {
+          "startTime": 190.106,
+          "endTime": 192.15,
+          "text": "Man in black suit, back turned, stands on table, reaches into vending machine."
+        },
+        {
+          "startTime": 192.192,
+          "endTime": 194.027,
+          "text": "Woman in purple shirt and black blazer gestures passionately; man in white shirt and tie stands nearby, hand on neck, in a warmly lit room with a large landscape painting."
+        },
+        {
+          "startTime": 194.068,
+          "endTime": 197.03,
+          "text": "Man in suit and tie, pointing, stands in office doorway, intense expression."
+        },
+        {
+          "startTime": 197.155,
+          "endTime": 199.073,
+          "text": "Man in white shirt and black tie faces woman in purple shirt, both speaking intensely."
+        },
+        {
+          "startTime": 199.115,
+          "endTime": 201.326,
+          "text": "Man in suit and tie, holding sparkler, stands in office, exhaling smoke, shelves in background."
+        },
+        {
+          "startTime": 201.492,
+          "endTime": 201.701,
+          "text": "A small firework sparks on the floor, casting brief light in a dimly lit room."
+        },
+        {
+          "startTime": 201.743,
+          "endTime": 201.826,
+          "text": "A person walks quickly past a blurred, dimly lit room with a red laser light."
+        },
+        {
+          "startTime": 201.91,
+          "endTime": 202.869,
+          "text": "Man in black suit exits office, closing door behind him with a determined stride."
+        },
+        {
+          "startTime": 202.911,
+          "endTime": 203.745,
+          "text": "Man in suit holds head, looking distressed; woman nearby watches, concerned. Office setting, bookshelves in background."
+        },
+        {
+          "startTime": 203.786,
+          "endTime": 204.037,
+          "text": "A blurred figure walks past a cluttered lab with a glowing blue device."
+        },
+        {
+          "startTime": 204.12,
+          "endTime": 204.162,
+          "text": "Blurry image shows rapid movement, possibly a person running or an object falling."
+        },
+        {
+          "startTime": 204.204,
+          "endTime": 207.04,
+          "text": "Man in suit shouts in office, others nearby, bright lighting, modern decor."
+        },
+        {
+          "startTime": 207.081,
+          "endTime": 211.502,
+          "text": "Woman in glasses stands in office, passionately gesturing with open arms, conveying strong emotion."
+        },
+        {
+          "startTime": 211.544,
+          "endTime": 212.295,
+          "text": "Two men struggle over a large object; one in a suit, the other in a white shirt and dark pants."
+        },
+        {
+          "startTime": 212.337,
+          "endTime": 214.297,
+          "text": "A person bends over a large printer, adjusting something inside, with a fire extinguisher nearby."
+        },
+        {
+          "startTime": 214.339,
+          "endTime": 216.966,
+          "text": "Man in suit watches as another man dramatically throws something upwards."
+        },
+        {
+          "startTime": 217.008,
+          "endTime": 217.717,
+          "text": "A person hangs upside down from the ceiling, feet dangling, as others watch."
+        },
+        {
+          "startTime": 217.759,
+          "endTime": 217.8,
+          "text": "Two blurred figures stand close, possibly conversing, in a softly lit indoor setting."
+        },
+        {
+          "startTime": 217.884,
+          "endTime": 219.51,
+          "text": "A person in a white shirt struggles to open a large, gray printer."
+        },
+        {
+          "startTime": 219.552,
+          "endTime": 220.929,
+          "text": "Blonde woman gasps, hands raised, at desk with books and yellow toy, surrounded by busy office workers."
+        },
+        {
+          "startTime": 220.97,
+          "endTime": 223.014,
+          "text": "Man in suit swiftly opens office window, revealing stormy weather outside."
+        },
+        {
+          "startTime": 223.014,
+          "endTime": 223.223,
+          "text": "Man in suit, intense focus, slams fist against window, frustration evident, office setting."
+        },
+        {
+          "startTime": 223.264,
+          "endTime": 225.391,
+          "text": "A man in a suit stands by a window, peering outside at a cityscape."
+        },
+        {
+          "startTime": 225.475,
+          "endTime": 227.685,
+          "text": "Man in suit and tie passionately speaks, stands in office with bookshelves."
+        },
+        {
+          "startTime": 227.727,
+          "endTime": 229.812,
+          "text": "Two people, one in a white shirt, the other in a beige dress, stand by a door, the white-shirted person holding the beige-dressed person's arm, indicating urgency or support."
+        },
+        {
+          "startTime": 229.854,
+          "endTime": 233.024,
+          "text": "Man in suit chokes, reaches for water; woman on shelf holds red object."
+        },
+        {
+          "startTime": 233.066,
+          "endTime": 234.525,
+          "text": "Man in dark shirt, hand on face, stands in blurred indoor setting with another person nearby."
+        },
+        {
+          "startTime": 234.567,
+          "endTime": 236.653,
+          "text": "Man in suit and tie holds red object, stands by shelves with assorted items, intense expression."
+        },
+        {
+          "startTime": 236.694,
+          "endTime": 238.321,
+          "text": "Man in suit and tie steps forward, others watch in smoky, dim room."
+        },
+        {
+          "startTime": 238.363,
+          "endTime": 241.157,
+          "text": "Man in suit stands behind desk, eyes narrow, hand on telephone. Another man looms, spectral, by shelves. Office is cluttered, lit by overhead lights."
+        },
+        {
+          "startTime": 241.199,
+          "endTime": 244.118,
+          "text": "Man gestures wildly, woman watches, both in office with blurred background."
+        },
+        {
+          "startTime": 244.16,
+          "endTime": 246.788,
+          "text": "Man in suit and tie stands in cluttered office, gazes forward, slight frown."
+        },
+        {
+          "startTime": 246.829,
+          "endTime": 247.997,
+          "text": "Man in suit stands by desk, gazes at computer screen, office chaos around."
+        },
+        {
+          "startTime": 248.039,
+          "endTime": 249.832,
+          "text": "Man in tan suit stands bent over, intensely focused on computer screen in busy office."
+        },
+        {
+          "startTime": 249.874,
+          "endTime": 251.209,
+          "text": "Man in suit stands by shelves, another bends over desk in busy office."
+        },
+        {
+          "startTime": 251.334,
+          "endTime": 252.21,
+          "text": "Man in white shirt and brown suit lies face-down, exhausted, on office floor."
+        },
+        {
+          "startTime": 252.252,
+          "endTime": 252.377,
+          "text": "In a library, a person stands on a stool near bookshelves while another person bends down, possibly picking up a book."
+        },
+        {
+          "startTime": 252.418,
+          "endTime": 252.502,
+          "text": "Man in suit stands on stool by colorful bookshelf, another man approaches, scene blurred."
+        },
+        {
+          "startTime": 252.585,
+          "endTime": 254.379,
+          "text": "Two women stand in a misty outdoor setting, one slightly blurred, both in somber expressions."
+        },
+        {
+          "startTime": 254.42,
+          "endTime": 256.214,
+          "text": "A person stands near a cluttered desk with books, in a dimly lit, smoky room."
+        },
+        {
+          "startTime": 256.256,
+          "endTime": 264.764,
+          "text": "Man in suit performs CPR on another man, surrounded by anxious coworkers."
+        },
+        {
+          "startTime": 264.806,
+          "endTime": 265.098,
+          "text": "Man in white shirt and tie walks past group, heading towards camera with determined expression."
+        },
+        {
+          "startTime": 265.139,
+          "endTime": 266.391,
+          "text": "Man in white shirt and black tie stands near office wall, focused expression."
+        },
+        {
+          "startTime": 266.432,
+          "endTime": 267.642,
+          "text": "Man in suit lunges forward, face intense, as colleagues watch, one holds phone."
+        },
+        {
+          "startTime": 267.684,
+          "endTime": 268.768,
+          "text": "Two men in office attire stand near a window, one in a beige shirt and black tie, the other in a brown shirt and tie, both looking down."
+        },
+        {
+          "startTime": 268.81,
+          "endTime": 275.692,
+          "text": "Intense scene: man in suit and tie is restrained by colleagues in an office."
+        },
+        {
+          "startTime": 275.733,
+          "endTime": 276.526,
+          "text": "In a dark room, a lit sign shows a standing figure with a briefcase and a seated person at a desk."
+        },
+        {
+          "startTime": 276.567,
+          "endTime": 296.754,
+          "text": "Dark room with \"The Office\" title in white, set against black background."
+        }
+      ],
+      "audioUrl": "s3://voice-description-api-output-production-pmhnxlix/5c476a54-4fa5-43f1-94de-686b8ae7f4b9/audio.mp3",
+      "textUrl": "s3://voice-description-api-output-production-pmhnxlix/5c476a54-4fa5-43f1-94de-686b8ae7f4b9/description.txt",
+      "completedAt": "2025-07-29T17:41:18.779Z"
+    }
+  ],
+  [
+    "a3f7267d-e043-402a-b8cc-e64d7ab07632",
+    {
+      "id": "a3f7267d-e043-402a-b8cc-e64d7ab07632",
+      "status": "processing",
+      "step": "segmentation",
+      "progress": 20,
+      "message": "Video segmentation in progress (IN_PROGRESS)...",
+      "createdAt": "2025-07-29T19:26:56.036Z",
+      "s3Uri": "s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4",
+      "metadata": {
+        "title": "Untitled Video",
+        "description": "",
+        "language": "en"
+      },
+      "fileInfo": null,
+      "rekognitionJobId": "bfeca3de4c48c4331f24780abb67f1219dd9e83945c7943206bdd579a4af2a69",
+      "s3Bucket": "speechlab-test-files-public",
+      "s3Key": "Fire_Drill_-_The_Office_US.mp4"
+    }
+  ],
+  [
+    "d5308114-4c4f-4561-aa2b-8cd4e8f2eb92",
+    {
+      "id": "d5308114-4c4f-4561-aa2b-8cd4e8f2eb92",
+      "status": "completed",
+      "step": "completed",
+      "progress": 100,
+      "message": "Video analysis and audio generation completed successfully (6 audio chunks)",
+      "createdAt": "2025-07-29T19:27:27.599Z",
+      "s3Uri": "s3://speechlab-test-files-public/Fire_Drill_-_The_Office_US.mp4",
+      "metadata": {
+        "title": "Untitled Video",
+        "description": "",
+        "language": "en"
+      },
+      "fileInfo": null,
+      "rekognitionJobId": "907504a52c654ac978a0db4fbde145a0d9b7fff2d55b699b483230d25c4b830d",
+      "s3Bucket": "speechlab-test-files-public",
+      "s3Key": "Fire_Drill_-_The_Office_US.mp4",
+      "segments": [
+        {
+          "DurationFrames": 45,
+          "DurationMillis": 1877,
+          "DurationSMPTE": "00:00:01:21",
+          "EndFrameNumber": 45,
+          "EndTimecodeSMPTE": "00:00:01:21",
+          "EndTimestampMillis": 1960,
+          "ShotSegment": {
+            "Confidence": 99.996337890625,
+            "Index": 0
+          },
+          "StartFrameNumber": 0,
+          "StartTimecodeSMPTE": "00:00:00:00",
+          "StartTimestampMillis": 83,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 296,
+          "DurationMillis": 12345,
+          "DurationSMPTE": "00:00:12:08",
+          "EndFrameNumber": 342,
+          "EndTimecodeSMPTE": "00:00:14:06",
+          "EndTimestampMillis": 14347,
+          "ShotSegment": {
+            "Confidence": 66.15644073486328,
+            "Index": 1
+          },
+          "StartFrameNumber": 46,
+          "StartTimecodeSMPTE": "00:00:01:22",
+          "StartTimestampMillis": 2002,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 128,
+          "DurationMillis": 5339,
+          "DurationSMPTE": "00:00:05:08",
+          "EndFrameNumber": 471,
+          "EndTimecodeSMPTE": "00:00:19:15",
+          "EndTimestampMillis": 19728,
+          "ShotSegment": {
+            "Confidence": 66.15644073486328,
+            "Index": 2
+          },
+          "StartFrameNumber": 343,
+          "StartTimecodeSMPTE": "00:00:14:07",
+          "StartTimestampMillis": 14389,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 254,
+          "DurationMillis": 10594,
+          "DurationSMPTE": "00:00:10:14",
+          "EndFrameNumber": 726,
+          "EndTimecodeSMPTE": "00:00:30:06",
+          "EndTimestampMillis": 30363,
+          "ShotSegment": {
+            "Confidence": 99.6970443725586,
+            "Index": 3
+          },
+          "StartFrameNumber": 472,
+          "StartTimecodeSMPTE": "00:00:19:16",
+          "StartTimestampMillis": 19769,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 59,
+          "DurationMillis": 2461,
+          "DurationSMPTE": "00:00:02:11",
+          "EndFrameNumber": 786,
+          "EndTimecodeSMPTE": "00:00:32:18",
+          "EndTimestampMillis": 32866,
+          "ShotSegment": {
+            "Confidence": 99.95894622802734,
+            "Index": 4
+          },
+          "StartFrameNumber": 727,
+          "StartTimecodeSMPTE": "00:00:30:07",
+          "StartTimestampMillis": 30405,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 68,
+          "DurationMillis": 2837,
+          "DurationSMPTE": "00:00:02:20",
+          "EndFrameNumber": 855,
+          "EndTimecodeSMPTE": "00:00:35:15",
+          "EndTimestampMillis": 35744,
+          "ShotSegment": {
+            "Confidence": 99.98487854003906,
+            "Index": 5
+          },
+          "StartFrameNumber": 787,
+          "StartTimecodeSMPTE": "00:00:32:19",
+          "StartTimestampMillis": 32907,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 38,
+          "DurationMillis": 1585,
+          "DurationSMPTE": "00:00:01:14",
+          "EndFrameNumber": 894,
+          "EndTimecodeSMPTE": "00:00:37:06",
+          "EndTimestampMillis": 37370,
+          "ShotSegment": {
+            "Confidence": 99.98487854003906,
+            "Index": 6
+          },
+          "StartFrameNumber": 856,
+          "StartTimecodeSMPTE": "00:00:35:16",
+          "StartTimestampMillis": 35785,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 98,
+          "DurationMillis": 4087,
+          "DurationSMPTE": "00:00:04:02",
+          "EndFrameNumber": 993,
+          "EndTimecodeSMPTE": "00:00:41:09",
+          "EndTimestampMillis": 41499,
+          "ShotSegment": {
+            "Confidence": 99.98550415039062,
+            "Index": 7
+          },
+          "StartFrameNumber": 895,
+          "StartTimecodeSMPTE": "00:00:37:07",
+          "StartTimestampMillis": 37412,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 67,
+          "DurationMillis": 2794,
+          "DurationSMPTE": "00:00:02:19",
+          "EndFrameNumber": 1061,
+          "EndTimecodeSMPTE": "00:00:44:05",
+          "EndTimestampMillis": 44335,
+          "ShotSegment": {
+            "Confidence": 99.98741149902344,
+            "Index": 8
+          },
+          "StartFrameNumber": 994,
+          "StartTimecodeSMPTE": "00:00:41:10",
+          "StartTimestampMillis": 41541,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 28,
+          "DurationMillis": 1168,
+          "DurationSMPTE": "00:00:01:04",
+          "EndFrameNumber": 1090,
+          "EndTimecodeSMPTE": "00:00:45:10",
+          "EndTimestampMillis": 45545,
+          "ShotSegment": {
+            "Confidence": 69.00212097167969,
+            "Index": 9
+          },
+          "StartFrameNumber": 1062,
+          "StartTimecodeSMPTE": "00:00:44:06",
+          "StartTimestampMillis": 44377,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 151,
+          "DurationMillis": 6298,
+          "DurationSMPTE": "00:00:06:07",
+          "EndFrameNumber": 1244,
+          "EndTimecodeSMPTE": "00:00:51:20",
+          "EndTimestampMillis": 51968,
+          "ShotSegment": {
+            "Confidence": 57.10276794433594,
+            "Index": 10
+          },
+          "StartFrameNumber": 1093,
+          "StartTimecodeSMPTE": "00:00:45:13",
+          "StartTimestampMillis": 45670,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 0,
+          "DurationMillis": 0,
+          "DurationSMPTE": "00:00:00:00",
+          "EndFrameNumber": 1245,
+          "EndTimecodeSMPTE": "00:00:51:21",
+          "EndTimestampMillis": 52010,
+          "ShotSegment": {
+            "Confidence": 57.10276794433594,
+            "Index": 11
+          },
+          "StartFrameNumber": 1245,
+          "StartTimecodeSMPTE": "00:00:51:21",
+          "StartTimestampMillis": 52010,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 1,
+          "DurationMillis": 41,
+          "DurationSMPTE": "00:00:00:01",
+          "EndFrameNumber": 1247,
+          "EndTimecodeSMPTE": "00:00:51:23",
+          "EndTimestampMillis": 52093,
+          "ShotSegment": {
+            "Confidence": 57.58860397338867,
+            "Index": 12
+          },
+          "StartFrameNumber": 1246,
+          "StartTimecodeSMPTE": "00:00:51:22",
+          "StartTimestampMillis": 52052,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 41,
+          "DurationMillis": 1710,
+          "DurationSMPTE": "00:00:01:17",
+          "EndFrameNumber": 1289,
+          "EndTimecodeSMPTE": "00:00:53:17",
+          "EndTimestampMillis": 53845,
+          "ShotSegment": {
+            "Confidence": 57.58860397338867,
+            "Index": 13
+          },
+          "StartFrameNumber": 1248,
+          "StartTimecodeSMPTE": "00:00:52:00",
+          "StartTimestampMillis": 52135,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 91,
+          "DurationMillis": 3796,
+          "DurationSMPTE": "00:00:03:19",
+          "EndFrameNumber": 1386,
+          "EndTimecodeSMPTE": "00:00:57:18",
+          "EndTimestampMillis": 57891,
+          "ShotSegment": {
+            "Confidence": 75.01033020019531,
+            "Index": 14
+          },
+          "StartFrameNumber": 1295,
+          "StartTimecodeSMPTE": "00:00:53:23",
+          "StartTimestampMillis": 54095,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 0,
+          "DurationMillis": 0,
+          "DurationSMPTE": "00:00:00:00",
+          "EndFrameNumber": 1392,
+          "EndTimecodeSMPTE": "00:00:58:00",
+          "EndTimestampMillis": 58141,
+          "ShotSegment": {
+            "Confidence": 61.94340896606445,
+            "Index": 15
+          },
+          "StartFrameNumber": 1392,
+          "StartTimecodeSMPTE": "00:00:58:00",
+          "StartTimestampMillis": 58141,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 35,
+          "DurationMillis": 1459,
+          "DurationSMPTE": "00:00:01:11",
+          "EndFrameNumber": 1428,
+          "EndTimecodeSMPTE": "00:00:59:12",
+          "EndTimestampMillis": 59642,
+          "ShotSegment": {
+            "Confidence": 61.94340896606445,
+            "Index": 16
+          },
+          "StartFrameNumber": 1393,
+          "StartTimecodeSMPTE": "00:00:58:01",
+          "StartTimestampMillis": 58183,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 55,
+          "DurationMillis": 2294,
+          "DurationSMPTE": "00:00:02:07",
+          "EndFrameNumber": 1484,
+          "EndTimecodeSMPTE": "00:01:01:20",
+          "EndTimestampMillis": 61978,
+          "ShotSegment": {
+            "Confidence": 53.651283264160156,
+            "Index": 17
+          },
+          "StartFrameNumber": 1429,
+          "StartTimecodeSMPTE": "00:00:59:13",
+          "StartTimestampMillis": 59684,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 49,
+          "DurationMillis": 2043,
+          "DurationSMPTE": "00:00:02:01",
+          "EndFrameNumber": 1535,
+          "EndTimecodeSMPTE": "00:01:03:23",
+          "EndTimestampMillis": 64105,
+          "ShotSegment": {
+            "Confidence": 53.651283264160156,
+            "Index": 18
+          },
+          "StartFrameNumber": 1486,
+          "StartTimecodeSMPTE": "00:01:01:22",
+          "StartTimestampMillis": 62062,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 31,
+          "DurationMillis": 1293,
+          "DurationSMPTE": "00:00:01:07",
+          "EndFrameNumber": 1567,
+          "EndTimecodeSMPTE": "00:01:05:07",
+          "EndTimestampMillis": 65440,
+          "ShotSegment": {
+            "Confidence": 89.29283905029297,
+            "Index": 19
+          },
+          "StartFrameNumber": 1536,
+          "StartTimecodeSMPTE": "00:01:04:00",
+          "StartTimestampMillis": 64147,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 65,
+          "DurationMillis": 2711,
+          "DurationSMPTE": "00:00:02:17",
+          "EndFrameNumber": 1637,
+          "EndTimecodeSMPTE": "00:01:08:05",
+          "EndTimestampMillis": 68359,
+          "ShotSegment": {
+            "Confidence": 89.29283905029297,
+            "Index": 20
+          },
+          "StartFrameNumber": 1572,
+          "StartTimecodeSMPTE": "00:01:05:12",
+          "StartTimestampMillis": 65648,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 104,
+          "DurationMillis": 4338,
+          "DurationSMPTE": "00:00:04:08",
+          "EndFrameNumber": 1742,
+          "EndTimecodeSMPTE": "00:01:12:14",
+          "EndTimestampMillis": 72739,
+          "ShotSegment": {
+            "Confidence": 68.63371276855469,
+            "Index": 21
+          },
+          "StartFrameNumber": 1638,
+          "StartTimecodeSMPTE": "00:01:08:06",
+          "StartTimestampMillis": 68401,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 1,
+          "DurationMillis": 41,
+          "DurationSMPTE": "00:00:00:01",
+          "EndFrameNumber": 1747,
+          "EndTimecodeSMPTE": "00:01:12:19",
+          "EndTimestampMillis": 72947,
+          "ShotSegment": {
+            "Confidence": 68.63371276855469,
+            "Index": 22
+          },
+          "StartFrameNumber": 1746,
+          "StartTimecodeSMPTE": "00:01:12:18",
+          "StartTimestampMillis": 72906,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 33,
+          "DurationMillis": 1376,
+          "DurationSMPTE": "00:00:01:09",
+          "EndFrameNumber": 1786,
+          "EndTimecodeSMPTE": "00:01:14:10",
+          "EndTimestampMillis": 74574,
+          "ShotSegment": {
+            "Confidence": 80.5716323852539,
+            "Index": 23
+          },
+          "StartFrameNumber": 1753,
+          "StartTimecodeSMPTE": "00:01:13:01",
+          "StartTimestampMillis": 73198,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 86,
+          "DurationMillis": 3587,
+          "DurationSMPTE": "00:00:03:14",
+          "EndFrameNumber": 1873,
+          "EndTimecodeSMPTE": "00:01:18:01",
+          "EndTimestampMillis": 78203,
+          "ShotSegment": {
+            "Confidence": 99.64459228515625,
+            "Index": 24
+          },
+          "StartFrameNumber": 1787,
+          "StartTimecodeSMPTE": "00:01:14:11",
+          "StartTimestampMillis": 74616,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 2,
+          "DurationMillis": 83,
+          "DurationSMPTE": "00:00:00:02",
+          "EndFrameNumber": 1885,
+          "EndTimecodeSMPTE": "00:01:18:13",
+          "EndTimestampMillis": 78703,
+          "ShotSegment": {
+            "Confidence": 99.51690673828125,
+            "Index": 25
+          },
+          "StartFrameNumber": 1883,
+          "StartTimecodeSMPTE": "00:01:18:11",
+          "StartTimestampMillis": 78620,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 52,
+          "DurationMillis": 2168,
+          "DurationSMPTE": "00:00:02:04",
+          "EndFrameNumber": 1939,
+          "EndTimecodeSMPTE": "00:01:20:19",
+          "EndTimestampMillis": 80955,
+          "ShotSegment": {
+            "Confidence": 99.51690673828125,
+            "Index": 26
+          },
+          "StartFrameNumber": 1887,
+          "StartTimecodeSMPTE": "00:01:18:15",
+          "StartTimestampMillis": 78787,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 14,
+          "DurationMillis": 584,
+          "DurationSMPTE": "00:00:00:14",
+          "EndFrameNumber": 1954,
+          "EndTimecodeSMPTE": "00:01:21:10",
+          "EndTimestampMillis": 81581,
+          "ShotSegment": {
+            "Confidence": 98.75773620605469,
+            "Index": 27
+          },
+          "StartFrameNumber": 1940,
+          "StartTimecodeSMPTE": "00:01:20:20",
+          "StartTimestampMillis": 80997,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 16,
+          "DurationMillis": 667,
+          "DurationSMPTE": "00:00:00:16",
+          "EndFrameNumber": 1973,
+          "EndTimecodeSMPTE": "00:01:22:05",
+          "EndTimestampMillis": 82373,
+          "ShotSegment": {
+            "Confidence": 98.75773620605469,
+            "Index": 28
+          },
+          "StartFrameNumber": 1957,
+          "StartTimecodeSMPTE": "00:01:21:13",
+          "StartTimestampMillis": 81706,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 28,
+          "DurationMillis": 1168,
+          "DurationSMPTE": "00:00:01:04",
+          "EndFrameNumber": 2002,
+          "EndTimecodeSMPTE": "00:01:23:10",
+          "EndTimestampMillis": 83583,
+          "ShotSegment": {
+            "Confidence": 99.15869140625,
+            "Index": 29
+          },
+          "StartFrameNumber": 1974,
+          "StartTimecodeSMPTE": "00:01:22:06",
+          "StartTimestampMillis": 82415,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 7,
+          "DurationMillis": 292,
+          "DurationSMPTE": "00:00:00:07",
+          "EndFrameNumber": 2010,
+          "EndTimecodeSMPTE": "00:01:23:18",
+          "EndTimestampMillis": 83917,
+          "ShotSegment": {
+            "Confidence": 88.11782836914062,
+            "Index": 30
+          },
+          "StartFrameNumber": 2003,
+          "StartTimecodeSMPTE": "00:01:23:11",
+          "StartTimestampMillis": 83625,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 15,
+          "DurationMillis": 626,
+          "DurationSMPTE": "00:00:00:15",
+          "EndFrameNumber": 2026,
+          "EndTimecodeSMPTE": "00:01:24:10",
+          "EndTimestampMillis": 84584,
+          "ShotSegment": {
+            "Confidence": 88.11782836914062,
+            "Index": 31
+          },
+          "StartFrameNumber": 2011,
+          "StartTimecodeSMPTE": "00:01:23:19",
+          "StartTimestampMillis": 83958,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 6,
+          "DurationMillis": 250,
+          "DurationSMPTE": "00:00:00:06",
+          "EndFrameNumber": 2033,
+          "EndTimecodeSMPTE": "00:01:24:17",
+          "EndTimestampMillis": 84876,
+          "ShotSegment": {
+            "Confidence": 58.87648391723633,
+            "Index": 32
+          },
+          "StartFrameNumber": 2027,
+          "StartTimecodeSMPTE": "00:01:24:11",
+          "StartTimestampMillis": 84626,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 54,
+          "DurationMillis": 2252,
+          "DurationSMPTE": "00:00:02:06",
+          "EndFrameNumber": 2088,
+          "EndTimecodeSMPTE": "00:01:27:00",
+          "EndTimestampMillis": 87170,
+          "ShotSegment": {
+            "Confidence": 58.87648391723633,
+            "Index": 33
+          },
+          "StartFrameNumber": 2034,
+          "StartTimecodeSMPTE": "00:01:24:18",
+          "StartTimestampMillis": 84918,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 52,
+          "DurationMillis": 2169,
+          "DurationSMPTE": "00:00:02:04",
+          "EndFrameNumber": 2145,
+          "EndTimecodeSMPTE": "00:01:29:09",
+          "EndTimestampMillis": 89547,
+          "ShotSegment": {
+            "Confidence": 75.4197998046875,
+            "Index": 34
+          },
+          "StartFrameNumber": 2093,
+          "StartTimecodeSMPTE": "00:01:27:05",
+          "StartTimestampMillis": 87378,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 32,
+          "DurationMillis": 1335,
+          "DurationSMPTE": "00:00:01:08",
+          "EndFrameNumber": 2178,
+          "EndTimecodeSMPTE": "00:01:30:18",
+          "EndTimestampMillis": 90924,
+          "ShotSegment": {
+            "Confidence": 99.3619155883789,
+            "Index": 35
+          },
+          "StartFrameNumber": 2146,
+          "StartTimecodeSMPTE": "00:01:29:10",
+          "StartTimestampMillis": 89589,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 23,
+          "DurationMillis": 960,
+          "DurationSMPTE": "00:00:00:23",
+          "EndFrameNumber": 2202,
+          "EndTimecodeSMPTE": "00:01:31:18",
+          "EndTimestampMillis": 91925,
+          "ShotSegment": {
+            "Confidence": 75.79969024658203,
+            "Index": 36
+          },
+          "StartFrameNumber": 2179,
+          "StartTimecodeSMPTE": "00:01:30:19",
+          "StartTimestampMillis": 90965,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 62,
+          "DurationMillis": 2586,
+          "DurationSMPTE": "00:00:02:14",
+          "EndFrameNumber": 2266,
+          "EndTimecodeSMPTE": "00:01:34:10",
+          "EndTimestampMillis": 94594,
+          "ShotSegment": {
+            "Confidence": 62.90406799316406,
+            "Index": 37
+          },
+          "StartFrameNumber": 2204,
+          "StartTimecodeSMPTE": "00:01:31:20",
+          "StartTimestampMillis": 92008,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 126,
+          "DurationMillis": 5255,
+          "DurationSMPTE": "00:00:05:06",
+          "EndFrameNumber": 2393,
+          "EndTimecodeSMPTE": "00:01:39:17",
+          "EndTimestampMillis": 99891,
+          "ShotSegment": {
+            "Confidence": 62.90406799316406,
+            "Index": 38
+          },
+          "StartFrameNumber": 2267,
+          "StartTimecodeSMPTE": "00:01:34:11",
+          "StartTimestampMillis": 94636,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 23,
+          "DurationMillis": 960,
+          "DurationSMPTE": "00:00:00:23",
+          "EndFrameNumber": 2418,
+          "EndTimecodeSMPTE": "00:01:40:18",
+          "EndTimestampMillis": 100934,
+          "ShotSegment": {
+            "Confidence": 74.28990173339844,
+            "Index": 39
+          },
+          "StartFrameNumber": 2395,
+          "StartTimecodeSMPTE": "00:01:39:19",
+          "StartTimestampMillis": 99974,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 37,
+          "DurationMillis": 1544,
+          "DurationSMPTE": "00:00:01:13",
+          "EndFrameNumber": 2456,
+          "EndTimecodeSMPTE": "00:01:42:08",
+          "EndTimestampMillis": 102519,
+          "ShotSegment": {
+            "Confidence": 98.84031677246094,
+            "Index": 40
+          },
+          "StartFrameNumber": 2419,
+          "StartTimecodeSMPTE": "00:01:40:19",
+          "StartTimestampMillis": 100975,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 28,
+          "DurationMillis": 1168,
+          "DurationSMPTE": "00:00:01:04",
+          "EndFrameNumber": 2485,
+          "EndTimecodeSMPTE": "00:01:43:13",
+          "EndTimestampMillis": 103728,
+          "ShotSegment": {
+            "Confidence": 98.84031677246094,
+            "Index": 41
+          },
+          "StartFrameNumber": 2457,
+          "StartTimecodeSMPTE": "00:01:42:09",
+          "StartTimestampMillis": 102560,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 39,
+          "DurationMillis": 1626,
+          "DurationSMPTE": "00:00:01:15",
+          "EndFrameNumber": 2525,
+          "EndTimecodeSMPTE": "00:01:45:05",
+          "EndTimestampMillis": 105396,
+          "ShotSegment": {
+            "Confidence": 99.89997100830078,
+            "Index": 42
+          },
+          "StartFrameNumber": 2486,
+          "StartTimecodeSMPTE": "00:01:43:14",
+          "StartTimestampMillis": 103770,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 96,
+          "DurationMillis": 4004,
+          "DurationSMPTE": "00:00:04:00",
+          "EndFrameNumber": 2622,
+          "EndTimecodeSMPTE": "00:01:49:06",
+          "EndTimestampMillis": 109442,
+          "ShotSegment": {
+            "Confidence": 73.23204803466797,
+            "Index": 43
+          },
+          "StartFrameNumber": 2526,
+          "StartTimecodeSMPTE": "00:01:45:06",
+          "StartTimestampMillis": 105438,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 0,
+          "DurationMillis": 0,
+          "DurationSMPTE": "00:00:00:00",
+          "EndFrameNumber": 2624,
+          "EndTimecodeSMPTE": "00:01:49:08",
+          "EndTimestampMillis": 109526,
+          "ShotSegment": {
+            "Confidence": 54.85685729980469,
+            "Index": 44
+          },
+          "StartFrameNumber": 2624,
+          "StartTimecodeSMPTE": "00:01:49:08",
+          "StartTimestampMillis": 109526,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 47,
+          "DurationMillis": 1961,
+          "DurationSMPTE": "00:00:01:23",
+          "EndFrameNumber": 2672,
+          "EndTimecodeSMPTE": "00:01:51:08",
+          "EndTimestampMillis": 111528,
+          "ShotSegment": {
+            "Confidence": 54.85685729980469,
+            "Index": 45
+          },
+          "StartFrameNumber": 2625,
+          "StartTimecodeSMPTE": "00:01:49:09",
+          "StartTimestampMillis": 109567,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 53,
+          "DurationMillis": 2211,
+          "DurationSMPTE": "00:00:02:05",
+          "EndFrameNumber": 2726,
+          "EndTimecodeSMPTE": "00:01:53:14",
+          "EndTimestampMillis": 113780,
+          "ShotSegment": {
+            "Confidence": 91.8885269165039,
+            "Index": 46
+          },
+          "StartFrameNumber": 2673,
+          "StartTimecodeSMPTE": "00:01:51:09",
+          "StartTimestampMillis": 111569,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 15,
+          "DurationMillis": 625,
+          "DurationSMPTE": "00:00:00:15",
+          "EndFrameNumber": 2742,
+          "EndTimecodeSMPTE": "00:01:54:06",
+          "EndTimestampMillis": 114447,
+          "ShotSegment": {
+            "Confidence": 65.15408325195312,
+            "Index": 47
+          },
+          "StartFrameNumber": 2727,
+          "StartTimecodeSMPTE": "00:01:53:15",
+          "StartTimestampMillis": 113822,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 3,
+          "DurationMillis": 125,
+          "DurationSMPTE": "00:00:00:03",
+          "EndFrameNumber": 2745,
+          "EndTimecodeSMPTE": "00:01:54:09",
+          "EndTimestampMillis": 114572,
+          "ShotSegment": {
+            "Confidence": 54.22559356689453,
+            "Index": 48
+          },
+          "StartFrameNumber": 2742,
+          "StartTimecodeSMPTE": "00:01:54:06",
+          "StartTimestampMillis": 114447,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 42,
+          "DurationMillis": 1752,
+          "DurationSMPTE": "00:00:01:18",
+          "EndFrameNumber": 2787,
+          "EndTimecodeSMPTE": "00:01:56:03",
+          "EndTimestampMillis": 116324,
+          "ShotSegment": {
+            "Confidence": 54.22559356689453,
+            "Index": 49
+          },
+          "StartFrameNumber": 2745,
+          "StartTimecodeSMPTE": "00:01:54:09",
+          "StartTimestampMillis": 114572,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 27,
+          "DurationMillis": 1126,
+          "DurationSMPTE": "00:00:01:03",
+          "EndFrameNumber": 2815,
+          "EndTimecodeSMPTE": "00:01:57:07",
+          "EndTimestampMillis": 117492,
+          "ShotSegment": {
+            "Confidence": 98.77405548095703,
+            "Index": 50
+          },
+          "StartFrameNumber": 2788,
+          "StartTimecodeSMPTE": "00:01:56:04",
+          "StartTimestampMillis": 116366,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 33,
+          "DurationMillis": 1376,
+          "DurationSMPTE": "00:00:01:09",
+          "EndFrameNumber": 2849,
+          "EndTimecodeSMPTE": "00:01:58:17",
+          "EndTimestampMillis": 118910,
+          "ShotSegment": {
+            "Confidence": 98.77405548095703,
+            "Index": 51
+          },
+          "StartFrameNumber": 2816,
+          "StartTimecodeSMPTE": "00:01:57:08",
+          "StartTimestampMillis": 117534,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 31,
+          "DurationMillis": 1293,
+          "DurationSMPTE": "00:00:01:07",
+          "EndFrameNumber": 2881,
+          "EndTimecodeSMPTE": "00:02:00:01",
+          "EndTimestampMillis": 120245,
+          "ShotSegment": {
+            "Confidence": 98.5152816772461,
+            "Index": 52
+          },
+          "StartFrameNumber": 2850,
+          "StartTimecodeSMPTE": "00:01:58:18",
+          "StartTimestampMillis": 118952,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 26,
+          "DurationMillis": 1085,
+          "DurationSMPTE": "00:00:01:02",
+          "EndFrameNumber": 2908,
+          "EndTimecodeSMPTE": "00:02:01:04",
+          "EndTimestampMillis": 121371,
+          "ShotSegment": {
+            "Confidence": 52.89396286010742,
+            "Index": 53
+          },
+          "StartFrameNumber": 2882,
+          "StartTimecodeSMPTE": "00:02:00:02",
+          "StartTimestampMillis": 120286,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 46,
+          "DurationMillis": 1919,
+          "DurationSMPTE": "00:00:01:22",
+          "EndFrameNumber": 2955,
+          "EndTimecodeSMPTE": "00:02:03:03",
+          "EndTimestampMillis": 123331,
+          "ShotSegment": {
+            "Confidence": 52.89396286010742,
+            "Index": 54
+          },
+          "StartFrameNumber": 2909,
+          "StartTimecodeSMPTE": "00:02:01:05",
+          "StartTimestampMillis": 121412,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 68,
+          "DurationMillis": 2836,
+          "DurationSMPTE": "00:00:02:20",
+          "EndFrameNumber": 3024,
+          "EndTimecodeSMPTE": "00:02:06:00",
+          "EndTimestampMillis": 126209,
+          "ShotSegment": {
+            "Confidence": 51.62711715698242,
+            "Index": 55
+          },
+          "StartFrameNumber": 2956,
+          "StartTimecodeSMPTE": "00:02:03:04",
+          "StartTimestampMillis": 123373,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 1,
+          "DurationMillis": 41,
+          "DurationSMPTE": "00:00:00:01",
+          "EndFrameNumber": 3026,
+          "EndTimecodeSMPTE": "00:02:06:02",
+          "EndTimestampMillis": 126292,
+          "ShotSegment": {
+            "Confidence": 50.83945083618164,
+            "Index": 56
+          },
+          "StartFrameNumber": 3025,
+          "StartTimecodeSMPTE": "00:02:06:01",
+          "StartTimestampMillis": 126251,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 1,
+          "DurationMillis": 42,
+          "DurationSMPTE": "00:00:00:01",
+          "EndFrameNumber": 3028,
+          "EndTimecodeSMPTE": "00:02:06:04",
+          "EndTimestampMillis": 126376,
+          "ShotSegment": {
+            "Confidence": 50.83945083618164,
+            "Index": 57
+          },
+          "StartFrameNumber": 3027,
+          "StartTimecodeSMPTE": "00:02:06:03",
+          "StartTimestampMillis": 126334,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 1,
+          "DurationMillis": 42,
+          "DurationSMPTE": "00:00:00:01",
+          "EndFrameNumber": 3030,
+          "EndTimecodeSMPTE": "00:02:06:06",
+          "EndTimestampMillis": 126459,
+          "ShotSegment": {
+            "Confidence": 56.130699157714844,
+            "Index": 58
+          },
+          "StartFrameNumber": 3029,
+          "StartTimecodeSMPTE": "00:02:06:05",
+          "StartTimestampMillis": 126417,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 99,
+          "DurationMillis": 4129,
+          "DurationSMPTE": "00:00:04:03",
+          "EndFrameNumber": 3130,
+          "EndTimecodeSMPTE": "00:02:10:10",
+          "EndTimestampMillis": 130630,
+          "ShotSegment": {
+            "Confidence": 56.130699157714844,
+            "Index": 59
+          },
+          "StartFrameNumber": 3031,
+          "StartTimecodeSMPTE": "00:02:06:07",
+          "StartTimestampMillis": 126501,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 27,
+          "DurationMillis": 1126,
+          "DurationSMPTE": "00:00:01:03",
+          "EndFrameNumber": 3158,
+          "EndTimecodeSMPTE": "00:02:11:14",
+          "EndTimestampMillis": 131798,
+          "ShotSegment": {
+            "Confidence": 97.856201171875,
+            "Index": 60
+          },
+          "StartFrameNumber": 3131,
+          "StartTimecodeSMPTE": "00:02:10:11",
+          "StartTimestampMillis": 130672,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 15,
+          "DurationMillis": 625,
+          "DurationSMPTE": "00:00:00:15",
+          "EndFrameNumber": 3174,
+          "EndTimecodeSMPTE": "00:02:12:06",
+          "EndTimestampMillis": 132465,
+          "ShotSegment": {
+            "Confidence": 53.20341110229492,
+            "Index": 61
+          },
+          "StartFrameNumber": 3159,
+          "StartTimecodeSMPTE": "00:02:11:15",
+          "StartTimestampMillis": 131840,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 20,
+          "DurationMillis": 834,
+          "DurationSMPTE": "00:00:00:20",
+          "EndFrameNumber": 3195,
+          "EndTimecodeSMPTE": "00:02:13:03",
+          "EndTimestampMillis": 133341,
+          "ShotSegment": {
+            "Confidence": 53.20341110229492,
+            "Index": 62
+          },
+          "StartFrameNumber": 3175,
+          "StartTimecodeSMPTE": "00:02:12:07",
+          "StartTimestampMillis": 132507,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 38,
+          "DurationMillis": 1585,
+          "DurationSMPTE": "00:00:01:14",
+          "EndFrameNumber": 3234,
+          "EndTimecodeSMPTE": "00:02:14:18",
+          "EndTimestampMillis": 134968,
+          "ShotSegment": {
+            "Confidence": 99.52111053466797,
+            "Index": 63
+          },
+          "StartFrameNumber": 3196,
+          "StartTimecodeSMPTE": "00:02:13:04",
+          "StartTimestampMillis": 133383,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 41,
+          "DurationMillis": 1710,
+          "DurationSMPTE": "00:00:01:17",
+          "EndFrameNumber": 3276,
+          "EndTimecodeSMPTE": "00:02:16:12",
+          "EndTimestampMillis": 136719,
+          "ShotSegment": {
+            "Confidence": 96.63446807861328,
+            "Index": 64
+          },
+          "StartFrameNumber": 3235,
+          "StartTimecodeSMPTE": "00:02:14:19",
+          "StartTimestampMillis": 135009,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 9,
+          "DurationMillis": 376,
+          "DurationSMPTE": "00:00:00:09",
+          "EndFrameNumber": 3292,
+          "EndTimecodeSMPTE": "00:02:17:04",
+          "EndTimestampMillis": 137387,
+          "ShotSegment": {
+            "Confidence": 80.81554412841797,
+            "Index": 65
+          },
+          "StartFrameNumber": 3283,
+          "StartTimecodeSMPTE": "00:02:16:19",
+          "StartTimestampMillis": 137011,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 2,
+          "DurationMillis": 84,
+          "DurationSMPTE": "00:00:00:02",
+          "EndFrameNumber": 3295,
+          "EndTimecodeSMPTE": "00:02:17:07",
+          "EndTimestampMillis": 137512,
+          "ShotSegment": {
+            "Confidence": 53.413368225097656,
+            "Index": 66
+          },
+          "StartFrameNumber": 3293,
+          "StartTimecodeSMPTE": "00:02:17:05",
+          "StartTimestampMillis": 137428,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 77,
+          "DurationMillis": 3211,
+          "DurationSMPTE": "00:00:03:05",
+          "EndFrameNumber": 3373,
+          "EndTimecodeSMPTE": "00:02:20:13",
+          "EndTimestampMillis": 140765,
+          "ShotSegment": {
+            "Confidence": 53.413368225097656,
+            "Index": 67
+          },
+          "StartFrameNumber": 3296,
+          "StartTimecodeSMPTE": "00:02:17:08",
+          "StartTimestampMillis": 137554,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 45,
+          "DurationMillis": 1877,
+          "DurationSMPTE": "00:00:01:21",
+          "EndFrameNumber": 3419,
+          "EndTimecodeSMPTE": "00:02:22:11",
+          "EndTimestampMillis": 142684,
+          "ShotSegment": {
+            "Confidence": 97.45558166503906,
+            "Index": 68
+          },
+          "StartFrameNumber": 3374,
+          "StartTimecodeSMPTE": "00:02:20:14",
+          "StartTimestampMillis": 140807,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 17,
+          "DurationMillis": 709,
+          "DurationSMPTE": "00:00:00:17",
+          "EndFrameNumber": 3438,
+          "EndTimecodeSMPTE": "00:02:23:06",
+          "EndTimestampMillis": 143476,
+          "ShotSegment": {
+            "Confidence": 87.23362731933594,
+            "Index": 69
+          },
+          "StartFrameNumber": 3421,
+          "StartTimecodeSMPTE": "00:02:22:13",
+          "StartTimestampMillis": 142767,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 140,
+          "DurationMillis": 5839,
+          "DurationSMPTE": "00:00:05:20",
+          "EndFrameNumber": 3583,
+          "EndTimecodeSMPTE": "00:02:29:07",
+          "EndTimestampMillis": 149524,
+          "ShotSegment": {
+            "Confidence": 87.23362731933594,
+            "Index": 70
+          },
+          "StartFrameNumber": 3443,
+          "StartTimecodeSMPTE": "00:02:23:11",
+          "StartTimestampMillis": 143685,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 137,
+          "DurationMillis": 5714,
+          "DurationSMPTE": "00:00:05:17",
+          "EndFrameNumber": 3721,
+          "EndTimecodeSMPTE": "00:02:35:01",
+          "EndTimestampMillis": 155280,
+          "ShotSegment": {
+            "Confidence": 92.97950744628906,
+            "Index": 71
+          },
+          "StartFrameNumber": 3584,
+          "StartTimecodeSMPTE": "00:02:29:08",
+          "StartTimestampMillis": 149566,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 42,
+          "DurationMillis": 1752,
+          "DurationSMPTE": "00:00:01:18",
+          "EndFrameNumber": 3764,
+          "EndTimecodeSMPTE": "00:02:36:20",
+          "EndTimestampMillis": 157073,
+          "ShotSegment": {
+            "Confidence": 99.785888671875,
+            "Index": 72
+          },
+          "StartFrameNumber": 3722,
+          "StartTimecodeSMPTE": "00:02:35:02",
+          "StartTimestampMillis": 155321,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 42,
+          "DurationMillis": 1752,
+          "DurationSMPTE": "00:00:01:18",
+          "EndFrameNumber": 3807,
+          "EndTimecodeSMPTE": "00:02:38:15",
+          "EndTimestampMillis": 158867,
+          "ShotSegment": {
+            "Confidence": 61.445770263671875,
+            "Index": 73
+          },
+          "StartFrameNumber": 3765,
+          "StartTimecodeSMPTE": "00:02:36:21",
+          "StartTimestampMillis": 157115,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 33,
+          "DurationMillis": 1376,
+          "DurationSMPTE": "00:00:01:09",
+          "EndFrameNumber": 3842,
+          "EndTimecodeSMPTE": "00:02:40:02",
+          "EndTimestampMillis": 160326,
+          "ShotSegment": {
+            "Confidence": 61.445770263671875,
+            "Index": 74
+          },
+          "StartFrameNumber": 3809,
+          "StartTimecodeSMPTE": "00:02:38:17",
+          "StartTimestampMillis": 158950,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 96,
+          "DurationMillis": 4004,
+          "DurationSMPTE": "00:00:04:00",
+          "EndFrameNumber": 3939,
+          "EndTimecodeSMPTE": "00:02:44:03",
+          "EndTimestampMillis": 164372,
+          "ShotSegment": {
+            "Confidence": 99.88180541992188,
+            "Index": 75
+          },
+          "StartFrameNumber": 3843,
+          "StartTimecodeSMPTE": "00:02:40:03",
+          "StartTimestampMillis": 160368,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 47,
+          "DurationMillis": 1960,
+          "DurationSMPTE": "00:00:01:23",
+          "EndFrameNumber": 3987,
+          "EndTimecodeSMPTE": "00:02:46:03",
+          "EndTimestampMillis": 166374,
+          "ShotSegment": {
+            "Confidence": 99.68771362304688,
+            "Index": 76
+          },
+          "StartFrameNumber": 3940,
+          "StartTimecodeSMPTE": "00:02:44:04",
+          "StartTimestampMillis": 164414,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 52,
+          "DurationMillis": 2169,
+          "DurationSMPTE": "00:00:02:04",
+          "EndFrameNumber": 4042,
+          "EndTimecodeSMPTE": "00:02:48:10",
+          "EndTimestampMillis": 168668,
+          "ShotSegment": {
+            "Confidence": 59.148170471191406,
+            "Index": 77
+          },
+          "StartFrameNumber": 3990,
+          "StartTimecodeSMPTE": "00:02:46:06",
+          "StartTimestampMillis": 166499,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 5,
+          "DurationMillis": 208,
+          "DurationSMPTE": "00:00:00:05",
+          "EndFrameNumber": 4048,
+          "EndTimecodeSMPTE": "00:02:48:16",
+          "EndTimestampMillis": 168918,
+          "ShotSegment": {
+            "Confidence": 53.44080352783203,
+            "Index": 78
+          },
+          "StartFrameNumber": 4043,
+          "StartTimecodeSMPTE": "00:02:48:11",
+          "StartTimestampMillis": 168710,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 34,
+          "DurationMillis": 1418,
+          "DurationSMPTE": "00:00:01:10",
+          "EndFrameNumber": 4083,
+          "EndTimecodeSMPTE": "00:02:50:03",
+          "EndTimestampMillis": 170378,
+          "ShotSegment": {
+            "Confidence": 53.44080352783203,
+            "Index": 79
+          },
+          "StartFrameNumber": 4049,
+          "StartTimecodeSMPTE": "00:02:48:17",
+          "StartTimestampMillis": 168960,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 18,
+          "DurationMillis": 751,
+          "DurationSMPTE": "00:00:00:18",
+          "EndFrameNumber": 4102,
+          "EndTimecodeSMPTE": "00:02:50:22",
+          "EndTimestampMillis": 171171,
+          "ShotSegment": {
+            "Confidence": 99.49296569824219,
+            "Index": 80
+          },
+          "StartFrameNumber": 4084,
+          "StartTimecodeSMPTE": "00:02:50:04",
+          "StartTimestampMillis": 170420,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 17,
+          "DurationMillis": 709,
+          "DurationSMPTE": "00:00:00:17",
+          "EndFrameNumber": 4120,
+          "EndTimecodeSMPTE": "00:02:51:16",
+          "EndTimestampMillis": 171921,
+          "ShotSegment": {
+            "Confidence": 99.49296569824219,
+            "Index": 81
+          },
+          "StartFrameNumber": 4103,
+          "StartTimecodeSMPTE": "00:02:50:23",
+          "StartTimestampMillis": 171212,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 34,
+          "DurationMillis": 1418,
+          "DurationSMPTE": "00:00:01:10",
+          "EndFrameNumber": 4155,
+          "EndTimecodeSMPTE": "00:02:53:03",
+          "EndTimestampMillis": 173381,
+          "ShotSegment": {
+            "Confidence": 99.86445617675781,
+            "Index": 82
+          },
+          "StartFrameNumber": 4121,
+          "StartTimecodeSMPTE": "00:02:51:17",
+          "StartTimestampMillis": 171963,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 18,
+          "DurationMillis": 751,
+          "DurationSMPTE": "00:00:00:18",
+          "EndFrameNumber": 4174,
+          "EndTimecodeSMPTE": "00:02:53:22",
+          "EndTimestampMillis": 174174,
+          "ShotSegment": {
+            "Confidence": 90.88251495361328,
+            "Index": 83
+          },
+          "StartFrameNumber": 4156,
+          "StartTimecodeSMPTE": "00:02:53:04",
+          "StartTimestampMillis": 173423,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 32,
+          "DurationMillis": 1335,
+          "DurationSMPTE": "00:00:01:08",
+          "EndFrameNumber": 4210,
+          "EndTimecodeSMPTE": "00:02:55:10",
+          "EndTimestampMillis": 175675,
+          "ShotSegment": {
+            "Confidence": 90.88251495361328,
+            "Index": 84
+          },
+          "StartFrameNumber": 4178,
+          "StartTimecodeSMPTE": "00:02:54:02",
+          "StartTimestampMillis": 174340,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 74,
+          "DurationMillis": 3086,
+          "DurationSMPTE": "00:00:03:02",
+          "EndFrameNumber": 4285,
+          "EndTimecodeSMPTE": "00:02:58:13",
+          "EndTimestampMillis": 178803,
+          "ShotSegment": {
+            "Confidence": 99.29639434814453,
+            "Index": 85
+          },
+          "StartFrameNumber": 4211,
+          "StartTimecodeSMPTE": "00:02:55:11",
+          "StartTimestampMillis": 175717,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 13,
+          "DurationMillis": 542,
+          "DurationSMPTE": "00:00:00:13",
+          "EndFrameNumber": 4299,
+          "EndTimecodeSMPTE": "00:02:59:03",
+          "EndTimestampMillis": 179387,
+          "ShotSegment": {
+            "Confidence": 56.285736083984375,
+            "Index": 86
+          },
+          "StartFrameNumber": 4286,
+          "StartTimecodeSMPTE": "00:02:58:14",
+          "StartTimestampMillis": 178845,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 6,
+          "DurationMillis": 250,
+          "DurationSMPTE": "00:00:00:06",
+          "EndFrameNumber": 4306,
+          "EndTimecodeSMPTE": "00:02:59:10",
+          "EndTimestampMillis": 179679,
+          "ShotSegment": {
+            "Confidence": 56.285736083984375,
+            "Index": 87
+          },
+          "StartFrameNumber": 4300,
+          "StartTimecodeSMPTE": "00:02:59:04",
+          "StartTimestampMillis": 179429,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 39,
+          "DurationMillis": 1626,
+          "DurationSMPTE": "00:00:01:15",
+          "EndFrameNumber": 4346,
+          "EndTimecodeSMPTE": "00:03:01:02",
+          "EndTimestampMillis": 181347,
+          "ShotSegment": {
+            "Confidence": 99.7804946899414,
+            "Index": 88
+          },
+          "StartFrameNumber": 4307,
+          "StartTimecodeSMPTE": "00:02:59:11",
+          "StartTimestampMillis": 179721,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 32,
+          "DurationMillis": 1335,
+          "DurationSMPTE": "00:00:01:08",
+          "EndFrameNumber": 4379,
+          "EndTimecodeSMPTE": "00:03:02:11",
+          "EndTimestampMillis": 182724,
+          "ShotSegment": {
+            "Confidence": 99.60198211669922,
+            "Index": 89
+          },
+          "StartFrameNumber": 4347,
+          "StartTimecodeSMPTE": "00:03:01:03",
+          "StartTimestampMillis": 181389,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 20,
+          "DurationMillis": 835,
+          "DurationSMPTE": "00:00:00:20",
+          "EndFrameNumber": 4400,
+          "EndTimecodeSMPTE": "00:03:03:08",
+          "EndTimestampMillis": 183600,
+          "ShotSegment": {
+            "Confidence": 67.83148193359375,
+            "Index": 90
+          },
+          "StartFrameNumber": 4380,
+          "StartTimecodeSMPTE": "00:03:02:12",
+          "StartTimestampMillis": 182765,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 47,
+          "DurationMillis": 1960,
+          "DurationSMPTE": "00:00:01:23",
+          "EndFrameNumber": 4449,
+          "EndTimecodeSMPTE": "00:03:05:09",
+          "EndTimestampMillis": 185643,
+          "ShotSegment": {
+            "Confidence": 67.83148193359375,
+            "Index": 91
+          },
+          "StartFrameNumber": 4402,
+          "StartTimecodeSMPTE": "00:03:03:10",
+          "StartTimestampMillis": 183683,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 51,
+          "DurationMillis": 2127,
+          "DurationSMPTE": "00:00:02:03",
+          "EndFrameNumber": 4502,
+          "EndTimecodeSMPTE": "00:03:07:14",
+          "EndTimestampMillis": 187854,
+          "ShotSegment": {
+            "Confidence": 99.75206756591797,
+            "Index": 92
+          },
+          "StartFrameNumber": 4451,
+          "StartTimecodeSMPTE": "00:03:05:11",
+          "StartTimestampMillis": 185727,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 52,
+          "DurationMillis": 2168,
+          "DurationSMPTE": "00:00:02:04",
+          "EndFrameNumber": 4555,
+          "EndTimecodeSMPTE": "00:03:09:19",
+          "EndTimestampMillis": 190064,
+          "ShotSegment": {
+            "Confidence": 99.2060546875,
+            "Index": 93
+          },
+          "StartFrameNumber": 4503,
+          "StartTimecodeSMPTE": "00:03:07:15",
+          "StartTimestampMillis": 187896,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 49,
+          "DurationMillis": 2044,
+          "DurationSMPTE": "00:00:02:01",
+          "EndFrameNumber": 4605,
+          "EndTimecodeSMPTE": "00:03:11:21",
+          "EndTimestampMillis": 192150,
+          "ShotSegment": {
+            "Confidence": 99.2060546875,
+            "Index": 94
+          },
+          "StartFrameNumber": 4556,
+          "StartTimecodeSMPTE": "00:03:09:20",
+          "StartTimestampMillis": 190106,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 44,
+          "DurationMillis": 1835,
+          "DurationSMPTE": "00:00:01:20",
+          "EndFrameNumber": 4650,
+          "EndTimecodeSMPTE": "00:03:13:18",
+          "EndTimestampMillis": 194027,
+          "ShotSegment": {
+            "Confidence": 99.9861068725586,
+            "Index": 95
+          },
+          "StartFrameNumber": 4606,
+          "StartTimecodeSMPTE": "00:03:11:22",
+          "StartTimestampMillis": 192192,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 71,
+          "DurationMillis": 2962,
+          "DurationSMPTE": "00:00:02:23",
+          "EndFrameNumber": 4722,
+          "EndTimecodeSMPTE": "00:03:16:18",
+          "EndTimestampMillis": 197030,
+          "ShotSegment": {
+            "Confidence": 67.03980255126953,
+            "Index": 96
+          },
+          "StartFrameNumber": 4651,
+          "StartTimecodeSMPTE": "00:03:13:19",
+          "StartTimestampMillis": 194068,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 46,
+          "DurationMillis": 1918,
+          "DurationSMPTE": "00:00:01:22",
+          "EndFrameNumber": 4771,
+          "EndTimecodeSMPTE": "00:03:18:19",
+          "EndTimestampMillis": 199073,
+          "ShotSegment": {
+            "Confidence": 67.03980255126953,
+            "Index": 97
+          },
+          "StartFrameNumber": 4725,
+          "StartTimecodeSMPTE": "00:03:16:21",
+          "StartTimestampMillis": 197155,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 53,
+          "DurationMillis": 2211,
+          "DurationSMPTE": "00:00:02:05",
+          "EndFrameNumber": 4825,
+          "EndTimecodeSMPTE": "00:03:21:01",
+          "EndTimestampMillis": 201326,
+          "ShotSegment": {
+            "Confidence": 95.9471664428711,
+            "Index": 98
+          },
+          "StartFrameNumber": 4772,
+          "StartTimecodeSMPTE": "00:03:18:20",
+          "StartTimestampMillis": 199115,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 5,
+          "DurationMillis": 209,
+          "DurationSMPTE": "00:00:00:05",
+          "EndFrameNumber": 4834,
+          "EndTimecodeSMPTE": "00:03:21:10",
+          "EndTimestampMillis": 201701,
+          "ShotSegment": {
+            "Confidence": 64.93445587158203,
+            "Index": 99
+          },
+          "StartFrameNumber": 4829,
+          "StartTimecodeSMPTE": "00:03:21:05",
+          "StartTimestampMillis": 201492,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 2,
+          "DurationMillis": 83,
+          "DurationSMPTE": "00:00:00:02",
+          "EndFrameNumber": 4837,
+          "EndTimecodeSMPTE": "00:03:21:13",
+          "EndTimestampMillis": 201826,
+          "ShotSegment": {
+            "Confidence": 64.93445587158203,
+            "Index": 100
+          },
+          "StartFrameNumber": 4835,
+          "StartTimecodeSMPTE": "00:03:21:11",
+          "StartTimestampMillis": 201743,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 23,
+          "DurationMillis": 959,
+          "DurationSMPTE": "00:00:00:23",
+          "EndFrameNumber": 4862,
+          "EndTimecodeSMPTE": "00:03:22:14",
+          "EndTimestampMillis": 202869,
+          "ShotSegment": {
+            "Confidence": 93.06644439697266,
+            "Index": 101
+          },
+          "StartFrameNumber": 4839,
+          "StartTimecodeSMPTE": "00:03:21:15",
+          "StartTimestampMillis": 201910,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 20,
+          "DurationMillis": 834,
+          "DurationSMPTE": "00:00:00:20",
+          "EndFrameNumber": 4883,
+          "EndTimecodeSMPTE": "00:03:23:11",
+          "EndTimestampMillis": 203745,
+          "ShotSegment": {
+            "Confidence": 60.10515213012695,
+            "Index": 102
+          },
+          "StartFrameNumber": 4863,
+          "StartTimecodeSMPTE": "00:03:22:15",
+          "StartTimestampMillis": 202911,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 6,
+          "DurationMillis": 251,
+          "DurationSMPTE": "00:00:00:06",
+          "EndFrameNumber": 4890,
+          "EndTimecodeSMPTE": "00:03:23:18",
+          "EndTimestampMillis": 204037,
+          "ShotSegment": {
+            "Confidence": 60.10515213012695,
+            "Index": 103
+          },
+          "StartFrameNumber": 4884,
+          "StartTimecodeSMPTE": "00:03:23:12",
+          "StartTimestampMillis": 203786,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 1,
+          "DurationMillis": 42,
+          "DurationSMPTE": "00:00:00:01",
+          "EndFrameNumber": 4893,
+          "EndTimecodeSMPTE": "00:03:23:21",
+          "EndTimestampMillis": 204162,
+          "ShotSegment": {
+            "Confidence": 60.23411178588867,
+            "Index": 104
+          },
+          "StartFrameNumber": 4892,
+          "StartTimecodeSMPTE": "00:03:23:20",
+          "StartTimestampMillis": 204120,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 68,
+          "DurationMillis": 2836,
+          "DurationSMPTE": "00:00:02:20",
+          "EndFrameNumber": 4962,
+          "EndTimecodeSMPTE": "00:03:26:18",
+          "EndTimestampMillis": 207040,
+          "ShotSegment": {
+            "Confidence": 77.20366668701172,
+            "Index": 105
+          },
+          "StartFrameNumber": 4894,
+          "StartTimecodeSMPTE": "00:03:23:22",
+          "StartTimestampMillis": 204204,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 106,
+          "DurationMillis": 4421,
+          "DurationSMPTE": "00:00:04:10",
+          "EndFrameNumber": 5069,
+          "EndTimecodeSMPTE": "00:03:31:05",
+          "EndTimestampMillis": 211502,
+          "ShotSegment": {
+            "Confidence": 97.9792709350586,
+            "Index": 106
+          },
+          "StartFrameNumber": 4963,
+          "StartTimecodeSMPTE": "00:03:26:19",
+          "StartTimestampMillis": 207081,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 18,
+          "DurationMillis": 751,
+          "DurationSMPTE": "00:00:00:18",
+          "EndFrameNumber": 5088,
+          "EndTimecodeSMPTE": "00:03:32:00",
+          "EndTimestampMillis": 212295,
+          "ShotSegment": {
+            "Confidence": 51.768489837646484,
+            "Index": 107
+          },
+          "StartFrameNumber": 5070,
+          "StartTimecodeSMPTE": "00:03:31:06",
+          "StartTimestampMillis": 211544,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 47,
+          "DurationMillis": 1960,
+          "DurationSMPTE": "00:00:01:23",
+          "EndFrameNumber": 5136,
+          "EndTimecodeSMPTE": "00:03:34:00",
+          "EndTimestampMillis": 214297,
+          "ShotSegment": {
+            "Confidence": 51.768489837646484,
+            "Index": 108
+          },
+          "StartFrameNumber": 5089,
+          "StartTimecodeSMPTE": "00:03:32:01",
+          "StartTimestampMillis": 212337,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 63,
+          "DurationMillis": 2627,
+          "DurationSMPTE": "00:00:02:15",
+          "EndFrameNumber": 5200,
+          "EndTimecodeSMPTE": "00:03:36:16",
+          "EndTimestampMillis": 216966,
+          "ShotSegment": {
+            "Confidence": 99.00191497802734,
+            "Index": 109
+          },
+          "StartFrameNumber": 5137,
+          "StartTimecodeSMPTE": "00:03:34:01",
+          "StartTimestampMillis": 214339,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 17,
+          "DurationMillis": 709,
+          "DurationSMPTE": "00:00:00:17",
+          "EndFrameNumber": 5218,
+          "EndTimecodeSMPTE": "00:03:37:10",
+          "EndTimestampMillis": 217717,
+          "ShotSegment": {
+            "Confidence": 99.00191497802734,
+            "Index": 110
+          },
+          "StartFrameNumber": 5201,
+          "StartTimecodeSMPTE": "00:03:36:17",
+          "StartTimestampMillis": 217008,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 1,
+          "DurationMillis": 41,
+          "DurationSMPTE": "00:00:00:01",
+          "EndFrameNumber": 5220,
+          "EndTimecodeSMPTE": "00:03:37:12",
+          "EndTimestampMillis": 217800,
+          "ShotSegment": {
+            "Confidence": 80.06903839111328,
+            "Index": 111
+          },
+          "StartFrameNumber": 5219,
+          "StartTimecodeSMPTE": "00:03:37:11",
+          "StartTimestampMillis": 217759,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 39,
+          "DurationMillis": 1626,
+          "DurationSMPTE": "00:00:01:15",
+          "EndFrameNumber": 5261,
+          "EndTimecodeSMPTE": "00:03:39:05",
+          "EndTimestampMillis": 219510,
+          "ShotSegment": {
+            "Confidence": 80.06903839111328,
+            "Index": 112
+          },
+          "StartFrameNumber": 5222,
+          "StartTimecodeSMPTE": "00:03:37:14",
+          "StartTimestampMillis": 217884,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 33,
+          "DurationMillis": 1377,
+          "DurationSMPTE": "00:00:01:09",
+          "EndFrameNumber": 5295,
+          "EndTimecodeSMPTE": "00:03:40:15",
+          "EndTimestampMillis": 220929,
+          "ShotSegment": {
+            "Confidence": 89.47837829589844,
+            "Index": 113
+          },
+          "StartFrameNumber": 5262,
+          "StartTimecodeSMPTE": "00:03:39:06",
+          "StartTimestampMillis": 219552,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 49,
+          "DurationMillis": 2044,
+          "DurationSMPTE": "00:00:02:01",
+          "EndFrameNumber": 5345,
+          "EndTimecodeSMPTE": "00:03:42:17",
+          "EndTimestampMillis": 223014,
+          "ShotSegment": {
+            "Confidence": 72.17090606689453,
+            "Index": 114
+          },
+          "StartFrameNumber": 5296,
+          "StartTimecodeSMPTE": "00:03:40:16",
+          "StartTimestampMillis": 220970,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 5,
+          "DurationMillis": 209,
+          "DurationSMPTE": "00:00:00:05",
+          "EndFrameNumber": 5350,
+          "EndTimecodeSMPTE": "00:03:42:22",
+          "EndTimestampMillis": 223223,
+          "ShotSegment": {
+            "Confidence": 72.17090606689453,
+            "Index": 115
+          },
+          "StartFrameNumber": 5345,
+          "StartTimecodeSMPTE": "00:03:42:17",
+          "StartTimestampMillis": 223014,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 51,
+          "DurationMillis": 2127,
+          "DurationSMPTE": "00:00:02:03",
+          "EndFrameNumber": 5402,
+          "EndTimecodeSMPTE": "00:03:45:02",
+          "EndTimestampMillis": 225391,
+          "ShotSegment": {
+            "Confidence": 72.52159118652344,
+            "Index": 116
+          },
+          "StartFrameNumber": 5351,
+          "StartTimecodeSMPTE": "00:03:42:23",
+          "StartTimestampMillis": 223264,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 53,
+          "DurationMillis": 2210,
+          "DurationSMPTE": "00:00:02:05",
+          "EndFrameNumber": 5457,
+          "EndTimecodeSMPTE": "00:03:47:09",
+          "EndTimestampMillis": 227685,
+          "ShotSegment": {
+            "Confidence": 72.52159118652344,
+            "Index": 117
+          },
+          "StartFrameNumber": 5404,
+          "StartTimecodeSMPTE": "00:03:45:04",
+          "StartTimestampMillis": 225475,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 50,
+          "DurationMillis": 2085,
+          "DurationSMPTE": "00:00:02:02",
+          "EndFrameNumber": 5508,
+          "EndTimecodeSMPTE": "00:03:49:12",
+          "EndTimestampMillis": 229812,
+          "ShotSegment": {
+            "Confidence": 99.92910766601562,
+            "Index": 118
+          },
+          "StartFrameNumber": 5458,
+          "StartTimecodeSMPTE": "00:03:47:10",
+          "StartTimestampMillis": 227727,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 76,
+          "DurationMillis": 3170,
+          "DurationSMPTE": "00:00:03:04",
+          "EndFrameNumber": 5585,
+          "EndTimecodeSMPTE": "00:03:52:17",
+          "EndTimestampMillis": 233024,
+          "ShotSegment": {
+            "Confidence": 98.81704711914062,
+            "Index": 119
+          },
+          "StartFrameNumber": 5509,
+          "StartTimecodeSMPTE": "00:03:49:13",
+          "StartTimestampMillis": 229854,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 35,
+          "DurationMillis": 1459,
+          "DurationSMPTE": "00:00:01:11",
+          "EndFrameNumber": 5621,
+          "EndTimecodeSMPTE": "00:03:54:05",
+          "EndTimestampMillis": 234525,
+          "ShotSegment": {
+            "Confidence": 96.56283569335938,
+            "Index": 120
+          },
+          "StartFrameNumber": 5586,
+          "StartTimecodeSMPTE": "00:03:52:18",
+          "StartTimestampMillis": 233066,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 50,
+          "DurationMillis": 2086,
+          "DurationSMPTE": "00:00:02:02",
+          "EndFrameNumber": 5672,
+          "EndTimecodeSMPTE": "00:03:56:08",
+          "EndTimestampMillis": 236653,
+          "ShotSegment": {
+            "Confidence": 96.56283569335938,
+            "Index": 121
+          },
+          "StartFrameNumber": 5622,
+          "StartTimecodeSMPTE": "00:03:54:06",
+          "StartTimestampMillis": 234567,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 39,
+          "DurationMillis": 1627,
+          "DurationSMPTE": "00:00:01:15",
+          "EndFrameNumber": 5712,
+          "EndTimecodeSMPTE": "00:03:58:00",
+          "EndTimestampMillis": 238321,
+          "ShotSegment": {
+            "Confidence": 99.4799575805664,
+            "Index": 122
+          },
+          "StartFrameNumber": 5673,
+          "StartTimecodeSMPTE": "00:03:56:09",
+          "StartTimestampMillis": 236694,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 67,
+          "DurationMillis": 2794,
+          "DurationSMPTE": "00:00:02:19",
+          "EndFrameNumber": 5780,
+          "EndTimecodeSMPTE": "00:04:00:20",
+          "EndTimestampMillis": 241157,
+          "ShotSegment": {
+            "Confidence": 99.88075256347656,
+            "Index": 123
+          },
+          "StartFrameNumber": 5713,
+          "StartTimecodeSMPTE": "00:03:58:01",
+          "StartTimestampMillis": 238363,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 70,
+          "DurationMillis": 2919,
+          "DurationSMPTE": "00:00:02:22",
+          "EndFrameNumber": 5851,
+          "EndTimecodeSMPTE": "00:04:03:19",
+          "EndTimestampMillis": 244118,
+          "ShotSegment": {
+            "Confidence": 99.88075256347656,
+            "Index": 124
+          },
+          "StartFrameNumber": 5781,
+          "StartTimecodeSMPTE": "00:04:00:21",
+          "StartTimestampMillis": 241199,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 63,
+          "DurationMillis": 2628,
+          "DurationSMPTE": "00:00:02:15",
+          "EndFrameNumber": 5915,
+          "EndTimecodeSMPTE": "00:04:06:11",
+          "EndTimestampMillis": 246788,
+          "ShotSegment": {
+            "Confidence": 99.84088134765625,
+            "Index": 125
+          },
+          "StartFrameNumber": 5852,
+          "StartTimecodeSMPTE": "00:04:03:20",
+          "StartTimestampMillis": 244160,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 28,
+          "DurationMillis": 1168,
+          "DurationSMPTE": "00:00:01:04",
+          "EndFrameNumber": 5944,
+          "EndTimecodeSMPTE": "00:04:07:16",
+          "EndTimestampMillis": 247997,
+          "ShotSegment": {
+            "Confidence": 99.75096130371094,
+            "Index": 126
+          },
+          "StartFrameNumber": 5916,
+          "StartTimecodeSMPTE": "00:04:06:12",
+          "StartTimestampMillis": 246829,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 43,
+          "DurationMillis": 1793,
+          "DurationSMPTE": "00:00:01:19",
+          "EndFrameNumber": 5988,
+          "EndTimecodeSMPTE": "00:04:09:12",
+          "EndTimestampMillis": 249832,
+          "ShotSegment": {
+            "Confidence": 99.75096130371094,
+            "Index": 127
+          },
+          "StartFrameNumber": 5945,
+          "StartTimecodeSMPTE": "00:04:07:17",
+          "StartTimestampMillis": 248039,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 32,
+          "DurationMillis": 1335,
+          "DurationSMPTE": "00:00:01:08",
+          "EndFrameNumber": 6021,
+          "EndTimecodeSMPTE": "00:04:10:21",
+          "EndTimestampMillis": 251209,
+          "ShotSegment": {
+            "Confidence": 58.42981719970703,
+            "Index": 128
+          },
+          "StartFrameNumber": 5989,
+          "StartTimecodeSMPTE": "00:04:09:13",
+          "StartTimestampMillis": 249874,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 21,
+          "DurationMillis": 876,
+          "DurationSMPTE": "00:00:00:21",
+          "EndFrameNumber": 6045,
+          "EndTimecodeSMPTE": "00:04:11:21",
+          "EndTimestampMillis": 252210,
+          "ShotSegment": {
+            "Confidence": 51.830223083496094,
+            "Index": 129
+          },
+          "StartFrameNumber": 6024,
+          "StartTimecodeSMPTE": "00:04:11:00",
+          "StartTimestampMillis": 251334,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 3,
+          "DurationMillis": 125,
+          "DurationSMPTE": "00:00:00:03",
+          "EndFrameNumber": 6049,
+          "EndTimecodeSMPTE": "00:04:12:01",
+          "EndTimestampMillis": 252377,
+          "ShotSegment": {
+            "Confidence": 51.830223083496094,
+            "Index": 130
+          },
+          "StartFrameNumber": 6046,
+          "StartTimecodeSMPTE": "00:04:11:22",
+          "StartTimestampMillis": 252252,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 2,
+          "DurationMillis": 84,
+          "DurationSMPTE": "00:00:00:02",
+          "EndFrameNumber": 6052,
+          "EndTimecodeSMPTE": "00:04:12:04",
+          "EndTimestampMillis": 252502,
+          "ShotSegment": {
+            "Confidence": 54.43592071533203,
+            "Index": 131
+          },
+          "StartFrameNumber": 6050,
+          "StartTimecodeSMPTE": "00:04:12:02",
+          "StartTimestampMillis": 252418,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 43,
+          "DurationMillis": 1794,
+          "DurationSMPTE": "00:00:01:19",
+          "EndFrameNumber": 6097,
+          "EndTimecodeSMPTE": "00:04:14:01",
+          "EndTimestampMillis": 254379,
+          "ShotSegment": {
+            "Confidence": 83.6489028930664,
+            "Index": 132
+          },
+          "StartFrameNumber": 6054,
+          "StartTimecodeSMPTE": "00:04:12:06",
+          "StartTimestampMillis": 252585,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 43,
+          "DurationMillis": 1794,
+          "DurationSMPTE": "00:00:01:19",
+          "EndFrameNumber": 6141,
+          "EndTimecodeSMPTE": "00:04:15:21",
+          "EndTimestampMillis": 256214,
+          "ShotSegment": {
+            "Confidence": 83.6489028930664,
+            "Index": 133
+          },
+          "StartFrameNumber": 6098,
+          "StartTimecodeSMPTE": "00:04:14:02",
+          "StartTimestampMillis": 254420,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 204,
+          "DurationMillis": 8508,
+          "DurationSMPTE": "00:00:08:12",
+          "EndFrameNumber": 6346,
+          "EndTimecodeSMPTE": "00:04:24:10",
+          "EndTimestampMillis": 264764,
+          "ShotSegment": {
+            "Confidence": 99.06230163574219,
+            "Index": 134
+          },
+          "StartFrameNumber": 6142,
+          "StartTimecodeSMPTE": "00:04:15:22",
+          "StartTimestampMillis": 256256,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 7,
+          "DurationMillis": 292,
+          "DurationSMPTE": "00:00:00:07",
+          "EndFrameNumber": 6354,
+          "EndTimecodeSMPTE": "00:04:24:18",
+          "EndTimestampMillis": 265098,
+          "ShotSegment": {
+            "Confidence": 52.340248107910156,
+            "Index": 135
+          },
+          "StartFrameNumber": 6347,
+          "StartTimecodeSMPTE": "00:04:24:11",
+          "StartTimestampMillis": 264806,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 30,
+          "DurationMillis": 1252,
+          "DurationSMPTE": "00:00:01:06",
+          "EndFrameNumber": 6385,
+          "EndTimecodeSMPTE": "00:04:26:01",
+          "EndTimestampMillis": 266391,
+          "ShotSegment": {
+            "Confidence": 52.340248107910156,
+            "Index": 136
+          },
+          "StartFrameNumber": 6355,
+          "StartTimecodeSMPTE": "00:04:24:19",
+          "StartTimestampMillis": 265139,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 29,
+          "DurationMillis": 1210,
+          "DurationSMPTE": "00:00:01:05",
+          "EndFrameNumber": 6415,
+          "EndTimecodeSMPTE": "00:04:27:07",
+          "EndTimestampMillis": 267642,
+          "ShotSegment": {
+            "Confidence": 99.9228744506836,
+            "Index": 137
+          },
+          "StartFrameNumber": 6386,
+          "StartTimecodeSMPTE": "00:04:26:02",
+          "StartTimestampMillis": 266432,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 26,
+          "DurationMillis": 1084,
+          "DurationSMPTE": "00:00:01:02",
+          "EndFrameNumber": 6442,
+          "EndTimecodeSMPTE": "00:04:28:10",
+          "EndTimestampMillis": 268768,
+          "ShotSegment": {
+            "Confidence": 99.89173889160156,
+            "Index": 138
+          },
+          "StartFrameNumber": 6416,
+          "StartTimecodeSMPTE": "00:04:27:08",
+          "StartTimestampMillis": 267684,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 165,
+          "DurationMillis": 6882,
+          "DurationSMPTE": "00:00:06:21",
+          "EndFrameNumber": 6608,
+          "EndTimecodeSMPTE": "00:04:35:08",
+          "EndTimestampMillis": 275692,
+          "ShotSegment": {
+            "Confidence": 99.89173889160156,
+            "Index": 139
+          },
+          "StartFrameNumber": 6443,
+          "StartTimecodeSMPTE": "00:04:28:11",
+          "StartTimestampMillis": 268810,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 19,
+          "DurationMillis": 793,
+          "DurationSMPTE": "00:00:00:19",
+          "EndFrameNumber": 6628,
+          "EndTimecodeSMPTE": "00:04:36:04",
+          "EndTimestampMillis": 276526,
+          "ShotSegment": {
+            "Confidence": 56.568397521972656,
+            "Index": 140
+          },
+          "StartFrameNumber": 6609,
+          "StartTimecodeSMPTE": "00:04:35:09",
+          "StartTimestampMillis": 275733,
+          "Type": "SHOT"
+        },
+        {
+          "DurationFrames": 484,
+          "DurationMillis": 20187,
+          "DurationSMPTE": "00:00:20:04",
+          "EndFrameNumber": 7113,
+          "EndTimecodeSMPTE": "00:04:56:09",
+          "EndTimestampMillis": 296754,
+          "ShotSegment": {
+            "Confidence": 56.568397521972656,
+            "Index": 141
+          },
+          "StartFrameNumber": 6629,
+          "StartTimecodeSMPTE": "00:04:36:05",
+          "StartTimestampMillis": 276567,
+          "Type": "SHOT"
+        }
+      ],
+      "segmentCount": 142,
+      "processedDescriptions": [
+        {
+          "startTime": 0.083,
+          "endTime": 1.96,
+          "text": "Dark screen with white text \"Dubbed with ElevenLabs\" appearing at the bottom right."
+        },
+        {
+          "startTime": 2.002,
+          "endTime": 14.347,
+          "text": "A woman in a dark purple sweater exits an office, leaving a cluttered desk behind."
+        },
+        {
+          "startTime": 14.389,
+          "endTime": 19.728,
+          "text": "Man in suit and tie opens desk drawer, revealing cluttered items inside."
+        },
+        {
+          "startTime": 19.769,
+          "endTime": 30.363,
+          "text": "Man in suit, glasses, and tie struggles to open a wooden door, frowning."
+        },
+        {
+          "startTime": 30.405,
+          "endTime": 32.866,
+          "text": "A hand grips a torch, igniting a blue flame against a wooden door."
+        },
+        {
+          "startTime": 32.907,
+          "endTime": 35.744,
+          "text": "Man in suit, glasses, and tie uses torch on door handle, flame glowing blue."
+        },
+        {
+          "startTime": 35.785,
+          "endTime": 37.37,
+          "text": "Man in suit and tie stands by \"Dunder Mifflin\" sign, looks serious."
+        },
+        {
+          "startTime": 37.412,
+          "endTime": 41.499,
+          "text": "Two men in formal attire, one kneeling, examine scattered wooden pieces on a gray floor, suggesting a puzzle or repair task."
+        },
+        {
+          "startTime": 41.541,
+          "endTime": 44.335,
+          "text": "Man in suit and tie, holding torch with blue flame, examining door intently."
+        },
+        {
+          "startTime": 44.377,
+          "endTime": 45.545,
+          "text": "Man in suit and tie holds lighter, prepares to throw it into trash can."
+        },
+        {
+          "startTime": 45.67,
+          "endTime": 51.968,
+          "text": "Man in suit stands by door, exhaling smoke, holding vaping device. Office buzzes behind him."
+        },
+        {
+          "startTime": 52.01,
+          "endTime": 52.01,
+          "text": "Man in black suit, tie, and unbuttoned shirt gestures with one hand while holding a small object in the other, standing near a window with blinds."
+        },
+        {
+          "startTime": 52.052,
+          "endTime": 52.093,
+          "text": "Man in suit and tie, holding a small object, standing near a white wall."
+        },
+        {
+          "startTime": 52.135,
+          "endTime": 53.845,
+          "text": "Person in black stands near a flaming black barrel, casting shadows in dim, tense atmosphere."
+        },
+        {
+          "startTime": 54.095,
+          "endTime": 57.891,
+          "text": "Man in black suit, patterned tie, exits room with annoyed expression, passing framed artwork."
+        },
+        {
+          "startTime": 58.141,
+          "endTime": 58.141,
+          "text": "Man in black suit exits office, blurred coworkers behind, shelves on left, bright lighting."
+        },
+        {
+          "startTime": 58.183,
+          "endTime": 59.642,
+          "text": "In a busy office, two people work at cluttered desks under bright lights, surrounded by framed certificates and bustling coworkers."
+        },
+        {
+          "startTime": 59.684,
+          "endTime": 61.978,
+          "text": "Man in office, hand on chin, gazes thoughtfully at desk with papers and phone."
+        },
+        {
+          "startTime": 62.062,
+          "endTime": 64.105,
+          "text": "Man in suit, head down, writing intently at office desk with computer and mouse."
+        },
+        {
+          "startTime": 64.147,
+          "endTime": 65.44,
+          "text": "Steam billows from a vent, filling a narrow hallway with a misty haze."
+        },
+        {
+          "startTime": 65.648,
+          "endTime": 68.359,
+          "text": "Man in suit and tie stands by desk, eyes wide, mouth open, surprised. Office setting, bright lighting, computer monitors, and office supplies in background."
+        },
+        {
+          "startTime": 68.401,
+          "endTime": 72.739,
+          "text": "Two men in suits, one writing, the other observing, in a cluttered office."
+        },
+        {
+          "startTime": 72.906,
+          "endTime": 72.947,
+          "text": "Blurry office scene: person moves quickly past desk with stacked papers, wooden door ajar."
+        },
+        {
+          "startTime": 73.198,
+          "endTime": 74.574,
+          "text": "Blonde woman in gray blouse at office desk, intently reading a document."
+        },
+        {
+          "startTime": 74.616,
+          "endTime": 78.203,
+          "text": "Man in glasses speaks urgently; another man at desk listens, office setting."
+        },
+        {
+          "startTime": 78.62,
+          "endTime": 78.703,
+          "text": "A blurred hallway with indistinct figures moving rapidly, suggesting urgency or chaos."
+        },
+        {
+          "startTime": 78.787,
+          "endTime": 80.955,
+          "text": "Woman with serious expression at reception desk, \"Reception\" sign, office background."
+        },
+        {
+          "startTime": 80.997,
+          "endTime": 81.581,
+          "text": "A cluttered office with shelves full of colorful files, a stool, and scattered papers."
+        },
+        {
+          "startTime": 81.706,
+          "endTime": 82.373,
+          "text": "In a busy office, Dwight stands sternly by a cluttered desk, while Jim works nearby, creating a humorous contrast."
+        },
+        {
+          "startTime": 82.415,
+          "endTime": 83.583,
+          "text": "Woman in office, pointing with urgency, dark blazer over purple shirt, surrounded by framed certificates and a printer."
+        },
+        {
+          "startTime": 83.625,
+          "endTime": 83.917,
+          "text": "In a busy office, two men sit at a cluttered desk, surrounded by computers and paperwork, focused on their tasks."
+        },
+        {
+          "startTime": 83.958,
+          "endTime": 84.584,
+          "text": "Man in suit and tie passionately gestures, mouth open, near glowing computer screen displaying \"Dunder Mifflin.\""
+        },
+        {
+          "startTime": 84.626,
+          "endTime": 84.876,
+          "text": "Man in brown suit stands by white wall, facing away, near blurred bookshelf."
+        },
+        {
+          "startTime": 84.918,
+          "endTime": 87.17,
+          "text": "Man in suit and glasses passionately speaks in an office, surrounded by shelves of colorful supplies."
+        },
+        {
+          "startTime": 87.378,
+          "endTime": 89.547,
+          "text": "Woman in purple shirt and black jacket holds phone, speaks urgently in office."
+        },
+        {
+          "startTime": 89.589,
+          "endTime": 90.924,
+          "text": "Dwight, in a suit, stands shocked with mouth open, eyes wide behind glasses. Pam, in green, stands behind him, raising her hand. Office shelves filled with colorful boxes in background."
+        },
+        {
+          "startTime": 90.965,
+          "endTime": 91.925,
+          "text": "In an office, a man shouts at another, gesturing wildly, while a woman watches."
+        },
+        {
+          "startTime": 92.008,
+          "endTime": 94.594,
+          "text": "Three office workers in formal attire, one gesturing, stand by a window, discussing animatedly."
+        },
+        {
+          "startTime": 94.636,
+          "endTime": 99.891,
+          "text": "Three professionals in formal attire converse in a well-lit office corridor."
+        },
+        {
+          "startTime": 99.974,
+          "endTime": 100.934,
+          "text": "Man in suit passionately gestures; others attentively listen in a softly lit corridor."
+        },
+        {
+          "startTime": 100.975,
+          "endTime": 102.519,
+          "text": "Man in suit shouts through bars, eyes wide, mouth open, intense expression."
+        },
+        {
+          "startTime": 102.56,
+          "endTime": 103.728,
+          "text": "Two men in suits face each other, one looking serious, the other attentive."
+        },
+        {
+          "startTime": 103.77,
+          "endTime": 105.396,
+          "text": "Man in black suit, glasses, passionately points at a \"No Smoking\" sign near a green plant, in an office with a window and blinds."
+        },
+        {
+          "startTime": 105.438,
+          "endTime": 109.442,
+          "text": "Man in suit bends, touches doorknob, office setting, framed building picture on wall."
+        },
+        {
+          "startTime": 109.526,
+          "endTime": 109.526,
+          "text": "Two men in suits stand near a door, one gesturing with an open hand."
+        },
+        {
+          "startTime": 109.567,
+          "endTime": 111.528,
+          "text": "In an office, a blonde woman holds a large frog, shocking her colleagues."
+        },
+        {
+          "startTime": 111.569,
+          "endTime": 113.78,
+          "text": "Man in beige shirt stands in office, observing colleagues. Soft lighting, framed certificates on wall, green plant in background."
+        },
+        {
+          "startTime": 113.822,
+          "endTime": 114.447,
+          "text": "Man in brown suit hurries past desk, blurred motion, office setting, warm lighting."
+        },
+        {
+          "startTime": 114.447,
+          "endTime": 114.572,
+          "text": "Man in a tan suit exits an office, his coat flapping behind him, past a bulletin board."
+        },
+        {
+          "startTime": 114.572,
+          "endTime": 116.324,
+          "text": "Man in brown suit, hands in pockets, stands awkwardly in doorway, glancing back. Office setting with beige walls, file cabinets, and bulletin board with papers."
+        },
+        {
+          "startTime": 116.366,
+          "endTime": 117.492,
+          "text": "Man and woman in black suits stand by window, observing colorful map on wall."
+        },
+        {
+          "startTime": 117.534,
+          "endTime": 118.91,
+          "text": "Man in brown suit exits office, gesturing animatedly; two men watch, one in tie."
+        },
+        {
+          "startTime": 118.952,
+          "endTime": 120.245,
+          "text": "Busy office scene: colleagues in formal attire, bustling around, lively atmosphere."
+        },
+        {
+          "startTime": 120.286,
+          "endTime": 121.371,
+          "text": "Three people in an office, focused on a shelf with files and a clock."
+        },
+        {
+          "startTime": 121.412,
+          "endTime": 123.331,
+          "text": "In a busy corridor, a man in a white shirt is gently restrained by another person."
+        },
+        {
+          "startTime": 123.373,
+          "endTime": 126.209,
+          "text": "Two men in business attire grapple near a water cooler in an office setting."
+        },
+        {
+          "startTime": 126.251,
+          "endTime": 126.292,
+          "text": "Blurry kitchen scene with green object moving rapidly, suggesting a hectic or chaotic moment."
+        },
+        {
+          "startTime": 126.334,
+          "endTime": 126.376,
+          "text": "Blurry office: person sits at desk, computer monitor, window with blinds, scattered papers."
+        },
+        {
+          "startTime": 126.417,
+          "endTime": 126.459,
+          "text": "Man in dark jacket stands, animatedly gestures with hand, office setting with blinds and computer."
+        },
+        {
+          "startTime": 126.501,
+          "endTime": 130.63,
+          "text": "Man in suit and tie stands in office, speaks with hand gestures, framed certificates behind him."
+        },
+        {
+          "startTime": 130.672,
+          "endTime": 131.798,
+          "text": "Man in beige suit struggles to open door, blocked by woman in background."
+        },
+        {
+          "startTime": 131.84,
+          "endTime": 132.465,
+          "text": "Man in brown suit exits office, door ajar, framed certificate on wall, coworker nearby."
+        },
+        {
+          "startTime": 132.507,
+          "endTime": 133.341,
+          "text": "Two men in suits stand by a cluttered office counter, discussing quietly."
+        },
+        {
+          "startTime": 133.383,
+          "endTime": 134.968,
+          "text": "Man in beige shirt and dark tie stands by door, smiling and adjusting his tie."
+        },
+        {
+          "startTime": 135.009,
+          "endTime": 136.719,
+          "text": "Three men in suits stand in an office, engaged in a heated discussion."
+        },
+        {
+          "startTime": 137.011,
+          "endTime": 137.387,
+          "text": "Three men in suits stand in an office, conversing near a window with blinds and a framed desert landscape."
+        },
+        {
+          "startTime": 137.428,
+          "endTime": 137.512,
+          "text": "Three men in suits and ties stand in an office, engaged in conversation."
+        },
+        {
+          "startTime": 137.554,
+          "endTime": 140.765,
+          "text": "Three men in suits, one adjusting another's tie, stand in an office with framed art on walls, exuding a casual yet professional atmosphere."
+        },
+        {
+          "startTime": 140.807,
+          "endTime": 142.684,
+          "text": "Man in suit and tie strides past, clutching papers, with another man watching."
+        },
+        {
+          "startTime": 142.767,
+          "endTime": 143.476,
+          "text": "A person in dark clothing exits a room with a blurred background, hinting at a hurried or secretive mood."
+        },
+        {
+          "startTime": 143.685,
+          "endTime": 149.524,
+          "text": "A person in a brown coat stands near a cluttered shelf with various items."
+        },
+        {
+          "startTime": 149.566,
+          "endTime": 155.28,
+          "text": "A person in dark clothing brushes a calm cat nestled in a green bed inside a drawer."
+        },
+        {
+          "startTime": 155.321,
+          "endTime": 157.073,
+          "text": "Man in suit and tie stands in office, passionately speaking, surrounded by shelves and office equipment."
+        },
+        {
+          "startTime": 157.115,
+          "endTime": 158.867,
+          "text": "Man in tie and beige shirt reaches up, holding ceiling panel, in an office."
+        },
+        {
+          "startTime": 158.95,
+          "endTime": 160.326,
+          "text": "Blurry hallway with faint light, indistinct figures, and shelves filled with items."
+        },
+        {
+          "startTime": 160.368,
+          "endTime": 164.372,
+          "text": "Three men stand in a dim, cluttered room; one speaks, others listen intently."
+        },
+        {
+          "startTime": 164.414,
+          "endTime": 166.374,
+          "text": "Man in black suit and pants hovers upside down above office, defying gravity."
+        },
+        {
+          "startTime": 166.499,
+          "endTime": 168.668,
+          "text": "Blonde woman in gray sweater holds a small, fluffy cat, mouth open in surprise, standing by a cluttered desk with computer and phone, in a bright, busy office."
+        },
+        {
+          "startTime": 168.71,
+          "endTime": 168.918,
+          "text": "Blurry room with bright window, shelves, and objects, suggesting activity or movement."
+        },
+        {
+          "startTime": 168.96,
+          "endTime": 170.378,
+          "text": "A man in a suit and tie peers out from behind a door, eyes wide."
+        },
+        {
+          "startTime": 170.42,
+          "endTime": 171.171,
+          "text": "Blonde woman in black top holds and cuddles a grey cat, both appear joyful."
+        },
+        {
+          "startTime": 171.212,
+          "endTime": 171.921,
+          "text": "A man, smiling, peeks through a narrow doorway, partially obscured by shadows."
+        },
+        {
+          "startTime": 171.963,
+          "endTime": 173.381,
+          "text": "Blonde woman in gray top holds a fluffy cat, smiling joyfully in a bright office."
+        },
+        {
+          "startTime": 173.423,
+          "endTime": 174.174,
+          "text": "A person's leg, clad in dark pants, is seen through a narrow gap, reaching into a dimly lit space."
+        },
+        {
+          "startTime": 174.34,
+          "endTime": 175.675,
+          "text": "Blonde woman in black top laughs loudly, standing near a colorful map."
+        },
+        {
+          "startTime": 175.717,
+          "endTime": 178.803,
+          "text": "A woman with blonde hair stands in an office, mouth open in surprise, near a cluttered desk with a computer and keyboard."
+        },
+        {
+          "startTime": 178.845,
+          "endTime": 179.387,
+          "text": "Blonde woman in gray sweater stands in office, mouth wide open in surprise."
+        },
+        {
+          "startTime": 179.429,
+          "endTime": 179.679,
+          "text": "Blonde woman in gray sweater looks down, speaks urgently in an office setting."
+        },
+        {
+          "startTime": 179.721,
+          "endTime": 181.347,
+          "text": "Man in suit and tie, hand raised, standing in an office, looking alarmed."
+        },
+        {
+          "startTime": 181.389,
+          "endTime": 182.724,
+          "text": "Silhouetted figure struggles to open blinds, revealing a bright, sunny day outside."
+        },
+        {
+          "startTime": 182.765,
+          "endTime": 183.6,
+          "text": "Man in suit struggles with chair, face hidden, in an office with blinds."
+        },
+        {
+          "startTime": 183.683,
+          "endTime": 185.643,
+          "text": "Man in dark suit, slightly blurred, stands by chair, turns head, and looks off-screen."
+        },
+        {
+          "startTime": 185.727,
+          "endTime": 187.854,
+          "text": "Man in suit throws mug at vending machine, shattering mug and splashing coffee."
+        },
+        {
+          "startTime": 187.896,
+          "endTime": 190.064,
+          "text": "Man in dark coat stands before vending machine, selecting an item."
+        },
+        {
+          "startTime": 190.106,
+          "endTime": 192.15,
+          "text": "Man in black suit, bent over, struggles to extract item from vending machine."
+        },
+        {
+          "startTime": 192.192,
+          "endTime": 194.027,
+          "text": "Woman in purple shirt and black jacket stands, arms open, facing man in white shirt and tie, who rubs his neck, both in a warmly lit room with a landscape painting."
+        },
+        {
+          "startTime": 194.068,
+          "endTime": 197.03,
+          "text": "Man in suit and tie, pointing emphatically, stands in office doorway, exuding urgency."
+        },
+        {
+          "startTime": 197.155,
+          "endTime": 199.073,
+          "text": "A man in a white shirt and tie looks at a woman in a purple shirt, both standing in an office."
+        },
+        {
+          "startTime": 199.115,
+          "endTime": 201.326,
+          "text": "Man in dark suit, tie aglow with sparklers, stands in office, shelves filled with colorful files in background, creating a festive yet chaotic atmosphere."
+        },
+        {
+          "startTime": 201.492,
+          "endTime": 201.701,
+          "text": "A person stands in a dimly lit room, observing a small, bright flame on the floor."
+        },
+        {
+          "startTime": 201.743,
+          "endTime": 201.826,
+          "text": "A person walks quickly past a glowing red object on the floor, in a dimly lit room."
+        },
+        {
+          "startTime": 201.91,
+          "endTime": 202.869,
+          "text": "Man in black suit exits office, closing door behind him with a determined stride."
+        },
+        {
+          "startTime": 202.911,
+          "endTime": 203.745,
+          "text": "Man in a suit holds his head, looking distressed; woman nearby watches."
+        },
+        {
+          "startTime": 203.786,
+          "endTime": 204.037,
+          "text": "In a blurred lab, a person moves swiftly towards a glowing blue monitor, surrounded by equipment."
+        },
+        {
+          "startTime": 204.12,
+          "endTime": 204.162,
+          "text": "Blurry image shows rapid movement, possibly a hand or object passing by, with indistinct background and \"Dubbed with IIElevenLabs\" text."
+        },
+        {
+          "startTime": 204.204,
+          "endTime": 207.04,
+          "text": "Man in brown suit stands in office, mouth wide open, eyes wide, shocked. Colleagues nearby, one in green shirt, another in suit, blurred in background. Office setting with desks, computer monitors, and a green exit sign above."
+        },
+        {
+          "startTime": 207.081,
+          "endTime": 211.502,
+          "text": "Woman in glasses, black jacket, and green shirt stands, arms open, in an office."
+        },
+        {
+          "startTime": 211.544,
+          "endTime": 212.295,
+          "text": "Two men struggle over a heavy object, one in a suit, the other in a watch."
+        },
+        {
+          "startTime": 212.337,
+          "endTime": 214.297,
+          "text": "A person bends over a large printer, inspecting it closely in an office setting."
+        },
+        {
+          "startTime": 214.339,
+          "endTime": 216.966,
+          "text": "Man in suit stands shocked as another man dramatically falls, creating tension."
+        },
+        {
+          "startTime": 217.008,
+          "endTime": 217.717,
+          "text": "A person hangs upside down from the ceiling, feet dangling, as others watch below."
+        },
+        {
+          "startTime": 217.759,
+          "endTime": 217.8,
+          "text": "Two indistinct figures stand close, facing a bright window, their features obscured by backlighting."
+        },
+        {
+          "startTime": 217.884,
+          "endTime": 219.51,
+          "text": "A person in a white shirt struggles to fix a large, grey office printer."
+        },
+        {
+          "startTime": 219.552,
+          "endTime": 220.929,
+          "text": "Blonde woman gasps, hand raised, sitting at cluttered desk with books and yellow rubber duck."
+        },
+        {
+          "startTime": 220.97,
+          "endTime": 223.014,
+          "text": "Man in black suit opens glass door, revealing stormy weather outside office."
+        },
+        {
+          "startTime": 223.014,
+          "endTime": 223.223,
+          "text": "Man in dark suit passionately gestures at window, office setting, intense mood."
+        },
+        {
+          "startTime": 223.264,
+          "endTime": 225.391,
+          "text": "A man in a suit leans against a glass door, peering outside at a cityscape."
+        },
+        {
+          "startTime": 225.475,
+          "endTime": 227.685,
+          "text": "Man in beige suit passionately speaks, stands near bookshelf in office setting."
+        },
+        {
+          "startTime": 227.727,
+          "endTime": 229.812,
+          "text": "A man and woman stand in a doorway, the man holding the woman's arm, both looking tense."
+        },
+        {
+          "startTime": 229.854,
+          "endTime": 233.024,
+          "text": "Man in suit chokes, gasps, clutches throat. Woman on shelf holds red object, concerned."
+        },
+        {
+          "startTime": 233.066,
+          "endTime": 234.525,
+          "text": "Man in dark shirt, hand on face, stands in blurred room with another person."
+        },
+        {
+          "startTime": 234.567,
+          "endTime": 236.653,
+          "text": "Man in suit and tie holds red object, stands before cluttered shelves, intense expression."
+        },
+        {
+          "startTime": 236.694,
+          "endTime": 238.321,
+          "text": "Man in suit and tie stands tense, flanked by two blurred figures, in a hazy, dimly lit room with framed pictures on the wall."
+        },
+        {
+          "startTime": 238.363,
+          "endTime": 241.157,
+          "text": "Man in suit stands behind desk, another man hovers above, office setting."
+        },
+        {
+          "startTime": 241.199,
+          "endTime": 244.118,
+          "text": "In an office, a man gestures animatedly while others watch. A woman holds a plate."
+        },
+        {
+          "startTime": 244.16,
+          "endTime": 246.788,
+          "text": "Man in suit and tie stands in cluttered office, gazes sternly ahead."
+        },
+        {
+          "startTime": 246.829,
+          "endTime": 247.997,
+          "text": "Man in suit bends over office desk, surrounded by monitors and phones, in a busy, cluttered office."
+        },
+        {
+          "startTime": 248.039,
+          "endTime": 249.832,
+          "text": "Man in beige suit stands bent over, intensely focused on a computer screen in a busy office."
+        },
+        {
+          "startTime": 249.874,
+          "endTime": 251.209,
+          "text": "Man in suit stands by shelves, another bends over desk in busy office."
+        },
+        {
+          "startTime": 251.334,
+          "endTime": 252.21,
+          "text": "Man in suit and tie lies face down on office floor, appearing exhausted."
+        },
+        {
+          "startTime": 252.252,
+          "endTime": 252.377,
+          "text": "In a library, a person stands on a stool near bookshelves, while another bends down nearby."
+        },
+        {
+          "startTime": 252.418,
+          "endTime": 252.502,
+          "text": "Man in suit stands on stool by colorful bookshelf, another man approaches."
+        },
+        {
+          "startTime": 252.585,
+          "endTime": 254.379,
+          "text": "Two women stand in a misty outdoor setting, one slightly blurred, both with serious expressions."
+        },
+        {
+          "startTime": 254.42,
+          "endTime": 256.214,
+          "text": "A blurred figure stands near a desk cluttered with papers, in a dimly lit room."
+        },
+        {
+          "startTime": 256.256,
+          "endTime": 264.764,
+          "text": "Man in suit ties another man's necktie, surrounded by office workers."
+        },
+        {
+          "startTime": 264.806,
+          "endTime": 265.098,
+          "text": "In an office, a man in a white shirt and tie rushes past a group of colleagues, creating a sense of urgency and chaos."
+        },
+        {
+          "startTime": 265.139,
+          "endTime": 266.391,
+          "text": "Man in white shirt and black tie, focused, stands by cluttered office wall with framed certificates and storage boxes."
+        },
+        {
+          "startTime": 266.432,
+          "endTime": 267.642,
+          "text": "Man in suit kneels, holding paper, surrounded by colleagues in an office."
+        },
+        {
+          "startTime": 267.684,
+          "endTime": 268.768,
+          "text": "Two men in office attire stand near a window, exchanging serious looks."
+        },
+        {
+          "startTime": 268.81,
+          "endTime": 275.692,
+          "text": "In an office, a man is lifted by colleagues, laughing, in a playful, chaotic scene."
+        },
+        {
+          "startTime": 275.733,
+          "endTime": 276.526,
+          "text": "A dark room with a glowing sign showing a person standing, another seated, and a briefcase."
+        },
+        {
+          "startTime": 276.567,
+          "endTime": 296.754,
+          "text": "A dark screen displays \"The Office\" in bold white letters, evoking nostalgia."
+        }
+      ],
+      "currentBatch": 29,
+      "descriptions": [
+        {
+          "startTime": 0.083,
+          "endTime": 1.96,
+          "text": "Dark screen with white text \"Dubbed with ElevenLabs\" appearing at the bottom right."
+        },
+        {
+          "startTime": 2.002,
+          "endTime": 14.347,
+          "text": "A woman in a dark purple sweater exits an office, leaving a cluttered desk behind."
+        },
+        {
+          "startTime": 14.389,
+          "endTime": 19.728,
+          "text": "Man in suit and tie opens desk drawer, revealing cluttered items inside."
+        },
+        {
+          "startTime": 19.769,
+          "endTime": 30.363,
+          "text": "Man in suit, glasses, and tie struggles to open a wooden door, frowning."
+        },
+        {
+          "startTime": 30.405,
+          "endTime": 32.866,
+          "text": "A hand grips a torch, igniting a blue flame against a wooden door."
+        },
+        {
+          "startTime": 32.907,
+          "endTime": 35.744,
+          "text": "Man in suit, glasses, and tie uses torch on door handle, flame glowing blue."
+        },
+        {
+          "startTime": 35.785,
+          "endTime": 37.37,
+          "text": "Man in suit and tie stands by \"Dunder Mifflin\" sign, looks serious."
+        },
+        {
+          "startTime": 37.412,
+          "endTime": 41.499,
+          "text": "Two men in formal attire, one kneeling, examine scattered wooden pieces on a gray floor, suggesting a puzzle or repair task."
+        },
+        {
+          "startTime": 41.541,
+          "endTime": 44.335,
+          "text": "Man in suit and tie, holding torch with blue flame, examining door intently."
+        },
+        {
+          "startTime": 44.377,
+          "endTime": 45.545,
+          "text": "Man in suit and tie holds lighter, prepares to throw it into trash can."
+        },
+        {
+          "startTime": 45.67,
+          "endTime": 51.968,
+          "text": "Man in suit stands by door, exhaling smoke, holding vaping device. Office buzzes behind him."
+        },
+        {
+          "startTime": 52.01,
+          "endTime": 52.01,
+          "text": "Man in black suit, tie, and unbuttoned shirt gestures with one hand while holding a small object in the other, standing near a window with blinds."
+        },
+        {
+          "startTime": 52.052,
+          "endTime": 52.093,
+          "text": "Man in suit and tie, holding a small object, standing near a white wall."
+        },
+        {
+          "startTime": 52.135,
+          "endTime": 53.845,
+          "text": "Person in black stands near a flaming black barrel, casting shadows in dim, tense atmosphere."
+        },
+        {
+          "startTime": 54.095,
+          "endTime": 57.891,
+          "text": "Man in black suit, patterned tie, exits room with annoyed expression, passing framed artwork."
+        },
+        {
+          "startTime": 58.141,
+          "endTime": 58.141,
+          "text": "Man in black suit exits office, blurred coworkers behind, shelves on left, bright lighting."
+        },
+        {
+          "startTime": 58.183,
+          "endTime": 59.642,
+          "text": "In a busy office, two people work at cluttered desks under bright lights, surrounded by framed certificates and bustling coworkers."
+        },
+        {
+          "startTime": 59.684,
+          "endTime": 61.978,
+          "text": "Man in office, hand on chin, gazes thoughtfully at desk with papers and phone."
+        },
+        {
+          "startTime": 62.062,
+          "endTime": 64.105,
+          "text": "Man in suit, head down, writing intently at office desk with computer and mouse."
+        },
+        {
+          "startTime": 64.147,
+          "endTime": 65.44,
+          "text": "Steam billows from a vent, filling a narrow hallway with a misty haze."
+        },
+        {
+          "startTime": 65.648,
+          "endTime": 68.359,
+          "text": "Man in suit and tie stands by desk, eyes wide, mouth open, surprised. Office setting, bright lighting, computer monitors, and office supplies in background."
+        },
+        {
+          "startTime": 68.401,
+          "endTime": 72.739,
+          "text": "Two men in suits, one writing, the other observing, in a cluttered office."
+        },
+        {
+          "startTime": 72.906,
+          "endTime": 72.947,
+          "text": "Blurry office scene: person moves quickly past desk with stacked papers, wooden door ajar."
+        },
+        {
+          "startTime": 73.198,
+          "endTime": 74.574,
+          "text": "Blonde woman in gray blouse at office desk, intently reading a document."
+        },
+        {
+          "startTime": 74.616,
+          "endTime": 78.203,
+          "text": "Man in glasses speaks urgently; another man at desk listens, office setting."
+        },
+        {
+          "startTime": 78.62,
+          "endTime": 78.703,
+          "text": "A blurred hallway with indistinct figures moving rapidly, suggesting urgency or chaos."
+        },
+        {
+          "startTime": 78.787,
+          "endTime": 80.955,
+          "text": "Woman with serious expression at reception desk, \"Reception\" sign, office background."
+        },
+        {
+          "startTime": 80.997,
+          "endTime": 81.581,
+          "text": "A cluttered office with shelves full of colorful files, a stool, and scattered papers."
+        },
+        {
+          "startTime": 81.706,
+          "endTime": 82.373,
+          "text": "In a busy office, Dwight stands sternly by a cluttered desk, while Jim works nearby, creating a humorous contrast."
+        },
+        {
+          "startTime": 82.415,
+          "endTime": 83.583,
+          "text": "Woman in office, pointing with urgency, dark blazer over purple shirt, surrounded by framed certificates and a printer."
+        },
+        {
+          "startTime": 83.625,
+          "endTime": 83.917,
+          "text": "In a busy office, two men sit at a cluttered desk, surrounded by computers and paperwork, focused on their tasks."
+        },
+        {
+          "startTime": 83.958,
+          "endTime": 84.584,
+          "text": "Man in suit and tie passionately gestures, mouth open, near glowing computer screen displaying \"Dunder Mifflin.\""
+        },
+        {
+          "startTime": 84.626,
+          "endTime": 84.876,
+          "text": "Man in brown suit stands by white wall, facing away, near blurred bookshelf."
+        },
+        {
+          "startTime": 84.918,
+          "endTime": 87.17,
+          "text": "Man in suit and glasses passionately speaks in an office, surrounded by shelves of colorful supplies."
+        },
+        {
+          "startTime": 87.378,
+          "endTime": 89.547,
+          "text": "Woman in purple shirt and black jacket holds phone, speaks urgently in office."
+        },
+        {
+          "startTime": 89.589,
+          "endTime": 90.924,
+          "text": "Dwight, in a suit, stands shocked with mouth open, eyes wide behind glasses. Pam, in green, stands behind him, raising her hand. Office shelves filled with colorful boxes in background."
+        },
+        {
+          "startTime": 90.965,
+          "endTime": 91.925,
+          "text": "In an office, a man shouts at another, gesturing wildly, while a woman watches."
+        },
+        {
+          "startTime": 92.008,
+          "endTime": 94.594,
+          "text": "Three office workers in formal attire, one gesturing, stand by a window, discussing animatedly."
+        },
+        {
+          "startTime": 94.636,
+          "endTime": 99.891,
+          "text": "Three professionals in formal attire converse in a well-lit office corridor."
+        },
+        {
+          "startTime": 99.974,
+          "endTime": 100.934,
+          "text": "Man in suit passionately gestures; others attentively listen in a softly lit corridor."
+        },
+        {
+          "startTime": 100.975,
+          "endTime": 102.519,
+          "text": "Man in suit shouts through bars, eyes wide, mouth open, intense expression."
+        },
+        {
+          "startTime": 102.56,
+          "endTime": 103.728,
+          "text": "Two men in suits face each other, one looking serious, the other attentive."
+        },
+        {
+          "startTime": 103.77,
+          "endTime": 105.396,
+          "text": "Man in black suit, glasses, passionately points at a \"No Smoking\" sign near a green plant, in an office with a window and blinds."
+        },
+        {
+          "startTime": 105.438,
+          "endTime": 109.442,
+          "text": "Man in suit bends, touches doorknob, office setting, framed building picture on wall."
+        },
+        {
+          "startTime": 109.526,
+          "endTime": 109.526,
+          "text": "Two men in suits stand near a door, one gesturing with an open hand."
+        },
+        {
+          "startTime": 109.567,
+          "endTime": 111.528,
+          "text": "In an office, a blonde woman holds a large frog, shocking her colleagues."
+        },
+        {
+          "startTime": 111.569,
+          "endTime": 113.78,
+          "text": "Man in beige shirt stands in office, observing colleagues. Soft lighting, framed certificates on wall, green plant in background."
+        },
+        {
+          "startTime": 113.822,
+          "endTime": 114.447,
+          "text": "Man in brown suit hurries past desk, blurred motion, office setting, warm lighting."
+        },
+        {
+          "startTime": 114.447,
+          "endTime": 114.572,
+          "text": "Man in a tan suit exits an office, his coat flapping behind him, past a bulletin board."
+        },
+        {
+          "startTime": 114.572,
+          "endTime": 116.324,
+          "text": "Man in brown suit, hands in pockets, stands awkwardly in doorway, glancing back. Office setting with beige walls, file cabinets, and bulletin board with papers."
+        },
+        {
+          "startTime": 116.366,
+          "endTime": 117.492,
+          "text": "Man and woman in black suits stand by window, observing colorful map on wall."
+        },
+        {
+          "startTime": 117.534,
+          "endTime": 118.91,
+          "text": "Man in brown suit exits office, gesturing animatedly; two men watch, one in tie."
+        },
+        {
+          "startTime": 118.952,
+          "endTime": 120.245,
+          "text": "Busy office scene: colleagues in formal attire, bustling around, lively atmosphere."
+        },
+        {
+          "startTime": 120.286,
+          "endTime": 121.371,
+          "text": "Three people in an office, focused on a shelf with files and a clock."
+        },
+        {
+          "startTime": 121.412,
+          "endTime": 123.331,
+          "text": "In a busy corridor, a man in a white shirt is gently restrained by another person."
+        },
+        {
+          "startTime": 123.373,
+          "endTime": 126.209,
+          "text": "Two men in business attire grapple near a water cooler in an office setting."
+        },
+        {
+          "startTime": 126.251,
+          "endTime": 126.292,
+          "text": "Blurry kitchen scene with green object moving rapidly, suggesting a hectic or chaotic moment."
+        },
+        {
+          "startTime": 126.334,
+          "endTime": 126.376,
+          "text": "Blurry office: person sits at desk, computer monitor, window with blinds, scattered papers."
+        },
+        {
+          "startTime": 126.417,
+          "endTime": 126.459,
+          "text": "Man in dark jacket stands, animatedly gestures with hand, office setting with blinds and computer."
+        },
+        {
+          "startTime": 126.501,
+          "endTime": 130.63,
+          "text": "Man in suit and tie stands in office, speaks with hand gestures, framed certificates behind him."
+        },
+        {
+          "startTime": 130.672,
+          "endTime": 131.798,
+          "text": "Man in beige suit struggles to open door, blocked by woman in background."
+        },
+        {
+          "startTime": 131.84,
+          "endTime": 132.465,
+          "text": "Man in brown suit exits office, door ajar, framed certificate on wall, coworker nearby."
+        },
+        {
+          "startTime": 132.507,
+          "endTime": 133.341,
+          "text": "Two men in suits stand by a cluttered office counter, discussing quietly."
+        },
+        {
+          "startTime": 133.383,
+          "endTime": 134.968,
+          "text": "Man in beige shirt and dark tie stands by door, smiling and adjusting his tie."
+        },
+        {
+          "startTime": 135.009,
+          "endTime": 136.719,
+          "text": "Three men in suits stand in an office, engaged in a heated discussion."
+        },
+        {
+          "startTime": 137.011,
+          "endTime": 137.387,
+          "text": "Three men in suits stand in an office, conversing near a window with blinds and a framed desert landscape."
+        },
+        {
+          "startTime": 137.428,
+          "endTime": 137.512,
+          "text": "Three men in suits and ties stand in an office, engaged in conversation."
+        },
+        {
+          "startTime": 137.554,
+          "endTime": 140.765,
+          "text": "Three men in suits, one adjusting another's tie, stand in an office with framed art on walls, exuding a casual yet professional atmosphere."
+        },
+        {
+          "startTime": 140.807,
+          "endTime": 142.684,
+          "text": "Man in suit and tie strides past, clutching papers, with another man watching."
+        },
+        {
+          "startTime": 142.767,
+          "endTime": 143.476,
+          "text": "A person in dark clothing exits a room with a blurred background, hinting at a hurried or secretive mood."
+        },
+        {
+          "startTime": 143.685,
+          "endTime": 149.524,
+          "text": "A person in a brown coat stands near a cluttered shelf with various items."
+        },
+        {
+          "startTime": 149.566,
+          "endTime": 155.28,
+          "text": "A person in dark clothing brushes a calm cat nestled in a green bed inside a drawer."
+        },
+        {
+          "startTime": 155.321,
+          "endTime": 157.073,
+          "text": "Man in suit and tie stands in office, passionately speaking, surrounded by shelves and office equipment."
+        },
+        {
+          "startTime": 157.115,
+          "endTime": 158.867,
+          "text": "Man in tie and beige shirt reaches up, holding ceiling panel, in an office."
+        },
+        {
+          "startTime": 158.95,
+          "endTime": 160.326,
+          "text": "Blurry hallway with faint light, indistinct figures, and shelves filled with items."
+        },
+        {
+          "startTime": 160.368,
+          "endTime": 164.372,
+          "text": "Three men stand in a dim, cluttered room; one speaks, others listen intently."
+        },
+        {
+          "startTime": 164.414,
+          "endTime": 166.374,
+          "text": "Man in black suit and pants hovers upside down above office, defying gravity."
+        },
+        {
+          "startTime": 166.499,
+          "endTime": 168.668,
+          "text": "Blonde woman in gray sweater holds a small, fluffy cat, mouth open in surprise, standing by a cluttered desk with computer and phone, in a bright, busy office."
+        },
+        {
+          "startTime": 168.71,
+          "endTime": 168.918,
+          "text": "Blurry room with bright window, shelves, and objects, suggesting activity or movement."
+        },
+        {
+          "startTime": 168.96,
+          "endTime": 170.378,
+          "text": "A man in a suit and tie peers out from behind a door, eyes wide."
+        },
+        {
+          "startTime": 170.42,
+          "endTime": 171.171,
+          "text": "Blonde woman in black top holds and cuddles a grey cat, both appear joyful."
+        },
+        {
+          "startTime": 171.212,
+          "endTime": 171.921,
+          "text": "A man, smiling, peeks through a narrow doorway, partially obscured by shadows."
+        },
+        {
+          "startTime": 171.963,
+          "endTime": 173.381,
+          "text": "Blonde woman in gray top holds a fluffy cat, smiling joyfully in a bright office."
+        },
+        {
+          "startTime": 173.423,
+          "endTime": 174.174,
+          "text": "A person's leg, clad in dark pants, is seen through a narrow gap, reaching into a dimly lit space."
+        },
+        {
+          "startTime": 174.34,
+          "endTime": 175.675,
+          "text": "Blonde woman in black top laughs loudly, standing near a colorful map."
+        },
+        {
+          "startTime": 175.717,
+          "endTime": 178.803,
+          "text": "A woman with blonde hair stands in an office, mouth open in surprise, near a cluttered desk with a computer and keyboard."
+        },
+        {
+          "startTime": 178.845,
+          "endTime": 179.387,
+          "text": "Blonde woman in gray sweater stands in office, mouth wide open in surprise."
+        },
+        {
+          "startTime": 179.429,
+          "endTime": 179.679,
+          "text": "Blonde woman in gray sweater looks down, speaks urgently in an office setting."
+        },
+        {
+          "startTime": 179.721,
+          "endTime": 181.347,
+          "text": "Man in suit and tie, hand raised, standing in an office, looking alarmed."
+        },
+        {
+          "startTime": 181.389,
+          "endTime": 182.724,
+          "text": "Silhouetted figure struggles to open blinds, revealing a bright, sunny day outside."
+        },
+        {
+          "startTime": 182.765,
+          "endTime": 183.6,
+          "text": "Man in suit struggles with chair, face hidden, in an office with blinds."
+        },
+        {
+          "startTime": 183.683,
+          "endTime": 185.643,
+          "text": "Man in dark suit, slightly blurred, stands by chair, turns head, and looks off-screen."
+        },
+        {
+          "startTime": 185.727,
+          "endTime": 187.854,
+          "text": "Man in suit throws mug at vending machine, shattering mug and splashing coffee."
+        },
+        {
+          "startTime": 187.896,
+          "endTime": 190.064,
+          "text": "Man in dark coat stands before vending machine, selecting an item."
+        },
+        {
+          "startTime": 190.106,
+          "endTime": 192.15,
+          "text": "Man in black suit, bent over, struggles to extract item from vending machine."
+        },
+        {
+          "startTime": 192.192,
+          "endTime": 194.027,
+          "text": "Woman in purple shirt and black jacket stands, arms open, facing man in white shirt and tie, who rubs his neck, both in a warmly lit room with a landscape painting."
+        },
+        {
+          "startTime": 194.068,
+          "endTime": 197.03,
+          "text": "Man in suit and tie, pointing emphatically, stands in office doorway, exuding urgency."
+        },
+        {
+          "startTime": 197.155,
+          "endTime": 199.073,
+          "text": "A man in a white shirt and tie looks at a woman in a purple shirt, both standing in an office."
+        },
+        {
+          "startTime": 199.115,
+          "endTime": 201.326,
+          "text": "Man in dark suit, tie aglow with sparklers, stands in office, shelves filled with colorful files in background, creating a festive yet chaotic atmosphere."
+        },
+        {
+          "startTime": 201.492,
+          "endTime": 201.701,
+          "text": "A person stands in a dimly lit room, observing a small, bright flame on the floor."
+        },
+        {
+          "startTime": 201.743,
+          "endTime": 201.826,
+          "text": "A person walks quickly past a glowing red object on the floor, in a dimly lit room."
+        },
+        {
+          "startTime": 201.91,
+          "endTime": 202.869,
+          "text": "Man in black suit exits office, closing door behind him with a determined stride."
+        },
+        {
+          "startTime": 202.911,
+          "endTime": 203.745,
+          "text": "Man in a suit holds his head, looking distressed; woman nearby watches."
+        },
+        {
+          "startTime": 203.786,
+          "endTime": 204.037,
+          "text": "In a blurred lab, a person moves swiftly towards a glowing blue monitor, surrounded by equipment."
+        },
+        {
+          "startTime": 204.12,
+          "endTime": 204.162,
+          "text": "Blurry image shows rapid movement, possibly a hand or object passing by, with indistinct background and \"Dubbed with IIElevenLabs\" text."
+        },
+        {
+          "startTime": 204.204,
+          "endTime": 207.04,
+          "text": "Man in brown suit stands in office, mouth wide open, eyes wide, shocked. Colleagues nearby, one in green shirt, another in suit, blurred in background. Office setting with desks, computer monitors, and a green exit sign above."
+        },
+        {
+          "startTime": 207.081,
+          "endTime": 211.502,
+          "text": "Woman in glasses, black jacket, and green shirt stands, arms open, in an office."
+        },
+        {
+          "startTime": 211.544,
+          "endTime": 212.295,
+          "text": "Two men struggle over a heavy object, one in a suit, the other in a watch."
+        },
+        {
+          "startTime": 212.337,
+          "endTime": 214.297,
+          "text": "A person bends over a large printer, inspecting it closely in an office setting."
+        },
+        {
+          "startTime": 214.339,
+          "endTime": 216.966,
+          "text": "Man in suit stands shocked as another man dramatically falls, creating tension."
+        },
+        {
+          "startTime": 217.008,
+          "endTime": 217.717,
+          "text": "A person hangs upside down from the ceiling, feet dangling, as others watch below."
+        },
+        {
+          "startTime": 217.759,
+          "endTime": 217.8,
+          "text": "Two indistinct figures stand close, facing a bright window, their features obscured by backlighting."
+        },
+        {
+          "startTime": 217.884,
+          "endTime": 219.51,
+          "text": "A person in a white shirt struggles to fix a large, grey office printer."
+        },
+        {
+          "startTime": 219.552,
+          "endTime": 220.929,
+          "text": "Blonde woman gasps, hand raised, sitting at cluttered desk with books and yellow rubber duck."
+        },
+        {
+          "startTime": 220.97,
+          "endTime": 223.014,
+          "text": "Man in black suit opens glass door, revealing stormy weather outside office."
+        },
+        {
+          "startTime": 223.014,
+          "endTime": 223.223,
+          "text": "Man in dark suit passionately gestures at window, office setting, intense mood."
+        },
+        {
+          "startTime": 223.264,
+          "endTime": 225.391,
+          "text": "A man in a suit leans against a glass door, peering outside at a cityscape."
+        },
+        {
+          "startTime": 225.475,
+          "endTime": 227.685,
+          "text": "Man in beige suit passionately speaks, stands near bookshelf in office setting."
+        },
+        {
+          "startTime": 227.727,
+          "endTime": 229.812,
+          "text": "A man and woman stand in a doorway, the man holding the woman's arm, both looking tense."
+        },
+        {
+          "startTime": 229.854,
+          "endTime": 233.024,
+          "text": "Man in suit chokes, gasps, clutches throat. Woman on shelf holds red object, concerned."
+        },
+        {
+          "startTime": 233.066,
+          "endTime": 234.525,
+          "text": "Man in dark shirt, hand on face, stands in blurred room with another person."
+        },
+        {
+          "startTime": 234.567,
+          "endTime": 236.653,
+          "text": "Man in suit and tie holds red object, stands before cluttered shelves, intense expression."
+        },
+        {
+          "startTime": 236.694,
+          "endTime": 238.321,
+          "text": "Man in suit and tie stands tense, flanked by two blurred figures, in a hazy, dimly lit room with framed pictures on the wall."
+        },
+        {
+          "startTime": 238.363,
+          "endTime": 241.157,
+          "text": "Man in suit stands behind desk, another man hovers above, office setting."
+        },
+        {
+          "startTime": 241.199,
+          "endTime": 244.118,
+          "text": "In an office, a man gestures animatedly while others watch. A woman holds a plate."
+        },
+        {
+          "startTime": 244.16,
+          "endTime": 246.788,
+          "text": "Man in suit and tie stands in cluttered office, gazes sternly ahead."
+        },
+        {
+          "startTime": 246.829,
+          "endTime": 247.997,
+          "text": "Man in suit bends over office desk, surrounded by monitors and phones, in a busy, cluttered office."
+        },
+        {
+          "startTime": 248.039,
+          "endTime": 249.832,
+          "text": "Man in beige suit stands bent over, intensely focused on a computer screen in a busy office."
+        },
+        {
+          "startTime": 249.874,
+          "endTime": 251.209,
+          "text": "Man in suit stands by shelves, another bends over desk in busy office."
+        },
+        {
+          "startTime": 251.334,
+          "endTime": 252.21,
+          "text": "Man in suit and tie lies face down on office floor, appearing exhausted."
+        },
+        {
+          "startTime": 252.252,
+          "endTime": 252.377,
+          "text": "In a library, a person stands on a stool near bookshelves, while another bends down nearby."
+        },
+        {
+          "startTime": 252.418,
+          "endTime": 252.502,
+          "text": "Man in suit stands on stool by colorful bookshelf, another man approaches."
+        },
+        {
+          "startTime": 252.585,
+          "endTime": 254.379,
+          "text": "Two women stand in a misty outdoor setting, one slightly blurred, both with serious expressions."
+        },
+        {
+          "startTime": 254.42,
+          "endTime": 256.214,
+          "text": "A blurred figure stands near a desk cluttered with papers, in a dimly lit room."
+        },
+        {
+          "startTime": 256.256,
+          "endTime": 264.764,
+          "text": "Man in suit ties another man's necktie, surrounded by office workers."
+        },
+        {
+          "startTime": 264.806,
+          "endTime": 265.098,
+          "text": "In an office, a man in a white shirt and tie rushes past a group of colleagues, creating a sense of urgency and chaos."
+        },
+        {
+          "startTime": 265.139,
+          "endTime": 266.391,
+          "text": "Man in white shirt and black tie, focused, stands by cluttered office wall with framed certificates and storage boxes."
+        },
+        {
+          "startTime": 266.432,
+          "endTime": 267.642,
+          "text": "Man in suit kneels, holding paper, surrounded by colleagues in an office."
+        },
+        {
+          "startTime": 267.684,
+          "endTime": 268.768,
+          "text": "Two men in office attire stand near a window, exchanging serious looks."
+        },
+        {
+          "startTime": 268.81,
+          "endTime": 275.692,
+          "text": "In an office, a man is lifted by colleagues, laughing, in a playful, chaotic scene."
+        },
+        {
+          "startTime": 275.733,
+          "endTime": 276.526,
+          "text": "A dark room with a glowing sign showing a person standing, another seated, and a briefcase."
+        },
+        {
+          "startTime": 276.567,
+          "endTime": 296.754,
+          "text": "A dark screen displays \"The Office\" in bold white letters, evoking nostalgia."
+        }
+      ],
+      "audioUrl": "s3://voice-description-api-output-production-pmhnxlix/d5308114-4c4f-4561-aa2b-8cd4e8f2eb92/audio.mp3",
+      "textUrl": "s3://voice-description-api-output-production-pmhnxlix/d5308114-4c4f-4561-aa2b-8cd4e8f2eb92/description.txt",
+      "completedAt": "2025-07-29T20:42:02.869Z"
     }
   ]
 ]

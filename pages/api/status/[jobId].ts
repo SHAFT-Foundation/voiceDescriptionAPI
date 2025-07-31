@@ -94,14 +94,24 @@ async function processRealAWSPipeline(job: any) {
       }
     }
     
-    // Step 2: Bedrock scene analysis with video frame extraction
+    // Step 2: Bedrock scene analysis with video frame extraction (batch processing)
     if (job.step === 'analysis' && job.segments && !job.descriptions) {
       console.log(`🧠 Starting Bedrock Nova Pro analysis for ${job.segments.length} segments`);
       
-      const descriptions = [];
+      // Initialize descriptions array and current batch tracking
+      if (!job.processedDescriptions) {
+        job.processedDescriptions = [];
+        job.currentBatch = 0;
+      }
       
-      // Analyze ALL segments for complete video coverage
-      for (let i = 0; i < job.segments.length; i++) {
+      const BATCH_SIZE = 5; // Process 5 segments per API call
+      const startIndex = job.currentBatch * BATCH_SIZE;
+      const endIndex = Math.min(startIndex + BATCH_SIZE, job.segments.length);
+      
+      console.log(`📊 Processing batch ${job.currentBatch + 1}: segments ${startIndex + 1}-${endIndex} of ${job.segments.length}`);
+      
+      // Process current batch
+      for (let i = startIndex; i < endIndex; i++) {
         const segment = job.segments[i];
         const startTime = segment.StartTimestampMillis / 1000;
         const endTime = segment.EndTimestampMillis / 1000;
@@ -171,7 +181,7 @@ Create a natural, engaging description suitable for audio narration. Be specific
             description = `Nova Pro returned: ${JSON.stringify(responseBody)}`;
           }
           
-          descriptions.push({
+          job.processedDescriptions.push({
             startTime,
             endTime,
             text: description,
@@ -187,17 +197,35 @@ Create a natural, engaging description suitable for audio narration. Be specific
         }
       }
       
-      // Update job with descriptions
-      const analysisJob = {
-        ...job,
-        step: 'synthesis',
-        progress: 70,
-        message: `Generated ${descriptions.length} scene descriptions using Nova Pro, starting audio synthesis...`,
-        descriptions,
-      };
+      // Update batch progress
+      job.currentBatch++;
+      const totalBatches = Math.ceil(job.segments.length / BATCH_SIZE);
+      const progress = 40 + (job.currentBatch / totalBatches) * 30; // 40-70% for analysis
       
-      setJob(job.id, analysisJob);
-      return analysisJob;
+      // Check if all batches are complete
+      if (job.currentBatch >= totalBatches) {
+        // All segments processed, move to synthesis
+        const analysisJob = {
+          ...job,
+          step: 'synthesis',
+          progress: 70,
+          message: `Generated ${job.processedDescriptions.length} scene descriptions using Nova Pro, starting audio synthesis...`,
+          descriptions: job.processedDescriptions,
+        };
+        
+        setJob(job.id, analysisJob);
+        return analysisJob;
+      } else {
+        // More batches to process
+        const batchJob = {
+          ...job,
+          progress: Math.floor(progress),
+          message: `Analyzed ${job.processedDescriptions.length}/${job.segments.length} segments using Nova Pro (batch ${job.currentBatch}/${totalBatches})...`,
+        };
+        
+        setJob(job.id, batchJob);
+        return batchJob;
+      }
     }
     
     // Step 3: Polly text-to-speech synthesis with chunking for 3000 character limit
