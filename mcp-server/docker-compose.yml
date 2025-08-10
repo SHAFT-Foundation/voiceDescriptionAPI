@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: voice-description-mcp-server
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - MCP_TRANSPORT=${MCP_TRANSPORT:-websocket}
+      - MCP_PORT=${MCP_PORT:-3001}
+      - MCP_HOST=${MCP_HOST:-0.0.0.0}
+      - API_BASE_URL=${API_BASE_URL:-http://host.docker.internal:3000}
+      - API_KEY=${API_KEY}
+      - API_TIMEOUT=${API_TIMEOUT:-30000}
+      - API_MAX_RETRIES=${API_MAX_RETRIES:-3}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - LOG_FORMAT=${LOG_FORMAT:-json}
+      - MAX_FILE_SIZE=${MAX_FILE_SIZE:-524288000}
+      - TEMP_DIRECTORY=/tmp/mcp-voice-desc
+      - POLLING_INTERVAL=${POLLING_INTERVAL:-2000}
+      - POLLING_MAX_DURATION=${POLLING_MAX_DURATION:-600000}
+    ports:
+      - "${MCP_PORT:-3001}:3001"
+    volumes:
+      - ./temp:/tmp/mcp-voice-desc
+      - ./logs:/app/logs
+    networks:
+      - mcp-network
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('./dist/utils/health.js').check()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Optional: Redis for caching (if needed in future)
+  redis:
+    image: redis:7-alpine
+    container_name: mcp-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    networks:
+      - mcp-network
+    profiles:
+      - with-redis
+
+volumes:
+  redis-data:
+    driver: local
+
+networks:
+  mcp-network:
+    driver: bridge
+    name: mcp-voice-description-network

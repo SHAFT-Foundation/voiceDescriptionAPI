@@ -1,0 +1,239 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    # Warm-up phase
+    - duration: 30
+      arrivalRate: 5
+      name: "Warm-up"
+    
+    # Ramp-up phase
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 50
+      name: "Ramp-up"
+    
+    # Sustained load phase
+    - duration: 120
+      arrivalRate: 50
+      name: "Sustained Load"
+    
+    # Spike test phase
+    - duration: 30
+      arrivalRate: 100
+      name: "Traffic Spike"
+    
+    # Cool-down phase
+    - duration: 30
+      arrivalRate: 10
+      name: "Cool-down"
+
+  payload:
+    - path: "./test-data.csv"
+      fields:
+        - "imagePath"
+        - "videoPath"
+        - "jobId"
+      order: sequence
+      skipHeader: true
+
+  processor: "./load-test-processor.js"
+
+  plugins:
+    expect: {}
+    metrics-by-endpoint: {}
+    
+  engines:
+    http:
+      timeout: 30
+
+  variables:
+    baseApiPath: "/api"
+
+  defaults:
+    headers:
+      Content-Type: "application/json"
+      Accept: "application/json"
+
+scenarios:
+  - name: "Health Check Monitoring"
+    weight: 30
+    flow:
+      - get:
+          url: "{{ baseApiPath }}/health"
+          expect:
+            - statusCode: 200
+            - contentType: json
+            - hasProperty: status
+            - equals:
+                - "{{ response.status }}"
+                - "healthy"
+          capture:
+            - json: "$.timestamp"
+              as: "healthCheckTime"
+
+  - name: "AWS Status Check"
+    weight: 20
+    flow:
+      - get:
+          url: "{{ baseApiPath }}/aws-status"
+          expect:
+            - statusCode: 200
+            - contentType: json
+            - hasProperty: operational
+          capture:
+            - json: "$.operational"
+              as: "awsOperational"
+      
+      - think: 2
+
+  - name: "Image Processing Workflow"
+    weight: 25
+    flow:
+      # Process image
+      - post:
+          url: "{{ baseApiPath }}/process-image"
+          json:
+            imagePath: "{{ imagePath }}"
+            outputFormat: "both"
+          expect:
+            - statusCode: 200
+            - contentType: json
+            - hasProperty: jobId
+          capture:
+            - json: "$.jobId"
+              as: "imageJobId"
+      
+      # Check status
+      - loop:
+          - get:
+              url: "{{ baseApiPath }}/status/image/{{ imageJobId }}"
+              expect:
+                - statusCode: 200
+              capture:
+                - json: "$.status"
+                  as: "jobStatus"
+          - think: 2
+        whileTrue: "jobStatus !== 'completed' && jobStatus !== 'failed'"
+        count: 10
+
+      # Download results if completed
+      - get:
+          url: "{{ baseApiPath }}/results/image/{{ imageJobId }}/text"
+          ifTrue: "jobStatus === 'completed'"
+          expect:
+            - statusCode: 200
+
+  - name: "Video Upload and Processing"
+    weight: 15
+    flow:
+      # Upload video
+      - post:
+          url: "{{ baseApiPath }}/upload"
+          formData:
+            file:
+              file: "{{ videoPath }}"
+              content_type: "video/mp4"
+          expect:
+            - statusCode: 200
+            - contentType: json
+            - hasProperty: jobId
+          capture:
+            - json: "$.jobId"
+              as: "videoJobId"
+      
+      # Monitor processing
+      - loop:
+          - get:
+              url: "{{ baseApiPath }}/status/{{ videoJobId }}"
+              expect:
+                - statusCode: 200
+              capture:
+                - json: "$.status"
+                  as: "videoStatus"
+                - json: "$.progress"
+                  as: "videoProgress"
+          - think: 5
+        whileTrue: "videoStatus === 'processing'"
+        count: 20
+
+  - name: "Batch Image Processing"
+    weight: 10
+    flow:
+      # Submit batch
+      - post:
+          url: "{{ baseApiPath }}/process-images-batch"
+          json:
+            images: 
+              - "image1.jpg"
+              - "image2.jpg"
+              - "image3.jpg"
+            parallel: true
+            continueOnError: true
+          expect:
+            - statusCode: 200
+            - contentType: json
+          capture:
+            - json: "$.batchId"
+              as: "batchId"
+      
+      # Check batch status
+      - loop:
+          - get:
+              url: "{{ baseApiPath }}/status/batch/{{ batchId }}"
+              expect:
+                - statusCode: 200
+              capture:
+                - json: "$.completed"
+                  as: "batchCompleted"
+                - json: "$.total"
+                  as: "batchTotal"
+          - think: 3
+        whileTrue: "batchCompleted < batchTotal"
+        count: 15
+
+# Custom metrics
+customMetrics:
+  - name: "API Health Score"
+    description: "Percentage of successful health checks"
+    
+  - name: "Processing Success Rate"
+    description: "Percentage of successfully processed jobs"
+    
+  - name: "Average Processing Time"
+    description: "Average time to process an image or video"
+
+# Thresholds for pass/fail
+ensure:
+  thresholds:
+    - http.response_time.p95: 1000  # 95th percentile under 1 second
+    - http.response_time.p99: 2000  # 99th percentile under 2 seconds
+    - http.codes.2xx: 95            # At least 95% success rate
+    - http.codes.5xx: 1             # Less than 1% server errors
+    - errors.total: 5               # Less than 5% total errors
+
+# Reporting configuration
+reporting:
+  - type: "json"
+    fileName: "report.json"
+  
+  - type: "html"
+    fileName: "report.html"
+  
+  - type: "junit"
+    fileName: "junit.xml"
+
+# Additional monitoring hooks
+hooks:
+  beforeScenario:
+    - "logScenarioStart"
+  
+  afterScenario:
+    - "logScenarioEnd"
+    - "checkThresholds"
+  
+  beforeRequest:
+    - "addRequestId"
+  
+  afterResponse:
+    - "logResponseMetrics"
+    - "checkResponseTime"

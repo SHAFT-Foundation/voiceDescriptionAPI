@@ -15,7 +15,7 @@
 [![99.95% Uptime](https://img.shields.io/badge/Uptime-99.95%25-00C851?style=for-the-badge)](https://status.voicedescription.ai)
 [![SOC 2 Type II](https://img.shields.io/badge/SOC_2-Type_II-FF6F00?style=for-the-badge)](https://github.com)
 
-[🎬 See It In Action](#-quick-start) • [⚡ Start Free Trial](#-get-started-in-5-minutes) • [💰 Calculate Your ROI](#-roi-calculator-real-numbers-real-savings) • [📖 API Documentation](#-api-documentation)
+[🎬 See It In Action](#-quick-start) • [🤖 MCP Server](#-mcp-server-ai-assistant-integration) • [⚡ Start Free Trial](#-get-started-in-5-minutes) • [💰 Calculate Your ROI](#-roi-calculator-real-numbers-real-savings) • [📖 API Documentation](#-api-documentation)
 
 **Trusted by Fortune 500 Companies | 2.5M+ Videos Processed | $12M+ Compliance Costs Saved**
 
@@ -130,6 +130,122 @@ const status = await statusResponse.json();
 const textResult = await fetch(`/api/results/${jobId}/text`);
 const audioResult = await fetch(`/api/results/${jobId}/audio`);
 ```
+
+## 🤖 MCP Server: AI Assistant Integration
+
+**Transform your AI assistants into accessibility powerhouses!** Our Model Context Protocol (MCP) server makes it effortless for AI assistants like Claude to directly process videos and images for accessibility.
+
+<div align="center">
+
+**🚀 One-Click Integration • 🔌 8 Powerful Tools • ⚡ Zero Configuration**
+
+[![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-00D4FF?style=for-the-badge&logo=anthropic)](https://github.com/modelcontextprotocol/specification)
+[![Claude Desktop](https://img.shields.io/badge/Claude-Desktop_Ready-FF6B35?style=for-the-badge)](https://claude.ai/desktop)
+
+[📖 **MCP Documentation**](./mcp-server/README.md) • [⚡ **Quick Setup**](./mcp-server/docs/USER_GUIDE.md#quick-start) • [🔧 **Examples**](./mcp-server/docs/EXAMPLES.md)
+
+</div>
+
+### ⚡ Instant AI Assistant Powers
+
+```json
+// Add to your claude_desktop_config.json
+{
+  "mcpServers": {
+    "voice-description": {
+      "command": "node",
+      "args": ["/path/to/mcp-server/dist/index.js"],
+      "env": {
+        "API_BASE_URL": "http://localhost:3000"
+      }
+    }
+  }
+}
+```
+
+### 🛠️ Available MCP Tools
+
+<table>
+<tr>
+<td width="50%" align="center">
+
+**🎬 Video Tools**
+- `voice_description_upload_video`
+- `voice_description_process_video_url` 
+- `voice_description_check_status`
+- `voice_description_download_results`
+
+</td>
+<td width="50%" align="center">
+
+**🖼️ Image Tools**
+- `voice_description_process_image`
+- `voice_description_batch_images`
+- `voice_description_health_check`
+- `voice_description_aws_status`
+
+</td>
+</tr>
+</table>
+
+### 💡 Real-World AI Assistant Workflows
+
+**"Process this product video for accessibility"**
+```
+AI Assistant uses → voice_description_upload_video 
+                 → voice_description_check_status (polling)
+                 → voice_description_download_results
+Result: Professional audio description + WebVTT captions
+```
+
+**"Make 50 product images accessible"**  
+```
+AI Assistant uses → voice_description_batch_images
+Result: Alt-text + detailed descriptions for entire catalog
+```
+
+**"Check if the API is working"**
+```
+AI Assistant uses → voice_description_health_check
+Result: Complete system status + AWS service connectivity
+```
+
+### 🎯 Perfect For
+
+<div align="center">
+<table>
+<tr>
+<td align="center" width="25%">
+<b>🤖 AI Developers</b><br>
+Add accessibility superpowers to your AI assistants
+</td>
+<td align="center" width="25%">
+<b>🎬 Content Teams</b><br>
+Let AI handle video accessibility automatically
+</td>
+<td align="center" width="25%">
+<b>🛍️ E-commerce</b><br>
+AI-powered product image descriptions
+</td>
+<td align="center" width="25%">
+<b>🏢 Enterprise</b><br>
+Scalable AI accessibility workflows
+</td>
+</tr>
+</table>
+</div>
+
+### 📚 Get Started
+
+| Resource | Description |
+|----------|-------------|
+| [**📖 Complete Documentation**](./mcp-server/README.md) | Full setup guide and tool reference |
+| [**⚡ Quick Start Guide**](./mcp-server/docs/USER_GUIDE.md) | Get running in 5 minutes |
+| [**🔧 Integration Examples**](./mcp-server/docs/EXAMPLES.md) | Real-world usage patterns |
+| [**🛠️ Developer Guide**](./mcp-server/docs/DEVELOPER_GUIDE.md) | Architecture and customization |
+| [**❓ Troubleshooting**](./mcp-server/docs/TROUBLESHOOTING.md) | Common issues and solutions |
+
+---
 
 ## 📝 API Documentation
 

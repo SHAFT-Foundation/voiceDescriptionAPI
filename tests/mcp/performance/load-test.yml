@@ -1,0 +1,290 @@
+# Artillery Load Test Configuration for MCP Server
+# Run with: artillery run tests/mcp/performance/load-test.yml
+
+config:
+  target: "http://localhost:3001"
+  processor: "./performance-processor.js"
+  
+  phases:
+    # Warm-up phase
+    - duration: 60
+      arrivalRate: 5
+      name: "Warm-up"
+    
+    # Ramp-up phase
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 50
+      name: "Ramp-up"
+    
+    # Sustained load phase
+    - duration: 300
+      arrivalRate: 50
+      name: "Sustained Load"
+    
+    # Spike phase
+    - duration: 60
+      arrivalRate: 200
+      name: "Traffic Spike"
+    
+    # Cool-down phase
+    - duration: 60
+      arrivalRate: 10
+      name: "Cool-down"
+  
+  variables:
+    test_videos:
+      - "sample1.mp4"
+      - "sample2.mp4"
+      - "sample3.mp4"
+      - "sample4.mp4"
+      - "sample5.mp4"
+    
+    test_images:
+      - "image1.jpg"
+      - "image2.png"
+      - "image3.gif"
+      - "image4.webp"
+      - "image5.bmp"
+    
+    languages:
+      - "en"
+      - "es"
+      - "fr"
+      - "de"
+      - "ja"
+    
+    detail_levels:
+      - "basic"
+      - "detailed"
+      - "comprehensive"
+  
+  payload:
+    path: "./test-data.csv"
+    fields:
+      - "userId"
+      - "apiKey"
+      - "testFile"
+  
+  tls:
+    rejectUnauthorized: false
+  
+  http:
+    timeout: 120
+    pool: 50
+  
+  plugins:
+    metrics-by-endpoint:
+      useOnlyRequestNames: true
+    
+    expect:
+      outputFormat: "pretty"
+    
+    publish-metrics:
+      - type: "datadog"
+        apiKey: "{{ $processEnvironment.DATADOG_API_KEY }}"
+        appKey: "{{ $processEnvironment.DATADOG_APP_KEY }}"
+        prefix: "mcp.load_test"
+  
+  ensure:
+    p95: 500
+    p99: 1000
+    maxErrorRate: 1
+
+scenarios:
+  # ==================== VIDEO PROCESSING SCENARIOS ====================
+  
+  - name: "Upload Video - Small File"
+    weight: 20
+    flow:
+      - post:
+          url: "/tools/call"
+          headers:
+            Content-Type: "application/json"
+            Authorization: "Bearer {{ apiKey }}"
+          json:
+            jsonrpc: "2.0"
+            id: "{{ $randomString() }}"
+            method: "tools/call"
+            params:
+              name: "voice_description_upload_video"
+              arguments:
+                file_path: "/fixtures/small-{{ test_videos }}"
+                language: "{{ languages }}"
+                detail_level: "{{ detail_levels }}"
+          capture:
+            - json: "$.result.job_id"
+              as: "jobId"
+          expect:
+            - statusCode: 200
+            - contentType: json
+            - hasProperty: "result.success"
+      
+      - think: 2
+      
+      - loop:
+        - get:
+            url: "/tools/call"
+            headers:
+              Content-Type: "application/json"
+              Authorization: "Bearer {{ apiKey }}"
+            json:
+              jsonrpc: "2.0"
+              id: "{{ $randomString() }}"
+              method: "tools/call"
+              params:
+                name: "voice_description_video_status"
+                arguments:
+                  job_id: "{{ jobId }}"
+            expect:
+              - statusCode: 200
+        - think: 5
+        count: 10
+  
+  - name: "Process Image - Single"
+    weight: 30
+    flow:
+      - post:
+          url: "/tools/call"
+          headers:
+            Content-Type: "application/json"
+            Authorization: "Bearer {{ apiKey }}"
+          json:
+            jsonrpc: "2.0"
+            id: "{{ $randomString() }}"
+            method: "tools/call"
+            params:
+              name: "voice_description_process_image"
+              arguments:
+                image_path: "/fixtures/{{ test_images }}"
+                detail_level: "comprehensive"
+                generate_audio: true
+          expect:
+            - statusCode: 200
+            - contentType: json
+            - hasProperty: "result.job_id"
+          capture:
+            - json: "$.result.processing_time"
+              as: "processingTime"
+          afterResponse: "captureMetrics"
+  
+  - name: "Batch Image Processing"
+    weight: 15
+    flow:
+      - post:
+          url: "/tools/call"
+          headers:
+            Content-Type: "application/json"
+            Authorization: "Bearer {{ apiKey }}"
+          json:
+            jsonrpc: "2.0"
+            id: "{{ $randomString() }}"
+            method: "tools/call"
+            params:
+              name: "voice_description_batch_images"
+              arguments:
+                images:
+                  - "/fixtures/batch/image1.jpg"
+                  - "/fixtures/batch/image2.jpg"
+                  - "/fixtures/batch/image3.jpg"
+                  - "/fixtures/batch/image4.jpg"
+                  - "/fixtures/batch/image5.jpg"
+                parallel: true
+                detail_level: "basic"
+          expect:
+            - statusCode: 200
+            - hasProperty: "result.batch_id"
+          capture:
+            - json: "$.result.batch_id"
+              as: "batchId"
+      
+      - think: 10
+      
+      - get:
+          url: "/tools/call"
+          headers:
+            Content-Type: "application/json"
+            Authorization: "Bearer {{ apiKey }}"
+          json:
+            jsonrpc: "2.0"
+            id: "{{ $randomString() }}"
+            method: "tools/call"
+            params:
+              name: "voice_description_batch_results"
+              arguments:
+                batch_id: "{{ batchId }}"
+  
+  # ==================== STRESS TEST SCENARIOS ====================
+  
+  - name: "Large File Upload Stress"
+    weight: 5
+    flow:
+      - post:
+          url: "/tools/call"
+          headers:
+            Content-Type: "application/json"
+            Authorization: "Bearer {{ apiKey }}"
+          json:
+            jsonrpc: "2.0"
+            id: "{{ $randomString() }}"
+            method: "tools/call"
+            params:
+              name: "voice_description_upload_video"
+              arguments:
+                file_path: "/fixtures/large-video-100mb.mp4"
+                wait_for_completion: false
+          timeout: 60
+          expect:
+            - statusCode: 200
+  
+  - name: "Concurrent Job Status Checks"
+    weight: 20
+    flow:
+      - loop:
+        - get:
+            url: "/tools/call"
+            headers:
+              Content-Type: "application/json"
+              Authorization: "Bearer {{ apiKey }}"
+            json:
+              jsonrpc: "2.0"
+              id: "{{ $randomString() }}"
+              method: "tools/call"
+              params:
+                name: "voice_description_video_status"
+                arguments:
+                  job_id: "{{ $randomString() }}"
+            expect:
+              - statusCode:
+                - 200
+                - 404
+        count: 5
+  
+  # ==================== HEALTH CHECK SCENARIO ====================
+  
+  - name: "Health Check"
+    weight: 10
+    flow:
+      - get:
+          url: "/tools/call"
+          headers:
+            Content-Type: "application/json"
+          json:
+            jsonrpc: "2.0"
+            id: "{{ $randomString() }}"
+            method: "tools/call"
+            params:
+              name: "voice_description_health"
+              arguments: {}
+          expect:
+            - statusCode: 200
+            - hasProperty: "result.status"
+            - equals:
+              - "result.status"
+              - "healthy"
+
+# Custom metrics collection
+afterResponse:
+  - "logLatency"
+  - "checkErrors"
+  - "recordCustomMetrics"

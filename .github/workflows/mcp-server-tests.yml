@@ -1,0 +1,511 @@
+name: MCP Server Test Suite
+
+on:
+  push:
+    branches: [main, develop, 'feature/**']
+    paths:
+      - 'mcp-server/**'
+      - '.github/workflows/mcp-server-tests.yml'
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'mcp-server/**'
+  schedule:
+    # Run tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      test_type:
+        description: 'Type of tests to run'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - unit
+          - integration
+          - e2e
+          - performance
+
+env:
+  NODE_VERSION: '18.x'
+  API_BASE_URL: 'http://localhost:3000'
+  TEST_TIMEOUT: 300000
+  COVERAGE_THRESHOLD: 90
+
+jobs:
+  setup:
+    name: Setup Test Environment
+    runs-on: ubuntu-latest
+    outputs:
+      cache-key: ${{ steps.cache-key.outputs.key }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: |
+            package-lock.json
+            mcp-server/package-lock.json
+
+      - name: Generate cache key
+        id: cache-key
+        run: echo "key=${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}" >> $GITHUB_OUTPUT
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            mcp-server/node_modules
+            ~/.npm
+          key: ${{ steps.cache-key.outputs.key }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd mcp-server && npm ci
+
+      - name: Build project
+        run: |
+          npm run build
+          cd mcp-server && npm run build
+
+  lint:
+    name: Linting and Code Quality
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            mcp-server/node_modules
+          key: ${{ needs.setup.outputs.cache-key }}
+
+      - name: Run ESLint
+        run: cd mcp-server && npm run lint
+
+      - name: Run Prettier check
+        run: cd mcp-server && npx prettier --check 'src/**/*.ts' 'tests/**/*.ts'
+
+      - name: Type checking
+        run: cd mcp-server && npm run typecheck
+
+      - name: Security audit
+        run: |
+          cd mcp-server
+          npm audit --audit-level=moderate || true
+          npx snyk test --severity-threshold=high || true
+
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    needs: setup
+    if: github.event.inputs.test_type == 'all' || github.event.inputs.test_type == 'unit' || github.event.inputs.test_type == ''
+    strategy:
+      matrix:
+        shard: [1, 2, 3]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            mcp-server/node_modules
+          key: ${{ needs.setup.outputs.cache-key }}
+
+      - name: Run unit tests (shard ${{ matrix.shard }})
+        run: |
+          cd mcp-server
+          npm run test:unit -- --shard=${{ matrix.shard }}/3 --coverage --coverageReporters=json
+        env:
+          NODE_ENV: test
+          JEST_TIMEOUT: ${{ env.TEST_TIMEOUT }}
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-unit-${{ matrix.shard }}
+          path: mcp-server/coverage/coverage-final.json
+
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: setup
+    if: github.event.inputs.test_type == 'all' || github.event.inputs.test_type == 'integration' || github.event.inputs.test_type == ''
+    services:
+      api:
+        image: voice-description-api:latest
+        ports:
+          - 3000:3000
+        env:
+          NODE_ENV: test
+          AWS_REGION: us-east-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        options: >-
+          --health-cmd "curl -f http://localhost:3000/api/health || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            mcp-server/node_modules
+          key: ${{ needs.setup.outputs.cache-key }}
+
+      - name: Wait for API to be ready
+        run: |
+          for i in {1..30}; do
+            if curl -f http://localhost:3000/api/health; then
+              echo "API is ready"
+              break
+            fi
+            echo "Waiting for API... ($i/30)"
+            sleep 2
+          done
+
+      - name: Run integration tests
+        run: |
+          cd mcp-server
+          npm run test:integration -- --coverage --coverageReporters=json
+        env:
+          NODE_ENV: test
+          API_BASE_URL: http://localhost:3000
+          JEST_TIMEOUT: ${{ env.TEST_TIMEOUT }}
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-integration
+          path: mcp-server/coverage/coverage-final.json
+
+  e2e-tests:
+    name: End-to-End Tests
+    runs-on: ubuntu-latest
+    needs: [setup, unit-tests]
+    if: github.event.inputs.test_type == 'all' || github.event.inputs.test_type == 'e2e'
+    services:
+      api:
+        image: voice-description-api:latest
+        ports:
+          - 3000:3000
+        env:
+          NODE_ENV: test
+          AWS_REGION: us-east-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup FFmpeg
+        uses: FedericoCarboni/setup-ffmpeg@v3
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            mcp-server/node_modules
+          key: ${{ needs.setup.outputs.cache-key }}
+
+      - name: Create test files
+        run: |
+          mkdir -p /tmp/test-files
+          dd if=/dev/urandom of=/tmp/test-files/test-video.mp4 bs=1M count=5
+          dd if=/dev/urandom of=/tmp/test-files/test-image.jpg bs=1M count=1
+
+      - name: Run E2E tests
+        run: |
+          cd mcp-server
+          npm run test tests/integration/e2e-workflows.test.ts
+        env:
+          NODE_ENV: test
+          API_BASE_URL: http://localhost:3000
+          JEST_TIMEOUT: 600000
+
+      - name: Upload test artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-artifacts
+          path: |
+            /tmp/test-files/
+            mcp-server/test-results/
+
+  performance-tests:
+    name: Performance Tests
+    runs-on: ubuntu-latest
+    needs: [setup, integration-tests]
+    if: github.event.inputs.test_type == 'all' || github.event.inputs.test_type == 'performance'
+    services:
+      api:
+        image: voice-description-api:latest
+        ports:
+          - 3000:3000
+        env:
+          NODE_ENV: test
+          AWS_REGION: us-east-1
+        options: >-
+          --cpus="2"
+          --memory="2g"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            mcp-server/node_modules
+          key: ${{ needs.setup.outputs.cache-key }}
+
+      - name: Install performance testing tools
+        run: |
+          npm install -g artillery@latest
+          npm install -g clinic@latest
+
+      - name: Run performance tests
+        run: |
+          cd mcp-server
+          npm run test tests/performance/load-tests.test.ts
+        env:
+          NODE_ENV: test
+          API_BASE_URL: http://localhost:3000
+
+      - name: Run load testing with Artillery
+        run: |
+          cd mcp-server/tests/performance
+          artillery run load-test.yml --output report.json
+
+      - name: Generate performance report
+        run: |
+          cd mcp-server/tests/performance
+          artillery report report.json --output report.html
+
+      - name: Upload performance results
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-results
+          path: |
+            mcp-server/tests/performance/report.html
+            mcp-server/tests/performance/report.json
+
+      - name: Check performance thresholds
+        run: |
+          cd mcp-server/tests/performance
+          node -e "
+            const report = require('./report.json');
+            const p95 = report.aggregate.latency.p95;
+            const errorRate = report.aggregate.counters.errors / report.aggregate.counters.vusers;
+            
+            if (p95 > 1000) {
+              console.error('P95 latency exceeds threshold: ' + p95 + 'ms > 1000ms');
+              process.exit(1);
+            }
+            
+            if (errorRate > 0.01) {
+              console.error('Error rate exceeds threshold: ' + (errorRate * 100) + '% > 1%');
+              process.exit(1);
+            }
+            
+            console.log('Performance tests passed!');
+            console.log('P95 latency: ' + p95 + 'ms');
+            console.log('Error rate: ' + (errorRate * 100) + '%');
+          "
+
+  coverage-report:
+    name: Coverage Report
+    runs-on: ubuntu-latest
+    needs: [unit-tests, integration-tests]
+    if: always() && (needs.unit-tests.result == 'success' || needs.integration-tests.result == 'success')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Download coverage artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: coverage-*
+          path: mcp-server/coverage-parts
+
+      - name: Merge coverage reports
+        run: |
+          cd mcp-server
+          npx nyc merge coverage-parts coverage/merged.json
+          npx nyc report --reporter=lcov --reporter=text --reporter=html --temp-dir=coverage --report-dir=coverage
+
+      - name: Upload to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: mcp-server/coverage/lcov.info
+          flags: mcp-server
+          name: mcp-server-coverage
+
+      - name: Check coverage thresholds
+        run: |
+          cd mcp-server
+          npx nyc check-coverage --lines ${{ env.COVERAGE_THRESHOLD }} --functions ${{ env.COVERAGE_THRESHOLD }} --branches 80
+
+      - name: Upload final coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: mcp-server/coverage/
+
+      - name: Comment PR with coverage
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const coverage = fs.readFileSync('mcp-server/coverage/coverage-summary.json', 'utf8');
+            const summary = JSON.parse(coverage);
+            
+            const comment = `## Test Coverage Report 📊
+            
+            | Type | Coverage | Threshold |
+            |------|----------|-----------|
+            | Lines | ${summary.total.lines.pct}% | ${process.env.COVERAGE_THRESHOLD}% |
+            | Functions | ${summary.total.functions.pct}% | ${process.env.COVERAGE_THRESHOLD}% |
+            | Branches | ${summary.total.branches.pct}% | 80% |
+            | Statements | ${summary.total.statements.pct}% | ${process.env.COVERAGE_THRESHOLD}% |
+            
+            View full report in the [Actions artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  quality-gates:
+    name: Quality Gates Check
+    runs-on: ubuntu-latest
+    needs: [lint, unit-tests, integration-tests, coverage-report]
+    if: always()
+    steps:
+      - name: Check quality gates
+        run: |
+          if [[ "${{ needs.lint.result }}" != "success" ]]; then
+            echo "❌ Linting failed"
+            exit 1
+          fi
+          
+          if [[ "${{ needs.unit-tests.result }}" != "success" ]]; then
+            echo "❌ Unit tests failed"
+            exit 1
+          fi
+          
+          if [[ "${{ needs.integration-tests.result }}" != "success" ]]; then
+            echo "❌ Integration tests failed"
+            exit 1
+          fi
+          
+          if [[ "${{ needs.coverage-report.result }}" != "success" ]]; then
+            echo "❌ Coverage requirements not met"
+            exit 1
+          fi
+          
+          echo "✅ All quality gates passed!"
+
+  notify:
+    name: Send Notifications
+    runs-on: ubuntu-latest
+    needs: [quality-gates]
+    if: always()
+    steps:
+      - name: Send Slack notification
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: |
+            MCP Server Test Suite ${{ needs.quality-gates.result == 'success' && 'Passed ✅' || 'Failed ❌' }}
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+            Author: ${{ github.actor }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Create test report issue
+        if: failure() && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = `Test Failure: Scheduled run on ${new Date().toISOString().split('T')[0]}`;
+            const body = `## Test Suite Failed
+            
+            The scheduled test run has failed. Please investigate.
+            
+            - **Run ID**: ${{ github.run_id }}
+            - **Run URL**: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            - **Failed Jobs**: Check the workflow run for details
+            
+            cc @${{ github.repository_owner }}`;
+            
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: ['test-failure', 'automated']
+            });
