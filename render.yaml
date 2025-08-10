@@ -1,0 +1,131 @@
+# Render Deployment Configuration
+# Voice Description API - Production Deployment
+# Version: 2.0
+# Last Updated: 2025-08-10
+
+services:
+  # Main Web Service - Next.js Application with API Routes
+  - type: web
+    name: voice-description-api
+    runtime: docker
+    repo: https://github.com/yourusername/voiceDescriptionAPI # Update with your repo
+    branch: main
+    
+    # Docker Configuration
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    
+    # Resource Allocation
+    plan: starter # Options: free, starter ($7/mo), standard ($25/mo), pro ($85/mo)
+    
+    # Environment Configuration
+    envVars:
+      # Node Environment
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=2048
+        
+      # AWS Configuration (Sensitive - Set in Dashboard)
+      - key: AWS_REGION
+        value: us-east-1
+      - key: AWS_ACCESS_KEY_ID
+        sync: false # Set in Render dashboard for security
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false # Set in Render dashboard for security
+        
+      # S3 Buckets
+      - key: INPUT_S3_BUCKET
+        value: voice-description-api-input-production
+      - key: OUTPUT_S3_BUCKET
+        value: voice-description-api-output-production
+        
+      # Bedrock Configuration
+      - key: NOVA_MODEL_ID
+        value: amazon.nova-pro-v1:0
+        
+      # Polly Configuration
+      - key: POLLY_VOICE_ID
+        value: Joanna
+        
+      # Processing Configuration
+      - key: MAX_VIDEO_SIZE_MB
+        value: 500
+      - key: PROCESSING_TIMEOUT_MINUTES
+        value: 30
+        
+      # Security
+      - key: JWT_SECRET
+        generateValue: true # Auto-generate secure value
+        
+      # Logging
+      - key: LOG_LEVEL
+        value: info
+        
+      # File Upload Configuration
+      - key: UPLOAD_DIR
+        value: /tmp/uploads
+      - key: MAX_FILE_SIZE
+        value: 524288000 # 500MB in bytes
+        
+    # Scaling Configuration
+    scaling:
+      minInstances: 1
+      maxInstances: 3
+      targetMemoryPercent: 80
+      targetCPUPercent: 80
+      
+    # Health Check
+    healthCheckPath: /api/health
+    
+    # Build Configuration
+    buildCommand: npm run build
+    startCommand: npm start
+    
+    # Region
+    region: oregon # or ohio, frankfurt, singapore
+    
+    # Plan
+    plan: starter # free, starter, standard, pro
+    
+    # Disk (for temporary file storage)
+    disk:
+      name: uploads
+      mountPath: /tmp/uploads
+      sizeGB: 10
+
+# Cron Jobs (Optional - for cleanup tasks)
+  - type: cron
+    name: cleanup-temp-files
+    runtime: docker
+    repo: https://github.com/yourusername/voiceDescriptionAPI # Update with your repo
+    branch: main
+    schedule: "0 2 * * *" # Daily at 2 AM
+    dockerCommand: node scripts/cleanup.js
+    envVars:
+      - key: AWS_REGION
+        value: us-east-1
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: INPUT_S3_BUCKET
+        value: voice-description-api-input-production
+      - key: OUTPUT_S3_BUCKET
+        value: voice-description-api-output-production
+
+# Database (Optional - for job tracking)
+databases:
+  - name: voice-description-db
+    plan: free # free, starter, standard, pro
+    databaseName: voice_description
+    user: voice_api
+
+# Redis (Optional - for job queues and caching)
+  - name: voice-description-redis
+    type: redis
+    plan: free # free, starter, standard, pro
+    maxmemoryPolicy: allkeys-lru
+    ipAllowList: [] # Allow connections from all Render services

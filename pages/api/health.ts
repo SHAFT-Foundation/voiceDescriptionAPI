@@ -69,9 +69,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const systemHealth = jobManager.getSystemHealth();
         checks.jobManager = {
           status: systemHealth.status,
-          activeJobs: systemHealth.activeJobs,
-          completedJobs: systemHealth.completedJobs,
-          failedJobs: systemHealth.failedJobs,
+          video: {
+            activeJobs: systemHealth.activeVideoJobs,
+            completedJobs: systemHealth.completedVideoJobs,
+            failedJobs: systemHealth.failedVideoJobs,
+          },
+          image: {
+            activeJobs: systemHealth.activeImageJobs,
+            completedJobs: systemHealth.completedImageJobs,
+            failedJobs: systemHealth.failedImageJobs,
+          },
+          total: {
+            activeJobs: systemHealth.activeVideoJobs + systemHealth.activeImageJobs,
+            completedJobs: systemHealth.completedVideoJobs + systemHealth.completedImageJobs,
+            failedJobs: systemHealth.failedVideoJobs + systemHealth.failedImageJobs,
+          },
+          capabilities: {
+            videoProcessing: true,
+            imageProcessing: true,
+            batchProcessing: true,
+            audioGeneration: true,
+          },
         };
       } catch (error) {
         checks.jobManager = {

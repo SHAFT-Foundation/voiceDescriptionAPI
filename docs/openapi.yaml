@@ -1,0 +1,1362 @@
+openapi: 3.0.3
+info:
+  title: Voice Description API
+  version: 2.1.0
+  description: |
+    **Automated Audio Description System for Videos and Images**
+    
+    The Voice Description API provides comprehensive accessibility features for visual content by automatically
+    generating descriptive audio narration tracks. This system leverages AWS AI services including:
+    
+    - **Amazon Rekognition** for video scene segmentation
+    - **Amazon Bedrock Nova Pro** for intelligent content analysis
+    - **Amazon Polly** for natural text-to-speech synthesis
+    - **Amazon S3** for secure content storage
+    
+    ## Key Features
+    
+    ### Video Processing
+    - Automatic scene detection and segmentation
+    - Contextual scene analysis with AI
+    - Natural language audio description generation
+    - Multiple output formats (text, SRT, VTT, audio)
+    - Support for MP4, MOV, AVI, MKV, WebM formats
+    - Maximum file size: 500MB
+    - Maximum duration: 60 minutes
+    
+    ### Image Processing
+    - Single and batch image analysis (up to 100 images)
+    - Multiple detail levels (basic, comprehensive, technical)
+    - Alt text and long description generation
+    - HTML accessibility metadata generation
+    - Support for JPEG, PNG, WebP, GIF formats
+    - Maximum file size: 50MB per image
+    
+    ## Authentication
+    
+    The API supports multiple authentication methods:
+    - **API Key**: Include `X-API-Key` header in requests
+    - **Bearer Token**: OAuth 2.0 bearer tokens via `Authorization` header
+    - **AWS Signature**: AWS Signature Version 4 for direct AWS integration
+    
+    ## Rate Limiting
+    
+    Rate limits are applied per API key:
+    
+    | Tier | Requests/min | Video Jobs | Image Jobs | Batch Size |
+    |------|-------------|------------|------------|------------|
+    | Free | 10 | 1 | 10 | 10 |
+    | Standard | 100 | 10 | 100 | 50 |
+    | Premium | 1000 | 50 | 500 | 100 |
+    | Enterprise | Custom | Custom | Custom | Custom |
+    
+    Rate limit headers are included in responses:
+    - `X-RateLimit-Limit`: Maximum requests per window
+    - `X-RateLimit-Remaining`: Remaining requests
+    - `X-RateLimit-Reset`: Window reset timestamp
+    
+    ## Status Codes
+    
+    | Code | Description |
+    |------|-------------|
+    | 200 | Success - Request completed successfully |
+    | 202 | Accepted - Job queued for processing |
+    | 400 | Bad Request - Invalid parameters |
+    | 401 | Unauthorized - Invalid or missing authentication |
+    | 403 | Forbidden - Insufficient permissions |
+    | 404 | Not Found - Resource not found |
+    | 413 | Payload Too Large - File size exceeds limit |
+    | 429 | Too Many Requests - Rate limit exceeded |
+    | 500 | Internal Server Error - Server error |
+    | 503 | Service Unavailable - Service temporarily unavailable |
+    
+    ## Webhooks
+    
+    Configure webhooks to receive real-time updates:
+    ```json
+    {
+      "webhookUrl": "https://your-server.com/webhook",
+      "events": ["job.completed", "job.failed"],
+      "secret": "your-webhook-secret"
+    }
+    ```
+    
+    ## SDK Support
+    
+    Official SDKs available for:
+    - JavaScript/TypeScript (npm: @voicedesc/api-client)
+    - Python (pip: voicedesc-api)
+    - Java (Maven: com.voicedesc:api-client)
+    - Go (go get: github.com/voicedesc/go-client)
+    
+    ## Getting Started
+    
+    1. **Sign up** at [voicedescription.ai](https://voicedescription.ai)
+    2. **Generate API key** from your dashboard
+    3. **Install SDK** or use REST API directly
+    4. **Upload content** or provide S3 URIs
+    5. **Monitor progress** via polling or webhooks
+    6. **Download results** in your preferred format
+    
+  contact:
+    name: API Support Team
+    email: api-support@voicedescription.ai
+    url: https://voicedescription.ai/support
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  x-logo:
+    url: https://voicedescription.ai/logo.png
+    altText: Voice Description API Logo
+
+servers:
+  - url: https://api.voicedescription.ai/v2
+    description: Production server
+  - url: https://staging-api.voicedescription.ai/v2
+    description: Staging server
+  - url: http://localhost:3000
+    description: Local development server
+
+tags:
+  - name: Video Processing
+    description: |
+      Core video processing endpoints for automated audio description generation.
+      Supports various video formats including MP4, MOV, AVI, and MKV.
+  - name: Image Processing
+    description: |
+      Image analysis and description endpoints for accessibility.
+      Supports JPEG, PNG, WebP, and GIF formats.
+  - name: Job Management
+    description: Status tracking and result retrieval for processing jobs
+  - name: Batch Operations
+    description: Batch processing endpoints for multiple items
+  - name: System Health
+    description: Health checks and system status monitoring
+  - name: Authentication
+    description: Authentication and authorization endpoints
+
+security:
+  - ApiKeyAuth: []
+  - BearerAuth: []
+  - AwsSignature: []
+
+paths:
+  # Video Processing Endpoints
+  /api/upload:
+    post:
+      summary: Upload and process video
+      description: |
+        Upload a video file or provide an S3 URI to start automated audio description generation.
+        
+        **Processing Steps:**
+        1. Video upload/validation
+        2. Scene segmentation using Rekognition
+        3. Scene extraction with FFmpeg
+        4. AI analysis with Bedrock Nova Pro
+        5. Description compilation
+        6. Audio synthesis with Polly
+        
+        **File Size Limits:**
+        - Maximum file size: 500MB
+        - Maximum duration: 60 minutes
+        - Supported formats: MP4, MOV, AVI, MKV, WebM
+      operationId: uploadVideo
+      tags:
+        - Video Processing
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VideoUploadRequest'
+            examples:
+              fileUpload:
+                summary: Direct file upload
+                value:
+                  video: (binary)
+                  title: "Product Demo Video"
+                  description: "A demonstration of our new product features"
+                  language: "en"
+              s3Upload:
+                summary: S3 URI reference
+                value:
+                  s3Uri: "s3://my-bucket/videos/demo.mp4"
+                  title: "Training Video"
+                  language: "en-US"
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoUploadJsonRequest'
+            examples:
+              s3Reference:
+                summary: S3 reference with metadata
+                value:
+                  s3Uri: "s3://my-bucket/videos/presentation.mp4"
+                  metadata:
+                    title: "Annual Report Presentation"
+                    description: "CEO presenting annual results"
+                    language: "en"
+                    tags: ["business", "presentation"]
+      responses:
+        '200':
+          description: Video upload successful, processing started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoUploadResponse'
+              examples:
+                success:
+                  value:
+                    success: true
+                    data:
+                      jobId: "550e8400-e29b-41d4-a716-446655440000"
+                      s3Uri: "s3://input-bucket/550e8400-e29b-41d4-a716-446655440000/video.mp4"
+                      message: "Video uploaded successfully, processing started"
+                      statusUrl: "/api/status/550e8400-e29b-41d4-a716-446655440000"
+                      estimatedCompletionTime: "2024-01-15T10:30:00Z"
+                    timestamp: "2024-01-15T10:00:00Z"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '413':
+          $ref: '#/components/responses/PayloadTooLarge'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-codeSamples:
+        - lang: 'cURL'
+          source: |
+            curl -X POST https://api.voicedescription.ai/v2/api/upload \
+              -H "X-API-Key: your-api-key" \
+              -F "video=@/path/to/video.mp4" \
+              -F "title=My Video" \
+              -F "language=en"
+        - lang: 'JavaScript'
+          source: |
+            const formData = new FormData();
+            formData.append('video', videoFile);
+            formData.append('title', 'My Video');
+            
+            const response = await fetch('https://api.voicedescription.ai/v2/api/upload', {
+              method: 'POST',
+              headers: {
+                'X-API-Key': 'your-api-key'
+              },
+              body: formData
+            });
+            
+            const result = await response.json();
+        - lang: 'Python'
+          source: |
+            import requests
+            
+            files = {'video': open('video.mp4', 'rb')}
+            data = {'title': 'My Video', 'language': 'en'}
+            
+            response = requests.post(
+                'https://api.voicedescription.ai/v2/api/upload',
+                files=files,
+                data=data,
+                headers={'X-API-Key': 'your-api-key'}
+            )
+            
+            result = response.json()
+
+  /api/status/{jobId}:
+    get:
+      summary: Get video job status
+      description: |
+        Check the current status and progress of a video processing job.
+        Poll this endpoint to track job completion.
+      operationId: getVideoJobStatus
+      tags:
+        - Video Processing
+        - Job Management
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+      responses:
+        '200':
+          description: Job status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoJobStatus'
+              examples:
+                processing:
+                  summary: Job in progress
+                  value:
+                    success: true
+                    data:
+                      id: "550e8400-e29b-41d4-a716-446655440000"
+                      status: "processing"
+                      step: "analysis"
+                      progress: 65
+                      message: "Analyzing scene 13 of 20"
+                      segmentCount: 20
+                      createdAt: "2024-01-15T10:00:00Z"
+                completed:
+                  summary: Job completed
+                  value:
+                    success: true
+                    data:
+                      id: "550e8400-e29b-41d4-a716-446655440000"
+                      status: "completed"
+                      step: "completed"
+                      progress: 100
+                      message: "Processing completed successfully"
+                      segmentCount: 20
+                      descriptions:
+                        - startTime: 0.0
+                          endTime: 5.5
+                          text: "The video opens with a wide shot of a modern office building..."
+                        - startTime: 5.5
+                          endTime: 12.3
+                          text: "Inside, employees are gathered around a conference table..."
+                      audioUrl: "s3://output-bucket/550e8400/audio.mp3"
+                      textUrl: "s3://output-bucket/550e8400/description.txt"
+                      createdAt: "2024-01-15T10:00:00Z"
+                      completedAt: "2024-01-15T10:15:00Z"
+                    timestamp: "2024-01-15T10:15:00Z"
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/results/{jobId}/text:
+    get:
+      summary: Download video description text
+      description: Download the generated text description file for a completed video job
+      operationId: getVideoDescriptionText
+      tags:
+        - Video Processing
+        - Job Management
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+        - name: format
+          in: query
+          description: Output format for the text
+          schema:
+            type: string
+            enum: [plain, srt, vtt, json]
+            default: plain
+      responses:
+        '200':
+          description: Text description file
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |
+                At 0:00 - Scene 1: The video opens with a wide shot of a modern office building...
+                At 0:05 - Scene 2: Inside, employees are gathered around a conference table...
+            text/vtt:
+              schema:
+                type: string
+              example: |
+                WEBVTT
+                
+                00:00:00.000 --> 00:00:05.500
+                The video opens with a wide shot of a modern office building...
+                
+                00:00:05.500 --> 00:00:12.300
+                Inside, employees are gathered around a conference table...
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoDescriptionJson'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/results/{jobId}/audio:
+    get:
+      summary: Download video description audio
+      description: Download the generated audio MP3 file for a completed video job
+      operationId: getVideoDescriptionAudio
+      tags:
+        - Video Processing
+        - Job Management
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+        - name: format
+          in: query
+          description: Audio format
+          schema:
+            type: string
+            enum: [mp3, wav, ogg]
+            default: mp3
+      responses:
+        '200':
+          description: Audio description file
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+            audio/wav:
+              schema:
+                type: string
+                format: binary
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # Image Processing Endpoints
+  /api/process-image:
+    post:
+      summary: Process single image
+      description: |
+        Analyze and generate descriptions for a single image.
+        
+        **Features:**
+        - Multiple detail levels (basic, comprehensive, technical)
+        - Alt text generation for HTML
+        - Optional audio description
+        - Accessibility metadata generation
+      operationId: processSingleImage
+      tags:
+        - Image Processing
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ImageProcessRequest'
+            examples:
+              basicAnalysis:
+                summary: Basic image analysis
+                value:
+                  image: (binary)
+                  detailLevel: "basic"
+                  generateAudio: false
+              comprehensiveWithAudio:
+                summary: Comprehensive with audio
+                value:
+                  image: (binary)
+                  detailLevel: "comprehensive"
+                  generateAudio: true
+                  voiceId: "Joanna"
+                  language: "en-US"
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImageProcessJsonRequest'
+            examples:
+              s3Image:
+                summary: Process S3 image
+                value:
+                  s3Uri: "s3://my-bucket/images/product.jpg"
+                  options:
+                    detailLevel: "comprehensive"
+                    generateAudio: true
+                    includeAltText: true
+                  metadata:
+                    title: "Product Image"
+                    context: "E-commerce product listing"
+      responses:
+        '200':
+          description: Image processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageProcessResponse'
+              examples:
+                success:
+                  value:
+                    success: true
+                    data:
+                      jobId: "img-550e8400-e29b-41d4"
+                      status: "completed"
+                      processingTime: 2.5
+                      results:
+                        detailedDescription: "A professional product photograph showing a sleek silver laptop..."
+                        altText: "Silver laptop computer on white background"
+                        visualElements: ["laptop", "keyboard", "screen", "trackpad"]
+                        colors: ["silver", "black", "white"]
+                        composition: "centered, product photography style"
+                        context: "E-commerce product image"
+                        confidence: 0.95
+                        audioFile:
+                          url: "s3://output-bucket/img-550e8400/audio.mp3"
+                          duration: 8.5
+                          format: "mp3"
+                        htmlMetadata:
+                          altAttribute: "Silver laptop computer on white background"
+                          longDescId: "desc-img-550e8400"
+                          ariaLabel: "Product image: Silver laptop computer"
+                    timestamp: "2024-01-15T10:00:00Z"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-codeSamples:
+        - lang: 'JavaScript'
+          source: |
+            const formData = new FormData();
+            formData.append('image', imageFile);
+            formData.append('detailLevel', 'comprehensive');
+            formData.append('generateAudio', 'true');
+            
+            const response = await fetch('/api/process-image', {
+              method: 'POST',
+              headers: {
+                'X-API-Key': 'your-api-key'
+              },
+              body: formData
+            });
+            
+            const result = await response.json();
+
+  /api/process-images-batch:
+    post:
+      summary: Process multiple images in batch
+      description: |
+        Process multiple images in a single request for efficiency.
+        Maximum 100 images per batch.
+      operationId: processBatchImages
+      tags:
+        - Image Processing
+        - Batch Operations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchImageProcessRequest'
+            examples:
+              multipleImages:
+                summary: Process multiple product images
+                value:
+                  images:
+                    - source: "s3://bucket/image1.jpg"
+                      id: "product-001"
+                      metadata:
+                        title: "Product 1"
+                    - source: "s3://bucket/image2.jpg"
+                      id: "product-002"
+                      metadata:
+                        title: "Product 2"
+                  options:
+                    detailLevel: "comprehensive"
+                    generateAudio: true
+                    includeAltText: true
+      responses:
+        '200':
+          description: Batch processing completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchImageProcessResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /api/status/image/{jobId}:
+    get:
+      summary: Get image job status
+      description: Check the status of an image processing job
+      operationId: getImageJobStatus
+      tags:
+        - Image Processing
+        - Job Management
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+      responses:
+        '200':
+          description: Image job status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageJobStatus'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/results/image/{jobId}/text:
+    get:
+      summary: Download image description text
+      description: Get the text description for a processed image
+      operationId: getImageDescriptionText
+      tags:
+        - Image Processing
+        - Job Management
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+      responses:
+        '200':
+          description: Image description text
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageDescriptionJson'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/results/image/{jobId}/audio:
+    get:
+      summary: Download image description audio
+      description: Get the audio description for a processed image
+      operationId: getImageDescriptionAudio
+      tags:
+        - Image Processing
+        - Job Management
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+      responses:
+        '200':
+          description: Audio description file
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # System Health Endpoints
+  /api/health:
+    get:
+      summary: Health check
+      description: Basic health check endpoint for monitoring
+      operationId: healthCheck
+      tags:
+        - System Health
+      security: []  # No auth required for health check
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+
+  /api/aws-status:
+    get:
+      summary: AWS services status
+      description: Check connectivity to AWS services
+      operationId: awsStatus
+      tags:
+        - System Health
+      responses:
+        '200':
+          description: AWS services status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AWSStatus'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT Bearer token
+    AwsSignature:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4
+
+  parameters:
+    JobId:
+      name: jobId
+      in: path
+      required: true
+      description: Unique job identifier
+      schema:
+        type: string
+        format: uuid
+      example: "550e8400-e29b-41d4-a716-446655440000"
+
+  responses:
+    BadRequest:
+      description: Bad request - Invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            invalidParams:
+              value:
+                success: false
+                error:
+                  code: "INVALID_REQUEST"
+                  message: "Invalid request parameters"
+                  details: "The 'detailLevel' must be one of: basic, comprehensive, technical"
+                timestamp: "2024-01-15T10:00:00Z"
+
+    Unauthorized:
+      description: Unauthorized - Invalid or missing authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            missingAuth:
+              value:
+                success: false
+                error:
+                  code: "UNAUTHORIZED"
+                  message: "Authentication required"
+                  details: "Missing API key in request headers"
+                timestamp: "2024-01-15T10:00:00Z"
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            jobNotFound:
+              value:
+                success: false
+                error:
+                  code: "NOT_FOUND"
+                  message: "Job not found"
+                  details: "No job found with ID: 550e8400-e29b-41d4-a716-446655440000"
+                timestamp: "2024-01-15T10:00:00Z"
+
+    PayloadTooLarge:
+      description: Request payload too large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            fileTooLarge:
+              value:
+                success: false
+                error:
+                  code: "PAYLOAD_TOO_LARGE"
+                  message: "File size exceeds maximum limit"
+                  details: "Maximum file size is 500MB"
+                timestamp: "2024-01-15T10:00:00Z"
+
+    TooManyRequests:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            rateLimited:
+              value:
+                success: false
+                error:
+                  code: "RATE_LIMITED"
+                  message: "Too many requests"
+                  details: "Rate limit exceeded. Please retry after 60 seconds"
+                  retryAfter: 60
+                timestamp: "2024-01-15T10:00:00Z"
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            serverError:
+              value:
+                success: false
+                error:
+                  code: "INTERNAL_ERROR"
+                  message: "An unexpected error occurred"
+                  details: "Please try again later or contact support"
+                timestamp: "2024-01-15T10:00:00Z"
+
+  schemas:
+    # Request Schemas
+    VideoUploadRequest:
+      type: object
+      properties:
+        video:
+          type: string
+          format: binary
+          description: Video file to upload (max 500MB)
+        s3Uri:
+          type: string
+          description: S3 URI of existing video (alternative to file upload)
+          pattern: ^s3://[a-z0-9][a-z0-9-]*[a-z0-9]/.*$
+          example: "s3://my-bucket/videos/sample.mp4"
+        title:
+          type: string
+          description: Video title
+          maxLength: 200
+          example: "Product Demo Video"
+        description:
+          type: string
+          description: Video description or context
+          maxLength: 1000
+          example: "A demonstration of our new product features"
+        language:
+          type: string
+          description: Target language for audio description
+          enum: [en, en-US, en-GB, es, fr, de, it, pt, ja, ko, zh]
+          default: en
+        voiceId:
+          type: string
+          description: Polly voice ID for audio synthesis
+          default: "Joanna"
+        webhookUrl:
+          type: string
+          format: uri
+          description: Webhook URL for job completion notification
+
+    VideoUploadJsonRequest:
+      type: object
+      required:
+        - s3Uri
+      properties:
+        s3Uri:
+          type: string
+          description: S3 URI of the video
+          pattern: ^s3://[a-z0-9][a-z0-9-]*[a-z0-9]/.*$
+        metadata:
+          $ref: '#/components/schemas/VideoMetadata'
+        processingOptions:
+          $ref: '#/components/schemas/VideoProcessingOptions'
+
+    ImageProcessRequest:
+      type: object
+      properties:
+        image:
+          type: string
+          format: binary
+          description: Image file to process (max 50MB)
+        s3Uri:
+          type: string
+          description: S3 URI of existing image
+          pattern: ^s3://[a-z0-9][a-z0-9-]*[a-z0-9]/.*$
+        detailLevel:
+          type: string
+          enum: [basic, comprehensive, technical]
+          default: comprehensive
+          description: |
+            Level of detail for description:
+            - basic: Simple alt text suitable for quick scanning
+            - comprehensive: Detailed description for full context
+            - technical: Include technical details like composition, lighting
+        generateAudio:
+          type: boolean
+          default: false
+          description: Generate audio description file
+        includeAltText:
+          type: boolean
+          default: true
+          description: Generate HTML alt text
+        voiceId:
+          type: string
+          default: "Joanna"
+          description: Polly voice ID for audio
+        language:
+          type: string
+          default: "en"
+          description: Target language
+        title:
+          type: string
+          description: Image title or name
+        context:
+          type: string
+          description: Additional context about the image
+
+    ImageProcessJsonRequest:
+      type: object
+      properties:
+        s3Uri:
+          type: string
+          description: S3 URI of the image
+        image:
+          type: string
+          format: byte
+          description: Base64 encoded image data
+        options:
+          $ref: '#/components/schemas/ImageProcessingOptions'
+        metadata:
+          $ref: '#/components/schemas/ImageMetadata'
+
+    BatchImageProcessRequest:
+      type: object
+      required:
+        - images
+      properties:
+        images:
+          type: array
+          minItems: 1
+          maxItems: 100
+          items:
+            type: object
+            required:
+              - source
+            properties:
+              source:
+                type: string
+                description: S3 URI or data URI of the image
+              id:
+                type: string
+                description: Custom identifier for tracking
+              metadata:
+                $ref: '#/components/schemas/ImageMetadata'
+        options:
+          $ref: '#/components/schemas/ImageProcessingOptions'
+
+    # Response Schemas
+    VideoUploadResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            jobId:
+              type: string
+              format: uuid
+            s3Uri:
+              type: string
+            message:
+              type: string
+            statusUrl:
+              type: string
+            estimatedCompletionTime:
+              type: string
+              format: date-time
+        timestamp:
+          type: string
+          format: date-time
+
+    VideoJobStatus:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            status:
+              type: string
+              enum: [pending, processing, completed, failed]
+            step:
+              type: string
+              enum: [upload, segmentation, extraction, analysis, compilation, synthesis, completed]
+            progress:
+              type: integer
+              minimum: 0
+              maximum: 100
+            message:
+              type: string
+            s3Uri:
+              type: string
+            metadata:
+              $ref: '#/components/schemas/VideoMetadata'
+            segmentCount:
+              type: integer
+            descriptions:
+              type: array
+              items:
+                $ref: '#/components/schemas/SceneDescription'
+            audioUrl:
+              type: string
+            textUrl:
+              type: string
+            error:
+              type: string
+              nullable: true
+            createdAt:
+              type: string
+              format: date-time
+            completedAt:
+              type: string
+              format: date-time
+              nullable: true
+        timestamp:
+          type: string
+          format: date-time
+
+    ImageProcessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            jobId:
+              type: string
+            status:
+              type: string
+              enum: [processing, completed, failed]
+            processingTime:
+              type: number
+              description: Processing time in seconds
+            results:
+              $ref: '#/components/schemas/ImageProcessingResults'
+        timestamp:
+          type: string
+          format: date-time
+
+    BatchImageProcessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            batchId:
+              type: string
+            status:
+              type: string
+              enum: [processing, completed, partial, failed]
+            totalImages:
+              type: integer
+            processedCount:
+              type: integer
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  jobId:
+                    type: string
+                  status:
+                    type: string
+                    enum: [completed, failed]
+                  result:
+                    $ref: '#/components/schemas/ImageProcessingResults'
+                  error:
+                    type: string
+                    nullable: true
+        timestamp:
+          type: string
+          format: date-time
+
+    ImageJobStatus:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            jobId:
+              type: string
+            status:
+              type: string
+              enum: [processing, completed, failed]
+            step:
+              type: string
+              enum: [upload, analysis, compilation, synthesis, completed]
+            imageType:
+              type: string
+              enum: [photo, illustration, chart, diagram, text, other]
+            results:
+              $ref: '#/components/schemas/ImageProcessingResults'
+            error:
+              type: string
+              nullable: true
+        timestamp:
+          type: string
+          format: date-time
+
+    # Supporting Schemas
+    VideoMetadata:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        language:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        duration:
+          type: number
+          description: Video duration in seconds
+        resolution:
+          type: string
+          example: "1920x1080"
+
+    VideoProcessingOptions:
+      type: object
+      properties:
+        segmentationSensitivity:
+          type: string
+          enum: [low, medium, high]
+          default: medium
+        descriptionStyle:
+          type: string
+          enum: [concise, detailed, narrative]
+          default: detailed
+        includeTimestamps:
+          type: boolean
+          default: true
+        maxDescriptionLength:
+          type: integer
+          description: Maximum words per scene description
+          default: 100
+
+    ImageMetadata:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        context:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+
+    ImageProcessingOptions:
+      type: object
+      properties:
+        detailLevel:
+          type: string
+          enum: [basic, comprehensive, technical]
+          default: comprehensive
+        generateAudio:
+          type: boolean
+          default: false
+        includeAltText:
+          type: boolean
+          default: true
+        voiceId:
+          type: string
+          default: "Joanna"
+        language:
+          type: string
+          default: "en"
+        outputFormats:
+          type: array
+          items:
+            type: string
+            enum: [text, html, json, audio]
+          default: [text]
+
+    ImageProcessingResults:
+      type: object
+      properties:
+        detailedDescription:
+          type: string
+          description: Comprehensive description of the image
+        altText:
+          type: string
+          description: Concise alt text for HTML
+        visualElements:
+          type: array
+          items:
+            type: string
+          description: Key visual elements identified
+        colors:
+          type: array
+          items:
+            type: string
+          description: Dominant colors in the image
+        composition:
+          type: string
+          description: Description of image composition
+        context:
+          type: string
+          description: Contextual understanding of the image
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Confidence score of the analysis
+        audioFile:
+          type: object
+          nullable: true
+          properties:
+            url:
+              type: string
+            duration:
+              type: number
+              description: Duration in seconds
+            format:
+              type: string
+              enum: [mp3, wav, ogg]
+        htmlMetadata:
+          $ref: '#/components/schemas/HTMLAccessibilityMetadata'
+
+    HTMLAccessibilityMetadata:
+      type: object
+      properties:
+        altAttribute:
+          type: string
+          description: Value for HTML alt attribute
+        longDescId:
+          type: string
+          description: ID for longdesc reference
+        ariaLabel:
+          type: string
+          description: ARIA label for enhanced accessibility
+        schemaMarkup:
+          type: object
+          description: Schema.org structured data
+          additionalProperties: true
+
+    SceneDescription:
+      type: object
+      properties:
+        startTime:
+          type: number
+          description: Start time in seconds
+        endTime:
+          type: number
+          description: End time in seconds
+        text:
+          type: string
+          description: Scene description text
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+
+    VideoDescriptionJson:
+      type: object
+      properties:
+        title:
+          type: string
+        totalDuration:
+          type: number
+        scenes:
+          type: array
+          items:
+            $ref: '#/components/schemas/SceneDescription'
+        metadata:
+          $ref: '#/components/schemas/VideoMetadata'
+
+    ImageDescriptionJson:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          $ref: '#/components/schemas/ImageProcessingResults'
+        metadata:
+          $ref: '#/components/schemas/ImageMetadata'
+
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        timestamp:
+          type: string
+          format: date-time
+        uptime:
+          type: number
+          description: Uptime in seconds
+        version:
+          type: string
+        checks:
+          type: object
+          properties:
+            database:
+              type: boolean
+            storage:
+              type: boolean
+            queue:
+              type: boolean
+
+    AWSStatus:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            s3:
+              type: boolean
+            rekognition:
+              type: boolean
+            bedrock:
+              type: boolean
+            polly:
+              type: boolean
+            region:
+              type: string
+            latency:
+              type: object
+              properties:
+                s3:
+                  type: number
+                rekognition:
+                  type: number
+                bedrock:
+                  type: number
+                polly:
+                  type: number
+        timestamp:
+          type: string
+          format: date-time
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Error code for programmatic handling
+            message:
+              type: string
+              description: Human-readable error message
+            details:
+              type: string
+              description: Additional error details
+            retryAfter:
+              type: integer
+              description: Seconds to wait before retry (for rate limiting)
+              nullable: true
+        timestamp:
+          type: string
+          format: date-time
+
+# Webhooks for async notifications
+webhooks:
+  jobComplete:
+    post:
+      requestBody:
+        description: Notification sent when a job completes
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jobId:
+                  type: string
+                status:
+                  type: string
+                  enum: [completed, failed]
+                results:
+                  type: object
+                timestamp:
+                  type: string
+                  format: date-time

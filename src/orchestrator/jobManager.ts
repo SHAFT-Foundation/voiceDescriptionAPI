@@ -5,7 +5,13 @@ import {
   UploadRequest, 
   APIResponse,
   VideoSegment,
-  SceneAnalysis
+  SceneAnalysis,
+  ImageProcessRequest,
+  ImageJobStatus,
+  ImageProcessingJob,
+  ImageProcessingResults,
+  BatchImageProcessRequest,
+  BatchImageProcessResponse
 } from '../types';
 import { VideoInputModule } from '../modules/videoInput';
 import { VideoSegmentationModule } from '../modules/videoSegmentation';
@@ -13,6 +19,7 @@ import { SceneExtractionModule } from '../modules/sceneExtraction';
 import { SceneAnalysisModule } from '../modules/sceneAnalysis';
 import { DescriptionCompilationModule } from '../modules/descriptionCompilation';
 import { TextToSpeechModule } from '../modules/textToSpeech';
+import { ImageJobManager } from './imageJobManager';
 import { logger } from '../utils/logger';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -23,6 +30,7 @@ export class JobManager {
   private sceneAnalysis: SceneAnalysisModule;
   private descriptionCompilation: DescriptionCompilationModule;
   private textToSpeech: TextToSpeechModule;
+  private imageJobManager: ImageJobManager;
   
   private jobs: Map<string, ProcessingJob> = new Map();
   private config: AWSConfig;
@@ -37,6 +45,7 @@ export class JobManager {
     this.sceneAnalysis = new SceneAnalysisModule(config);
     this.descriptionCompilation = new DescriptionCompilationModule();
     this.textToSpeech = new TextToSpeechModule(config);
+    this.imageJobManager = new ImageJobManager(config);
   }
 
   async createJob(request: UploadRequest): Promise<APIResponse<{ jobId: string; s3Uri: string }>> {
@@ -406,17 +415,67 @@ export class JobManager {
     logger.debug('Job status updated', { jobId, status: job.status });
   }
 
-  getJobStatus(jobId: string): JobStatus | null {
-    const job = this.jobs.get(jobId);
-    return job ? job.status : null;
+  // Image processing methods
+  async createImageJob(request: ImageProcessRequest): Promise<APIResponse<{ jobId: string; s3Uri: string }>> {
+    return this.imageJobManager.createImageJob(request);
   }
 
-  getJob(jobId: string): ProcessingJob | null {
-    return this.jobs.get(jobId) || null;
+  async processImageJob(jobId: string): Promise<APIResponse<ImageProcessingResults>> {
+    return this.imageJobManager.processImageJob(jobId);
   }
 
-  getAllJobs(): ProcessingJob[] {
-    return Array.from(this.jobs.values());
+  async processBatchImages(request: BatchImageProcessRequest): Promise<APIResponse<BatchImageProcessResponse['data']>> {
+    return this.imageJobManager.processBatchImages(request);
+  }
+
+  // Enhanced status methods to handle both video and image jobs
+  getJobStatus(jobId: string): JobStatus | ImageJobStatus | null {
+    // Check video jobs first
+    const videoJob = this.jobs.get(jobId);
+    if (videoJob) {
+      return videoJob.status;
+    }
+
+    // Check image jobs
+    const imageStatus = this.imageJobManager.getJobStatus(jobId);
+    if (imageStatus) {
+      return imageStatus;
+    }
+
+    return null;
+  }
+
+  getJob(jobId: string): ProcessingJob | ImageProcessingJob | null {
+    // Check video jobs first
+    const videoJob = this.jobs.get(jobId);
+    if (videoJob) {
+      return videoJob;
+    }
+
+    // Check image jobs
+    const imageJob = this.imageJobManager.getJob(jobId);
+    if (imageJob) {
+      return imageJob;
+    }
+
+    return null;
+  }
+
+  getAllJobs(): (ProcessingJob | ImageProcessingJob)[] {
+    const videoJobs = Array.from(this.jobs.values());
+    const imageJobs = this.imageJobManager.getAllJobs();
+    return [...videoJobs, ...imageJobs];
+  }
+
+  // Helper method to determine job type
+  determineJobType(jobId: string): 'video' | 'image' | null {
+    if (this.jobs.has(jobId)) {
+      return 'video';
+    }
+    if (this.imageJobManager.getJob(jobId)) {
+      return 'image';
+    }
+    return null;
   }
 
   deleteJob(jobId: string): boolean {
@@ -450,29 +509,46 @@ export class JobManager {
   // Health check method
   getSystemHealth(): {
     status: 'healthy' | 'degraded' | 'unhealthy';
-    activeJobs: number;
-    completedJobs: number;
-    failedJobs: number;
+    activeVideoJobs: number;
+    activeImageJobs: number;
+    completedVideoJobs: number;
+    completedImageJobs: number;
+    failedVideoJobs: number;
+    failedImageJobs: number;
     lastCleanup?: Date;
   } {
-    const jobs = Array.from(this.jobs.values());
-    const activeJobs = jobs.filter(j => j.status.status === 'processing').length;
-    const completedJobs = jobs.filter(j => j.status.status === 'completed').length;
-    const failedJobs = jobs.filter(j => j.status.status === 'failed').length;
+    // Get video job stats
+    const videoJobs = Array.from(this.jobs.values());
+    const activeVideoJobs = videoJobs.filter(j => j.status.status === 'processing').length;
+    const completedVideoJobs = videoJobs.filter(j => j.status.status === 'completed').length;
+    const failedVideoJobs = videoJobs.filter(j => j.status.status === 'failed').length;
+
+    // Get image job stats
+    const imageHealth = this.imageJobManager.getSystemHealth();
+    const activeImageJobs = imageHealth.activeJobs;
+    const completedImageJobs = imageHealth.completedJobs;
+    const failedImageJobs = imageHealth.failedJobs;
+
+    // Calculate overall status
+    const totalActive = activeVideoJobs + activeImageJobs;
+    const totalFailed = failedVideoJobs + failedImageJobs;
 
     let status: 'healthy' | 'degraded' | 'unhealthy' = 'healthy';
     
-    if (failedJobs > activeJobs && failedJobs > 0) {
+    if (totalFailed > totalActive && totalFailed > 0) {
       status = 'unhealthy';
-    } else if (failedJobs > 0 || activeJobs > 10) {
+    } else if (totalFailed > 0 || totalActive > 10) {
       status = 'degraded';
     }
 
     return {
       status,
-      activeJobs,
-      completedJobs,
-      failedJobs,
+      activeVideoJobs,
+      activeImageJobs,
+      completedVideoJobs,
+      completedImageJobs,
+      failedVideoJobs,
+      failedImageJobs,
     };
   }
 }

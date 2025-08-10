@@ -1,4 +1,11 @@
-import { SceneAnalysis, APIResponse } from '../types';
+import { 
+  SceneAnalysis, 
+  APIResponse, 
+  ImageAnalysis, 
+  CompiledImageDescription,
+  ImageProcessingOptions,
+  HTMLAccessibilityMetadata
+} from '../types';
 import { logger } from '../utils/logger';
 
 export interface CompiledDescription {
@@ -311,6 +318,311 @@ export class DescriptionCompilationModule {
     // Format description specifically for text-to-speech
     return compiledDescription.cleanText
       .replace(/\[.*?\]/g, '') // Remove any remaining brackets
+      .replace(/\s+/g, ' ') // Normalize spaces
+      .replace(/([.!?])\s*([A-Z])/g, '$1 $2') // Ensure space after punctuation
+      .trim();
+  }
+
+  // Image-specific compilation methods
+  async compileImageDescription(
+    analysis: ImageAnalysis,
+    options: ImageProcessingOptions
+  ): Promise<APIResponse<CompiledImageDescription>> {
+    const startTime = Date.now();
+
+    try {
+      logger.info('Starting image description compilation', { 
+        jobId: analysis.segmentId,
+        imageType: analysis.imageType,
+        detailLevel: options.detailLevel
+      });
+
+      // Extract alt text from analysis (stored temporarily)
+      const altText = (analysis as any).altText || this.generateAltText(analysis);
+
+      // Generate descriptions based on detail level
+      let detailedDescription: string;
+      let technicalDescription: string | undefined;
+
+      switch (options.detailLevel) {
+        case 'basic':
+          detailedDescription = this.generateBasicDescription(analysis);
+          break;
+        case 'technical':
+          detailedDescription = this.generateDetailedDescription(analysis);
+          technicalDescription = this.generateTechnicalDescription(analysis);
+          break;
+        case 'comprehensive':
+        default:
+          detailedDescription = this.generateDetailedDescription(analysis);
+      }
+
+      // Generate HTML metadata
+      const htmlMetadata = this.generateHTMLMetadata(altText, detailedDescription, analysis);
+
+      // Calculate metadata
+      const wordCount = detailedDescription.split(/\s+/).filter(word => word.trim()).length;
+      const processingTime = Date.now() - startTime;
+
+      const compiledDescription: CompiledImageDescription = {
+        altText: this.cleanDescription(altText),
+        detailedDescription: this.cleanDescription(detailedDescription),
+        technicalDescription: technicalDescription ? this.cleanDescription(technicalDescription) : undefined,
+        htmlMetadata,
+        metadata: {
+          confidence: analysis.confidence,
+          wordCount,
+          imageType: analysis.imageType,
+          processingTime,
+        },
+      };
+
+      logger.info('Image description compilation completed', {
+        jobId: analysis.segmentId,
+        wordCount,
+        altTextLength: altText.length,
+        processingTime,
+      });
+
+      return {
+        success: true,
+        data: compiledDescription,
+        timestamp: new Date(),
+      };
+
+    } catch (error) {
+      logger.error('Image description compilation failed', { 
+        error, 
+        jobId: analysis.segmentId 
+      });
+
+      return {
+        success: false,
+        error: {
+          code: 'IMAGE_COMPILATION_FAILED',
+          message: 'Failed to compile image description',
+          details: error instanceof Error ? error.message : String(error),
+        },
+        timestamp: new Date(),
+      };
+    }
+  }
+
+  private generateAltText(analysis: ImageAnalysis): string {
+    // Generate concise alt text (under 125 characters)
+    const mainElements = analysis.visualElements.slice(0, 3).join(', ');
+    let altText = '';
+
+    switch (analysis.imageType) {
+      case 'chart':
+        altText = `Chart showing ${analysis.context || mainElements}`;
+        break;
+      case 'diagram':
+        altText = `Diagram of ${analysis.context || mainElements}`;
+        break;
+      case 'text':
+        altText = `Text image: ${analysis.context || mainElements}`;
+        break;
+      case 'illustration':
+        altText = `Illustration of ${mainElements}`;
+        break;
+      case 'photo':
+      default:
+        altText = mainElements || analysis.context || 'Image';
+    }
+
+    // Ensure alt text is under 125 characters
+    if (altText.length > 125) {
+      altText = altText.substring(0, 122) + '...';
+    }
+
+    return altText;
+  }
+
+  private generateBasicDescription(analysis: ImageAnalysis): string {
+    // Generate a basic description focusing on main elements
+    const parts: string[] = [];
+
+    // Start with image type
+    parts.push(`This is a ${analysis.imageType}`);
+
+    // Add main visual elements
+    if (analysis.visualElements.length > 0) {
+      parts.push(`showing ${analysis.visualElements.slice(0, 5).join(', ')}`);
+    }
+
+    // Add context
+    if (analysis.context) {
+      parts.push(`. ${analysis.context}`);
+    }
+
+    // Add primary colors
+    if (analysis.colors.length > 0) {
+      parts.push(`. The dominant colors are ${analysis.colors.slice(0, 3).join(', ')}`);
+    }
+
+    return parts.join('');
+  }
+
+  private generateDetailedDescription(analysis: ImageAnalysis): string {
+    // Generate a comprehensive description
+    const sections: string[] = [];
+
+    // Main description
+    if (analysis.description) {
+      sections.push(analysis.description);
+    }
+
+    // Visual elements detail
+    if (analysis.visualElements.length > 0) {
+      sections.push(`Key visual elements include: ${analysis.visualElements.join(', ')}.`);
+    }
+
+    // Actions or movements
+    if (analysis.actions.length > 0) {
+      sections.push(`Visible actions or movements: ${analysis.actions.join(', ')}.`);
+    }
+
+    // Composition details
+    if (analysis.composition) {
+      sections.push(`Composition: ${analysis.composition}`);
+    }
+
+    // Color palette
+    if (analysis.colors.length > 0) {
+      sections.push(`The color palette consists of ${analysis.colors.join(', ')}.`);
+    }
+
+    // Context and purpose
+    if (analysis.context) {
+      sections.push(`Context: ${analysis.context}`);
+    }
+
+    return sections.join(' ');
+  }
+
+  private generateTechnicalDescription(analysis: ImageAnalysis): string {
+    // Generate a technical analysis for professional use
+    const sections: string[] = [];
+
+    sections.push(`Technical Analysis of ${analysis.imageType}:`);
+
+    // Detailed composition analysis
+    if (analysis.composition) {
+      sections.push(`Composition and Layout: ${analysis.composition}`);
+    }
+
+    // Color theory analysis
+    if (analysis.colors.length > 0) {
+      sections.push(`Color Analysis: The image uses a palette of ${analysis.colors.join(', ')}. `);
+      
+      // Analyze color relationships
+      const hasWarmColors = analysis.colors.some(c => 
+        /red|orange|yellow|warm/i.test(c)
+      );
+      const hasCoolColors = analysis.colors.some(c => 
+        /blue|green|purple|cool/i.test(c)
+      );
+      
+      if (hasWarmColors && hasCoolColors) {
+        sections.push('The palette combines both warm and cool tones for visual balance.');
+      } else if (hasWarmColors) {
+        sections.push('The warm color palette creates an inviting, energetic atmosphere.');
+      } else if (hasCoolColors) {
+        sections.push('The cool color palette creates a calm, professional atmosphere.');
+      }
+    }
+
+    // Visual hierarchy
+    if (analysis.visualElements.length > 0) {
+      sections.push(`Visual Hierarchy: Primary elements (${analysis.visualElements.slice(0, 3).join(', ')}) ` +
+                   `draw initial attention, supported by secondary elements (${analysis.visualElements.slice(3).join(', ')}).`);
+    }
+
+    // Design principles
+    sections.push(`Design Elements: The ${analysis.imageType} demonstrates `);
+    const principles: string[] = [];
+    
+    if (analysis.composition.includes('balanced') || analysis.composition.includes('symmetr')) {
+      principles.push('balance');
+    }
+    if (analysis.visualElements.length > 5) {
+      principles.push('complexity');
+    } else {
+      principles.push('simplicity');
+    }
+    if (analysis.colors.length > 1) {
+      principles.push('color harmony');
+    }
+    
+    sections[sections.length - 1] += principles.join(', ') + '.';
+
+    // Technical specifications
+    sections.push(`Image Type Classification: ${analysis.imageType}. ` +
+                 `Confidence Score: ${analysis.confidence}%.`);
+
+    return sections.join(' ');
+  }
+
+  private generateHTMLMetadata(
+    altText: string, 
+    detailedDescription: string,
+    analysis: ImageAnalysis
+  ): HTMLAccessibilityMetadata {
+    // Generate unique ID for long description
+    const longDescId = `longdesc-${analysis.segmentId}`;
+
+    // Create ARIA label
+    const ariaLabel = altText;
+
+    // Generate Schema.org structured data
+    const schemaMarkup = {
+      '@context': 'https://schema.org',
+      '@type': 'ImageObject',
+      'name': altText,
+      'description': detailedDescription,
+      'contentUrl': '', // Will be filled by the API
+      'encodingFormat': 'image/jpeg', // Will be updated based on actual format
+      'accessibilityFeature': [
+        'alternativeText',
+        'longDescription',
+        'structuralNavigation'
+      ],
+      'accessibilityHazard': 'none',
+      'accessMode': 'textual',
+      'accessModeSufficient': 'textual',
+    };
+
+    return {
+      altAttribute: altText,
+      longDescId,
+      ariaLabel,
+      schemaMarkup,
+    };
+  }
+
+  // Format image description for TTS
+  formatImageDescriptionForTTS(compiledDescription: CompiledImageDescription): string {
+    // Combine alt text and detailed description for natural speech
+    const parts: string[] = [];
+    
+    // Start with a brief introduction
+    parts.push(compiledDescription.altText);
+    
+    // Add detailed description with natural transition
+    if (compiledDescription.detailedDescription) {
+      parts.push('In more detail:');
+      parts.push(compiledDescription.detailedDescription);
+    }
+
+    // Add technical description if present
+    if (compiledDescription.technicalDescription) {
+      parts.push('Technical analysis:');
+      parts.push(compiledDescription.technicalDescription);
+    }
+
+    return parts.join(' ')
+      .replace(/\[.*?\]/g, '') // Remove any brackets
       .replace(/\s+/g, ' ') // Normalize spaces
       .replace(/([.!?])\s*([A-Z])/g, '$1 $2') // Ensure space after punctuation
       .trim();

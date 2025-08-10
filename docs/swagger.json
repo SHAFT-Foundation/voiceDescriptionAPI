@@ -1,0 +1,1259 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Voice Description API",
+    "version": "2.1.0",
+    "description": "Automated Audio Description System for Videos and Images\n\nThe Voice Description API provides comprehensive accessibility features for visual content by automatically generating descriptive audio narration tracks. This system leverages AWS AI services including Amazon Rekognition for video scene segmentation, Amazon Bedrock Nova Pro for intelligent content analysis, and Amazon Polly for natural text-to-speech synthesis.\n\nKey Features:\n• Automatic scene detection and segmentation for videos\n• Single and batch image processing\n• Natural language audio description generation\n• Multiple output formats (text, SRT, VTT, audio)\n• Real-time processing status updates\n• Support for direct file uploads and S3 URIs",
+    "contact": {
+      "name": "API Support Team",
+      "email": "api-support@voicedescription.ai",
+      "url": "https://voicedescription.ai/support"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.voicedescription.ai/v2",
+      "description": "Production server"
+    },
+    {
+      "url": "https://staging-api.voicedescription.ai/v2",
+      "description": "Staging server"
+    },
+    {
+      "url": "http://localhost:3000",
+      "description": "Local development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Video Processing",
+      "description": "Core video processing endpoints for automated audio description generation"
+    },
+    {
+      "name": "Image Processing",
+      "description": "Image analysis and description endpoints for accessibility"
+    },
+    {
+      "name": "Job Management",
+      "description": "Status tracking and result retrieval for processing jobs"
+    },
+    {
+      "name": "System Health",
+      "description": "Health checks and system status monitoring"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/api/upload": {
+      "post": {
+        "summary": "Upload and process video",
+        "description": "Upload a video file or provide an S3 URI to start automated audio description generation. Supports multipart/form-data for file uploads or JSON body for S3 URI references.",
+        "operationId": "uploadVideo",
+        "tags": ["Video Processing"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "video": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Video file to upload (max 500MB)"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Video title"
+                  },
+                  "language": {
+                    "type": "string",
+                    "description": "Target language for audio description",
+                    "enum": ["en", "en-US", "en-GB", "es", "fr", "de"],
+                    "default": "en"
+                  }
+                }
+              },
+              "examples": {
+                "fileUpload": {
+                  "summary": "Direct file upload",
+                  "value": {
+                    "video": "(binary file data)",
+                    "title": "Product Demo Video",
+                    "language": "en"
+                  }
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["s3Uri"],
+                "properties": {
+                  "s3Uri": {
+                    "type": "string",
+                    "description": "S3 URI of the video",
+                    "pattern": "^s3://[a-z0-9][a-z0-9-]*[a-z0-9]/.*$",
+                    "example": "s3://my-bucket/videos/sample.mp4"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "language": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "s3Reference": {
+                  "summary": "S3 URI reference",
+                  "value": {
+                    "s3Uri": "s3://my-bucket/videos/presentation.mp4",
+                    "metadata": {
+                      "title": "Annual Report Presentation",
+                      "language": "en"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Video upload successful, processing started",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VideoUploadResponse"
+                },
+                "examples": {
+                  "success": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "jobId": "550e8400-e29b-41d4-a716-446655440000",
+                        "s3Uri": "s3://input-bucket/550e8400-e29b-41d4-a716-446655440000/video.mp4",
+                        "statusUrl": "/api/status/550e8400-e29b-41d4-a716-446655440000"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "413": {
+            "$ref": "#/components/responses/PayloadTooLarge"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/status/{jobId}": {
+      "get": {
+        "summary": "Get video job status",
+        "description": "Check the current status and progress of a video processing job with real-time pipeline updates",
+        "operationId": "getVideoJobStatus",
+        "tags": ["Video Processing", "Job Management"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/JobId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job status retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VideoJobStatus"
+                },
+                "examples": {
+                  "processing": {
+                    "summary": "Job in progress",
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": "550e8400-e29b-41d4-a716-446655440000",
+                        "status": "processing",
+                        "step": "analysis",
+                        "progress": 65,
+                        "message": "Analyzing scene 13 of 20"
+                      }
+                    }
+                  },
+                  "completed": {
+                    "summary": "Job completed",
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": "550e8400-e29b-41d4-a716-446655440000",
+                        "status": "completed",
+                        "step": "synthesis",
+                        "progress": 100,
+                        "message": "Processing completed successfully",
+                        "descriptions": [
+                          {
+                            "startTime": 0.0,
+                            "endTime": 5.5,
+                            "text": "The video opens with a wide shot of a modern office building..."
+                          }
+                        ],
+                        "audioUrl": "s3://output-bucket/550e8400/audio.mp3",
+                        "textUrl": "s3://output-bucket/550e8400/description.txt"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/results/{jobId}/text": {
+      "get": {
+        "summary": "Download video description text",
+        "description": "Download the generated text description file for a completed video job",
+        "operationId": "getVideoDescriptionText",
+        "tags": ["Video Processing", "Job Management"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/JobId"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Output format for the text",
+            "schema": {
+              "type": "string",
+              "enum": ["plain", "srt", "vtt", "json"],
+              "default": "plain"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Text description file",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "At 0:00 - Scene 1: The video opens with a wide shot of a modern office building...\nAt 0:05 - Scene 2: Inside, employees are gathered around a conference table..."
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VideoDescriptionJson"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/api/results/{jobId}/audio": {
+      "get": {
+        "summary": "Download video description audio",
+        "description": "Download the generated audio MP3 file for a completed video job",
+        "operationId": "getVideoDescriptionAudio",
+        "tags": ["Video Processing", "Job Management"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/JobId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Audio description file",
+            "content": {
+              "audio/mpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/api/process-image": {
+      "post": {
+        "summary": "Process single image",
+        "description": "Analyze and generate descriptions for a single image with immediate results",
+        "operationId": "processSingleImage",
+        "tags": ["Image Processing"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Image file to process (max 50MB)"
+                  },
+                  "detailLevel": {
+                    "type": "string",
+                    "enum": ["basic", "comprehensive", "technical"],
+                    "default": "comprehensive",
+                    "description": "Level of detail for description"
+                  },
+                  "generateAudio": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Generate audio description file"
+                  },
+                  "includeAltText": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Generate HTML alt text"
+                  },
+                  "voiceId": {
+                    "type": "string",
+                    "default": "Joanna",
+                    "description": "Polly voice ID for audio"
+                  },
+                  "language": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "Target language"
+                  }
+                }
+              },
+              "examples": {
+                "basicAnalysis": {
+                  "summary": "Basic image analysis",
+                  "value": {
+                    "image": "(binary file data)",
+                    "detailLevel": "basic",
+                    "generateAudio": false
+                  }
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "s3Uri": {
+                    "type": "string",
+                    "description": "S3 URI of the image"
+                  },
+                  "base64": {
+                    "type": "string",
+                    "format": "byte",
+                    "description": "Base64 encoded image data"
+                  },
+                  "detailLevel": {
+                    "type": "string",
+                    "enum": ["basic", "comprehensive", "technical"],
+                    "default": "comprehensive"
+                  },
+                  "generateAudio": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "includeAltText": {
+                    "type": "boolean",
+                    "default": true
+                  },
+                  "voiceId": {
+                    "type": "string",
+                    "default": "Joanna"
+                  },
+                  "language": {
+                    "type": "string",
+                    "default": "en"
+                  }
+                }
+              },
+              "examples": {
+                "s3Image": {
+                  "summary": "Process S3 image",
+                  "value": {
+                    "s3Uri": "s3://my-bucket/images/product.jpg",
+                    "detailLevel": "comprehensive",
+                    "generateAudio": true,
+                    "includeAltText": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Image processed successfully with immediate results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageProcessResponse"
+                },
+                "examples": {
+                  "success": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "jobId": "img-550e8400-e29b-41d4",
+                        "status": "completed",
+                        "processingTime": 2.5,
+                        "descriptions": {
+                          "detailed": "A professional product photograph showing a sleek silver laptop...",
+                          "alt": "Silver laptop computer on white background"
+                        },
+                        "audioUrl": "s3://output-bucket/img-550e8400/audio.mp3"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/process-images-batch": {
+      "post": {
+        "summary": "Process multiple images in batch",
+        "description": "Process multiple images in a single request for efficiency (max 100 images)",
+        "operationId": "processBatchImages",
+        "tags": ["Image Processing"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchImageProcessRequest"
+              },
+              "examples": {
+                "multipleImages": {
+                  "summary": "Process multiple product images",
+                  "value": {
+                    "images": [
+                      {
+                        "source": "s3://bucket/image1.jpg",
+                        "id": "product-001"
+                      },
+                      {
+                        "source": "s3://bucket/image2.jpg",
+                        "id": "product-002"
+                      }
+                    ],
+                    "options": {
+                      "detailLevel": "comprehensive",
+                      "generateAudio": true,
+                      "includeAltText": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch processing started",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchImageProcessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          }
+        }
+      }
+    },
+    "/api/status/image/{jobId}": {
+      "get": {
+        "summary": "Get image job status",
+        "description": "Check the status of an image processing job",
+        "operationId": "getImageJobStatus",
+        "tags": ["Image Processing", "Job Management"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/JobId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Image job status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageJobStatus"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/api/results/image/{jobId}/text": {
+      "get": {
+        "summary": "Download image description text",
+        "description": "Get the text description for a processed image",
+        "operationId": "getImageDescriptionText",
+        "tags": ["Image Processing", "Job Management"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/JobId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Image description text",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageDescriptionJson"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/api/results/image/{jobId}/audio": {
+      "get": {
+        "summary": "Download image description audio",
+        "description": "Get the audio description for a processed image",
+        "operationId": "getImageDescriptionAudio",
+        "tags": ["Image Processing", "Job Management"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/JobId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Audio description file",
+            "content": {
+              "audio/mpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "summary": "Health check",
+        "description": "Basic health check endpoint for monitoring",
+        "operationId": "healthCheck",
+        "tags": ["System Health"],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthStatus"
+                },
+                "example": {
+                  "status": "healthy",
+                  "timestamp": "2024-01-15T10:00:00Z",
+                  "uptime": 86400,
+                  "version": "2.1.0"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/docs": {
+      "get": {
+        "summary": "API documentation",
+        "description": "Get API documentation in HTML or JSON format",
+        "operationId": "getApiDocs",
+        "tags": ["System Health"],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "API documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/aws-status": {
+      "get": {
+        "summary": "AWS services status",
+        "description": "Check connectivity and status of AWS services",
+        "operationId": "awsStatus",
+        "tags": ["System Health"],
+        "responses": {
+          "200": {
+            "description": "AWS services status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AWSStatus"
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "s3": true,
+                    "rekognition": true,
+                    "bedrock": true,
+                    "polly": true,
+                    "region": "us-east-1"
+                  },
+                  "timestamp": "2024-01-15T10:00:00Z"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "description": "API key for authentication"
+      },
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "JWT Bearer token"
+      }
+    },
+    "parameters": {
+      "JobId": {
+        "name": "jobId",
+        "in": "path",
+        "required": true,
+        "description": "Unique job identifier",
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "example": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Bad request - Invalid parameters",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "example": {
+              "success": false,
+              "error": {
+                "code": "INVALID_REQUEST",
+                "message": "Invalid request parameters",
+                "details": "The 'detailLevel' must be one of: basic, comprehensive, technical"
+              },
+              "timestamp": "2024-01-15T10:00:00Z"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthorized - Invalid or missing authentication",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "example": {
+              "success": false,
+              "error": {
+                "code": "UNAUTHORIZED",
+                "message": "Authentication required",
+                "details": "Missing API key in request headers"
+              },
+              "timestamp": "2024-01-15T10:00:00Z"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "example": {
+              "success": false,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Job not found",
+                "details": "No job found with ID: 550e8400-e29b-41d4-a716-446655440000"
+              },
+              "timestamp": "2024-01-15T10:00:00Z"
+            }
+          }
+        }
+      },
+      "PayloadTooLarge": {
+        "description": "Request payload too large",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "example": {
+              "success": false,
+              "error": {
+                "code": "PAYLOAD_TOO_LARGE",
+                "message": "File size exceeds maximum limit",
+                "details": "Maximum file size is 500MB"
+              },
+              "timestamp": "2024-01-15T10:00:00Z"
+            }
+          }
+        }
+      },
+      "TooManyRequests": {
+        "description": "Rate limit exceeded",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "example": {
+              "success": false,
+              "error": {
+                "code": "RATE_LIMITED",
+                "message": "Too many requests",
+                "details": "Rate limit exceeded. Please retry after 60 seconds",
+                "retryAfter": 60
+              },
+              "timestamp": "2024-01-15T10:00:00Z"
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "Internal server error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "example": {
+              "success": false,
+              "error": {
+                "code": "INTERNAL_ERROR",
+                "message": "An unexpected error occurred",
+                "details": "Please try again later or contact support"
+              },
+              "timestamp": "2024-01-15T10:00:00Z"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "VideoUploadResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicates if the request was successful"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "jobId": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Unique identifier for the processing job"
+              },
+              "s3Uri": {
+                "type": "string",
+                "description": "S3 location of the uploaded video"
+              },
+              "statusUrl": {
+                "type": "string",
+                "description": "URL to check job status"
+              }
+            },
+            "required": ["jobId", "s3Uri", "statusUrl"]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "VideoJobStatus": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Job identifier"
+              },
+              "status": {
+                "type": "string",
+                "enum": ["processing", "completed", "failed"],
+                "description": "Current job status"
+              },
+              "step": {
+                "type": "string",
+                "enum": ["segmentation", "analysis", "synthesis"],
+                "description": "Current processing step"
+              },
+              "progress": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100,
+                "description": "Progress percentage"
+              },
+              "message": {
+                "type": "string",
+                "description": "Status message"
+              },
+              "descriptions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "startTime": {
+                      "type": "number",
+                      "description": "Start time in seconds"
+                    },
+                    "endTime": {
+                      "type": "number",
+                      "description": "End time in seconds"
+                    },
+                    "text": {
+                      "type": "string",
+                      "description": "Scene description text"
+                    }
+                  }
+                },
+                "description": "Scene descriptions (available when completed)"
+              },
+              "audioUrl": {
+                "type": "string",
+                "description": "URL to download audio file (available when completed)"
+              },
+              "textUrl": {
+                "type": "string",
+                "description": "URL to download text file (available when completed)"
+              }
+            },
+            "required": ["id", "status", "step", "progress", "message"]
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "ImageProcessResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "jobId": {
+                "type": "string",
+                "description": "Job identifier"
+              },
+              "status": {
+                "type": "string",
+                "enum": ["completed", "failed"]
+              },
+              "processingTime": {
+                "type": "number",
+                "description": "Processing time in seconds"
+              },
+              "descriptions": {
+                "type": "object",
+                "properties": {
+                  "detailed": {
+                    "type": "string",
+                    "description": "Comprehensive description"
+                  },
+                  "alt": {
+                    "type": "string",
+                    "description": "Alt text for HTML"
+                  }
+                }
+              },
+              "audioUrl": {
+                "type": "string",
+                "description": "URL to audio file (if generateAudio was true)"
+              }
+            }
+          }
+        }
+      },
+      "BatchImageProcessRequest": {
+        "type": "object",
+        "required": ["images"],
+        "properties": {
+          "images": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "type": "object",
+              "required": ["source"],
+              "properties": {
+                "source": {
+                  "type": "string",
+                  "description": "S3 URI or data URI of the image"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Custom identifier for tracking"
+                },
+                "metadata": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "options": {
+            "type": "object",
+            "properties": {
+              "detailLevel": {
+                "type": "string",
+                "enum": ["basic", "comprehensive", "technical"],
+                "default": "comprehensive"
+              },
+              "generateAudio": {
+                "type": "boolean",
+                "default": false
+              },
+              "includeAltText": {
+                "type": "boolean",
+                "default": true
+              }
+            }
+          }
+        }
+      },
+      "BatchImageProcessResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "batchId": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": ["processing", "completed", "partial", "failed"]
+              },
+              "totalImages": {
+                "type": "integer"
+              },
+              "processedCount": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      "ImageJobStatus": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "jobId": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": ["processing", "completed", "failed"]
+              },
+              "step": {
+                "type": "string",
+                "enum": ["upload", "analysis", "synthesis", "completed"]
+              }
+            }
+          }
+        }
+      },
+      "VideoDescriptionJson": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "totalDuration": {
+            "type": "number"
+          },
+          "scenes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "startTime": {
+                  "type": "number"
+                },
+                "endTime": {
+                  "type": "number"
+                },
+                "text": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ImageDescriptionJson": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "object",
+            "properties": {
+              "detailed": {
+                "type": "string"
+              },
+              "alt": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "HealthStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["healthy", "degraded", "unhealthy"]
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "uptime": {
+            "type": "number",
+            "description": "Uptime in seconds"
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      },
+      "AWSStatus": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "s3": {
+                "type": "boolean"
+              },
+              "rekognition": {
+                "type": "boolean"
+              },
+              "bedrock": {
+                "type": "boolean"
+              },
+              "polly": {
+                "type": "boolean"
+              },
+              "region": {
+                "type": "string"
+              }
+            }
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code for programmatic handling"
+              },
+              "message": {
+                "type": "string",
+                "description": "Human-readable error message"
+              },
+              "details": {
+                "type": "string",
+                "description": "Additional error details"
+              },
+              "retryAfter": {
+                "type": "integer",
+                "description": "Seconds to wait before retry (for rate limiting)",
+                "nullable": true
+              }
+            },
+            "required": ["code", "message"]
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["success", "error"]
+      }
+    }
+  },
+  "webhooks": {
+    "jobComplete": {
+      "post": {
+        "requestBody": {
+          "description": "Notification sent when a job completes",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "jobId": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": ["completed", "failed"]
+                  },
+                  "results": {
+                    "type": "object"
+                  },
+                  "timestamp": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Webhook received successfully"
+          }
+        }
+      }
+    }
+  }
+}

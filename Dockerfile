@@ -1,9 +1,8 @@
-# Use official Node.js runtime as base image
-FROM node:18-bullseye
+# Multi-stage build for optimized production image
+FROM node:18-bullseye AS builder
 
-# Install system dependencies including FFmpeg
+# Install build dependencies
 RUN apt-get update && apt-get install -y \
-    ffmpeg \
     python3 \
     make \
     g++ \
@@ -15,8 +14,8 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install Node.js dependencies
-RUN npm ci --only=production
+# Install all dependencies (including dev)
+RUN npm ci
 
 # Copy application source
 COPY . .
@@ -24,13 +23,40 @@ COPY . .
 # Build the Next.js application
 RUN npm run build
 
-# Create non-root user for security
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Production stage
+FROM node:18-bullseye-slim
 
-# Create directories for temporary files
-RUN mkdir -p /tmp/voice-description && chown nextjs:nodejs /tmp/voice-description
-RUN mkdir -p /app/logs && chown nextjs:nodejs /app/logs
+# Install runtime dependencies including FFmpeg
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install production dependencies only
+RUN npm ci --only=production && npm cache clean --force
+
+# Copy built application from builder stage
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/src ./src
+COPY --from=builder /app/pages ./pages
+COPY --from=builder /app/lib ./lib
+COPY --from=builder /app/components ./components
+
+# Create non-root user for security
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
+
+# Create directories for temporary files and logs
+RUN mkdir -p /tmp/uploads /tmp/voice-description /app/logs && \
+    chown -R nextjs:nodejs /tmp/uploads /tmp/voice-description /app/logs
 
 # Set ownership of app directory
 RUN chown -R nextjs:nodejs /app
@@ -42,7 +68,7 @@ USER nextjs
 EXPOSE 3000
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD curl -f http://localhost:3000/api/health || exit 1
 
 # Start the application

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { RekognitionClient, ListVideoEventsCommand, GetSegmentDetectionCommand } from '@aws-sdk/client-rekognition';
+import { RekognitionClient, GetSegmentDetectionCommand } from '@aws-sdk/client-rekognition';
 import { S3Client, HeadObjectCommand, ListObjectsV2Command } from '@aws-sdk/client-s3';
 
 // AWS Configuration
