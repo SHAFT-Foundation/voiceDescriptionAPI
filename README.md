@@ -168,9 +168,11 @@ const response = await fetch('/api/upload', {
 ```json
 {
   "success": true,
-  "jobId": "550e8400-e29b-41d4-a716-446655440000",
-  "message": "Upload successful, processing started",
-  "estimatedTime": 300
+  "data": {
+    "jobId": "550e8400-e29b-41d4-a716-446655440000",
+    "s3Uri": "s3://input-bucket/550e8400-e29b-41d4-a716-446655440000/video.mp4",
+    "statusUrl": "/api/status/550e8400-e29b-41d4-a716-446655440000"
+  }
 }
 ```
 
@@ -196,18 +198,40 @@ const response = await fetch(`/api/status/${jobId}`);
 const status = await response.json();
 ```
 
-**Response:**
+**Response (Processing):**
 ```json
 {
-  "jobId": "550e8400-e29b-41d4-a716-446655440000",
-  "status": "processing",
-  "step": "analysis",
-  "progress": 65,
-  "message": "Analyzing scene 13 of 20",
-  "segmentCount": 20,
-  "currentSegment": 13,
-  "startTime": "2024-01-15T10:00:00Z",
-  "estimatedTimeRemaining": 120
+  "success": true,
+  "data": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "status": "processing",
+    "step": "analysis",
+    "progress": 65,
+    "message": "Analyzing scene 13 of 20"
+  }
+}
+```
+
+**Response (Completed):**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "status": "completed",
+    "step": "synthesis",
+    "progress": 100,
+    "message": "Processing completed successfully",
+    "descriptions": [
+      {
+        "startTime": 0.0,
+        "endTime": 5.5,
+        "text": "The video opens with a wide shot of a modern office building..."
+      }
+    ],
+    "audioUrl": "s3://output-bucket/550e8400/audio.mp3",
+    "textUrl": "s3://output-bucket/550e8400/description.txt"
+  }
 }
 ```
 
@@ -411,13 +435,18 @@ const status = await response.json();
 **Response:**
 ```json
 {
-  "jobId": "img-550e8400",
-  "status": "completed",
-  "processingTime": 2500,
-  "results": {
-    "description": "...",
-    "altText": "...",
-    "audioUrl": "..."
+  "success": true,
+  "data": {
+    "jobId": "img-550e8400",
+    "status": "completed",
+    "step": "synthesis",
+    "processingTime": 2.5,
+    "results": {
+      "detailedDescription": "A professional product photograph showing a sleek silver laptop computer positioned at a three-quarter angle...",
+      "altText": "Silver laptop computer on white background",
+      "audioUrl": "s3://output-bucket/img-550e8400/audio.mp3",
+      "confidence": 0.95
+    }
   }
 }
 ```
@@ -706,6 +735,7 @@ curl -X POST http://localhost:3000/api/process-image \
 
 All API endpoints return consistent error responses:
 
+**Error Response Format:**
 ```json
 {
   "success": false,
@@ -713,7 +743,76 @@ All API endpoints return consistent error responses:
     "code": "ERROR_CODE",
     "message": "Human-readable error message",
     "details": "Technical details for debugging"
-  }
+  },
+  "timestamp": "2024-01-15T10:00:00Z"
+}
+```
+
+**Example Error Responses:**
+
+**400 Bad Request:**
+```json
+{
+  "success": false,
+  "error": {
+    "code": "INVALID_REQUEST",
+    "message": "Invalid request parameters",
+    "details": "The 'detailLevel' must be one of: basic, comprehensive, technical"
+  },
+  "timestamp": "2024-01-15T10:00:00Z"
+}
+```
+
+**401 Unauthorized:**
+```json
+{
+  "success": false,
+  "error": {
+    "code": "UNAUTHORIZED",
+    "message": "Authentication required",
+    "details": "Missing API key in request headers"
+  },
+  "timestamp": "2024-01-15T10:00:00Z"
+}
+```
+
+**404 Not Found:**
+```json
+{
+  "success": false,
+  "error": {
+    "code": "NOT_FOUND",
+    "message": "Job not found",
+    "details": "No job found with ID: 550e8400-e29b-41d4-a716-446655440000"
+  },
+  "timestamp": "2024-01-15T10:00:00Z"
+}
+```
+
+**413 Payload Too Large:**
+```json
+{
+  "success": false,
+  "error": {
+    "code": "PAYLOAD_TOO_LARGE",
+    "message": "File size exceeds maximum limit",
+    "details": "Maximum file size is 500MB"
+  },
+  "timestamp": "2024-01-15T10:00:00Z"
+}
+```
+
+**429 Rate Limited:**
+```json
+{
+  "success": false,
+  "error": {
+    "code": "RATE_LIMITED",
+    "message": "Too many requests",
+    "details": "Rate limit exceeded. Please retry after 60 seconds",
+    "retryAfter": 60
+  },
+  "timestamp": "2024-01-15T10:00:00Z"
 }
 ```
 
@@ -724,6 +823,8 @@ All API endpoints return consistent error responses:
 - `JOB_NOT_FOUND`: Job ID doesn't exist
 - `PROCESSING_FAILED`: Processing error occurred
 - `AWS_SERVICE_ERROR`: AWS service unavailable
+- `RATE_LIMITED`: Too many requests
+- `UNAUTHORIZED`: Missing or invalid authentication
 
 ## 📊 Proven Performance Metrics
 
