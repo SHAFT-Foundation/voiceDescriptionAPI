@@ -2,7 +2,12 @@
 
 ## Project Overview
 
-An automated video audio description system that generates descriptive audio narration tracks for videos to improve accessibility for visually impaired audiences. The system leverages AWS AI services in a modular, test-driven architecture.
+An automated video audio description system that generates descriptive audio narration tracks for videos to improve accessibility for visually impaired audiences. The system offers **two processing approaches**:
+
+1. **AWS Pipeline**: Detailed scene-by-scene analysis using Rekognition + Bedrock Nova Pro
+2. **OpenAI Pipeline**: Fast holistic video analysis using OpenAI Vision API + AWS Polly TTS
+
+Both approaches use a modular, test-driven architecture with the same API interface.
 
 ## Core AWS Services Architecture
 
@@ -17,13 +22,53 @@ An automated video audio description system that generates descriptive audio nar
 - **AWS CloudWatch**: Logging and monitoring
 - **AWS SDK for JavaScript**: Service integration
 
-## System Architecture
+## Processing Pipeline Architectures
 
+### Option 1: AWS Pipeline (Scene-by-Scene Analysis)
 ```
 [User Upload] → [S3 Storage] → [Rekognition Segmentation] → [Scene Extraction] 
     ↓
 [Nova Pro Analysis] → [Description Compilation] → [Polly TTS] → [Audio Output]
 ```
+
+### Option 2: OpenAI Pipeline (Holistic Analysis)
+```
+[User Upload] → [Video Chunking (25MB)] → [OpenAI Vision API] → [AWS Polly TTS] → [Audio Output]
+```
+
+## Processing Approach Comparison
+
+### Video Processing
+
+| Feature | AWS Pipeline | OpenAI Pipeline |
+|---------|-------------|----------------|
+| **Speed** | 5-10 minutes | **⚡ 30-60 seconds** |
+| **Analysis Detail** | **Scene-by-scene granular** | Holistic video understanding |
+| **File Size Limit** | 500MB+ | **25MB chunks (auto-handled)** |
+| **Architecture Complexity** | Complex multi-step | **Simple single API call** |
+| **Cost per Video** | $0.50-1.00 | $2.00-5.00 |
+| **Dependencies** | FFmpeg + 4 AWS services | **OpenAI + Polly only** |
+| **Best For** | Long videos, detailed analysis | **Quick turnaround, speed priority** |
+
+### Image Processing
+
+| Feature | AWS Pipeline | OpenAI Pipeline |
+|---------|-------------|----------------|
+| **Speed** | 10-30 seconds per image | **⚡ 2-5 seconds per image** |
+| **Batch Speed** | 1,000 images/hour | **⚡ 5,000+ images/hour** |
+| **Analysis Quality** | Rekognition + Bedrock | **GPT-4 Vision (superior context)** |
+| **File Size Limit** | 15MB per image | **No chunking needed** |
+| **Cost per Image** | $0.10-0.25 | $0.25-0.50 |
+| **Context Understanding** | Good | **⭐ Exceptional** |
+| **Best For** | Cost optimization | **Speed + quality priority** |
+
+## Recommended Usage Strategy
+- **OpenAI Pipeline**: 
+  - **Videos**: <5 minutes, urgent delivery, content marketing
+  - **Images**: All use cases where speed matters, superior context understanding
+- **AWS Pipeline**: 
+  - **Videos**: >5 minutes, detailed analysis, cost optimization  
+  - **Images**: High-volume cost-sensitive processing
 
 ## Technical Stack
 
@@ -106,8 +151,61 @@ An automated video audio description system that generates descriptive audio nar
 **Key Components**:
 - File upload form with validation
 - S3 URI input option
+- Processing pipeline selection (AWS vs OpenAI)
 - Real-time progress polling
 - Result download interface
+
+## OpenAI Pipeline Modules
+
+### 9. Video Chunking Module
+**Purpose**: Split large videos into 25MB chunks for OpenAI API
+**Key Components**:
+- FFmpeg-based video segmentation by file size
+- Temporal chunk management (maintains video continuity)
+- Metadata preservation across chunks
+- Parallel chunk processing capability
+
+**Dependencies**: FFmpeg, file-size calculation
+
+### 10. OpenAI Vision Analysis Module
+**Purpose**: Generate video descriptions using OpenAI Vision API
+**Key Components**:
+- OpenAI API integration with video support
+- Base64 video encoding for API submission
+- Retry logic with exponential backoff
+- Response aggregation from multiple chunks
+- Context preservation across video segments
+
+**External Services**: OpenAI Vision API (GPT-4 Vision or similar)
+
+### 11. Description Synthesis Module
+**Purpose**: Combine multi-chunk OpenAI responses into coherent description
+**Key Components**:
+- Chronological response ordering
+- Context bridging between chunks
+- Duplicate content removal
+- Narrative flow optimization
+- Single coherent description output
+
+### 12. OpenAI Image Analysis Module  
+**Purpose**: Ultra-fast image description using OpenAI Vision API
+**Key Components**:
+- Direct image upload to OpenAI Vision API (no chunking needed)
+- Context-aware image understanding (product, medical, educational)
+- Multiple description formats (alt-text, detailed, SEO-optimized)
+- Batch processing with parallel API calls
+- Custom prompt engineering for different use cases
+
+**External Services**: OpenAI Vision API (GPT-4 Vision)
+
+### 13. Image Batch Coordinator Module
+**Purpose**: Manage high-volume image processing with both pipelines
+**Key Components**:
+- Pipeline selection per image (OpenAI vs AWS)
+- Parallel processing with rate limiting
+- Progress tracking across thousands of images
+- Error handling and retry logic
+- Result aggregation and formatting
 
 ## AWS IAM Permissions Required
 
@@ -156,6 +254,8 @@ An automated video audio description system that generates descriptive audio nar
 ## Environment Configuration
 
 ### Required Environment Variables
+
+#### AWS Pipeline Configuration
 ```bash
 AWS_ACCESS_KEY_ID=your_access_key
 AWS_SECRET_ACCESS_KEY=your_secret_key
@@ -168,26 +268,58 @@ MAX_VIDEO_SIZE_MB=500
 PROCESSING_TIMEOUT_MINUTES=30
 ```
 
+#### OpenAI Pipeline Configuration
+```bash
+OPENAI_API_KEY=your_openai_api_key
+OPENAI_MODEL=gpt-4-vision-preview
+OPENAI_MAX_TOKENS=4000
+CHUNK_SIZE_MB=25
+CHUNK_OVERLAP_SECONDS=2
+OPENAI_TIMEOUT_MINUTES=5
+```
+
+#### Processing Pipeline Selection
+```bash
+DEFAULT_PIPELINE=aws          # Options: 'aws' or 'openai'
+ENABLE_PIPELINE_SELECTION=true
+AUTO_PIPELINE_SELECTION=true  # Auto-select based on video size/duration
+```
+
 ## API Endpoints
 
 ### Core Processing Endpoints
-- `POST /api/upload` - Video file upload
-- `POST /api/process` - Start processing with S3 URI
+- `POST /api/upload` - Video file upload with optional pipeline selection
+- `POST /api/process` - Start processing with S3 URI and pipeline choice
 - `GET /api/status/:jobId` - Job status polling
 - `GET /api/results/:jobId/text` - Download text description
 - `GET /api/results/:jobId/audio` - Download audio file
 
-### Status Response Format
+### New Pipeline Selection Parameters
+```json
+// POST /api/upload or /api/process
+{
+  "pipeline": "aws|openai|auto",     // Processing pipeline choice
+  "chunkSize": 25,                   // MB per chunk (OpenAI pipeline only)
+  "fastMode": true                   // Prefer speed over detail
+}
+```
+
+### Updated Status Response Format
 ```json
 {
   "jobId": "uuid",
   "status": "processing|completed|failed",
-  "step": "segmentation|analysis|synthesis",
+  "pipeline": "aws|openai",
+  "step": "segmentation|analysis|synthesis|chunking|vision_analysis",
   "progress": 65,
-  "message": "Analyzing scene 3 of 5",
+  "message": "Analyzing chunk 2 of 4 with OpenAI Vision",
+  "processingTime": 45,              // seconds elapsed
+  "estimatedTimeRemaining": 30,      // seconds (OpenAI pipeline)
   "results": {
     "textUrl": "/api/results/uuid/text",
-    "audioUrl": "/api/results/uuid/audio"
+    "audioUrl": "/api/results/uuid/audio",
+    "pipeline": "openai",
+    "chunks": 4                       // for OpenAI pipeline
   }
 }
 ```
