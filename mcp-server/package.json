@@ -62,7 +62,9 @@
     "eslint": "^8.50.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "prettier": "^3.0.0"
+    "prettier": "^3.0.0",
+    "nyc": "^15.1.0",
+    "artillery": "^2.0.0"
   },
   "keywords": [
     "mcp",
