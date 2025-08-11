@@ -89,6 +89,12 @@ Transform 40 hours of manual work into 2 minutes of API magic. Our AI-powered sy
 - **Technology**: GPT-4 Vision + AWS Polly TTS
 - **File Limit**: Auto-chunks videos >25MB
 - **Quality**: Holistic video understanding
+- **Unique Features**:
+  - Smart video chunking with scene detection
+  - Contextual analysis across chunks
+  - Custom prompt engineering
+  - Parallel chunk processing
+  - Token optimization
 
 </td>
 <td width="50%">
@@ -100,8 +106,42 @@ Transform 40 hours of manual work into 2 minutes of API magic. Our AI-powered sy
 - **Technology**: Rekognition + Bedrock Nova Pro + Polly
 - **File Limit**: 500MB+ videos supported
 - **Quality**: Scene-by-scene granular analysis
+- **Unique Features**:
+  - Technical cue detection
+  - Shot-by-shot segmentation
+  - Professional broadcast quality
+  - Frame-level accuracy
+  - AWS-native scalability
 
 </td></tr></table>
+
+#### 🔄 Intelligent Pipeline Selection
+
+The API automatically selects the optimal pipeline based on:
+- **File size and duration**
+- **Processing priority**
+- **Quality requirements**
+- **Cost constraints**
+- **Turnaround time needs**
+
+```javascript
+// Automatic pipeline selection
+const response = await api.process({
+  file: videoFile,
+  pipeline: 'auto',  // Let API choose optimal pipeline
+  priority: 'high'    // Influences pipeline selection
+});
+
+// Or explicitly choose a pipeline
+const openaiResponse = await api.process({
+  file: videoFile,
+  pipeline: 'openai',  // Force OpenAI pipeline
+  options: {
+    detailLevel: 'high',
+    customPrompt: 'Focus on action sequences'
+  }
+});
+```
 
 ### 🖼️ Image Processing - Dual Pipeline Options
 

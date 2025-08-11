@@ -37,6 +37,16 @@ Currently, the API uses API key authentication (optional). Include your API key 
 Authorization: Bearer YOUR_API_KEY
 ```
 
+## Pipeline Selection
+
+The API supports dual-pipeline processing with intelligent routing between OpenAI and AWS pipelines. You can specify a pipeline explicitly or let the API auto-select based on your content.
+
+### Pipeline Options
+- `openai` - Ultra-fast processing with GPT-4 Vision (30-60 seconds)
+- `aws` - Detailed analysis with Rekognition + Bedrock (5-10 minutes)
+- `auto` - Intelligent selection based on file size, priority, and requirements
+- `hybrid` - Split processing across both pipelines for optimization
+
 ## API Endpoints
 
 ### 1. Health Check
@@ -161,9 +171,59 @@ Process a single image with immediate response.
 }
 ```
 
-### 4. Batch Process Images
+### 4. Process Video with Pipeline Selection
 
-Process multiple images in a single request.
+Process video with explicit pipeline selection for optimized performance.
+
+**Endpoint:** `POST /api/process-video`
+
+**Request:**
+```json
+{
+  "file": "video.mp4",  // File upload or S3 URI
+  "pipeline": "openai",  // "openai", "aws", "auto", or "hybrid"
+  "options": {
+    "priority": "high",
+    "chunkingOptions": {
+      "targetChunkSize": 20971520,  // 20MB
+      "maxChunkDuration": 30,        // seconds
+      "sceneDetection": true
+    },
+    "analysisOptions": {
+      "detailLevel": "high",
+      "contextualAnalysis": true,
+      "customPrompt": "Focus on accessibility needs"
+    },
+    "synthesisOptions": {
+      "format": "narrative",
+      "includeTimestamps": true,
+      "generateChapters": true
+    }
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "jobId": "550e8400-e29b-41d4-a716-446655440000",
+    "pipeline": "openai",
+    "status": "processing",
+    "progress": 0,
+    "estimatedCompletion": "2024-01-15T10:31:00Z",
+    "chunks": {
+      "total": 10,
+      "processed": 0
+    }
+  }
+}
+```
+
+### 5. Batch Process Images
+
+Process multiple images in a single request with pipeline selection.
 
 **Endpoint:** `POST /api/process-images-batch`
 
@@ -184,12 +244,21 @@ Process multiple images in a single request.
       "id": "img-002"
     }
   ],
+  "pipeline": "openai",  // "openai", "aws", or "auto"
   "options": {
     "detailLevel": "comprehensive",
     "generateAudio": true,
-    "voiceId": "Joanna"
+    "voiceId": "Joanna",
+    "maxConcurrent": 5
+  },
+  "openaiOptions": {
+    "detail": "high",
+    "customPrompt": {
+      "altText": "Generate e-commerce alt text",
+      "detailed": "Include product features and materials",
+      "seo": "Optimize for product search"
+    }
   }
-}
 ```
 
 **Response:**
@@ -1439,6 +1508,190 @@ class APIClientWithRecovery {
       
       throw error;
     }
+  }
+}
+```
+
+## OpenAI Pipeline Features
+
+### Unique Capabilities
+
+The OpenAI pipeline provides advanced features not available in the AWS pipeline:
+
+#### 1. Custom Prompt Engineering
+
+Customize the AI's focus for your specific use case:
+
+```json
+{
+  "pipeline": "openai",
+  "openaiOptions": {
+    "customPrompt": {
+      "altText": "Generate concise alt text for screen readers (max 125 chars)",
+      "detailed": "Focus on medical details and clinical observations",
+      "seo": "Include product keywords and brand names for SEO"
+    }
+  }
+}
+```
+
+#### 2. Smart Video Chunking
+
+Automatic intelligent video segmentation:
+
+```json
+{
+  "chunkingOptions": {
+    "targetChunkSize": 20971520,    // 20MB per chunk
+    "maxChunkDuration": 30,          // 30 seconds max
+    "overlap": 2,                    // 2 second overlap
+    "keyframeAlign": true,           // Align to keyframes
+    "sceneDetection": true           // Use AI scene detection
+  }
+}
+```
+
+#### 3. Contextual Analysis
+
+Preserve context across video chunks:
+
+```json
+{
+  "analysisOptions": {
+    "contextualAnalysis": true,      // Enable cross-chunk context
+    "detailLevel": "high",           // "low", "auto", or "high"
+    "preserveNarrative": true,       // Maintain story flow
+    "trackCharacters": true          // Track people/characters
+  }
+}
+```
+
+#### 4. Enhanced Description Synthesis
+
+AI-powered description generation:
+
+```json
+{
+  "synthesisOptions": {
+    "format": "all",                 // "narrative", "technical", "accessibility", "all"
+    "includeTimestamps": true,       // Add time markers
+    "generateChapters": true,        // Auto-generate chapters
+    "targetLength": 5000,            // Target word count
+    "generateKeyMoments": true       // Highlight important scenes
+  }
+}
+```
+
+### OpenAI-Specific Endpoints
+
+#### Get Pipeline Capabilities
+
+Check available features for each pipeline:
+
+**Endpoint:** `GET /api/pipelines/capabilities`
+
+**Response:**
+```json
+{
+  "openai": {
+    "maxFileSize": 104857600,        // 100MB
+    "maxDuration": 1800,              // 30 minutes
+    "languages": 95,                  // Supported languages
+    "features": {
+      "customPrompts": true,
+      "videoChunking": true,
+      "contextualAnalysis": true,
+      "multiLanguage": true,
+      "realtimeProcessing": true
+    },
+    "performance": {
+      "avgProcessingTime": 45,        // seconds
+      "throughput": 120               // videos/hour
+    }
+  },
+  "aws": {
+    "maxFileSize": 524288000,        // 500MB
+    "maxDuration": 7200,              // 2 hours
+    "languages": 15,
+    "features": {
+      "customPrompts": false,
+      "sceneSegmentation": true,
+      "technicalCues": true,
+      "frameAccuracy": true,
+      "broadcastQuality": true
+    },
+    "performance": {
+      "avgProcessingTime": 420,       // seconds
+      "throughput": 20                // videos/hour
+    }
+  }
+}
+```
+
+#### Estimate Processing Cost
+
+Get cost estimates before processing:
+
+**Endpoint:** `POST /api/estimate-cost`
+
+**Request:**
+```json
+{
+  "file": {
+    "size": 52428800,                // 50MB
+    "duration": 300,                  // 5 minutes
+    "type": "video"
+  },
+  "pipeline": "auto",
+  "options": {
+    "detailLevel": "high",
+    "generateAudio": true
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "estimates": {
+    "openai": {
+      "cost": 0.50,
+      "processingTime": 45,
+      "confidence": 0.95
+    },
+    "aws": {
+      "cost": 0.30,
+      "processingTime": 420,
+      "confidence": 0.90
+    },
+    "recommended": "openai",
+    "reason": "Faster processing with minimal cost difference"
+  }
+}
+```
+
+#### Monitor Token Usage
+
+Track OpenAI token consumption:
+
+**Endpoint:** `GET /api/usage/tokens`
+
+**Response:**
+```json
+{
+  "period": "2024-01-15",
+  "usage": {
+    "totalTokens": 1250000,
+    "inputTokens": 750000,
+    "outputTokens": 500000,
+    "cost": 37.50,
+    "requests": 500,
+    "averagePerRequest": 2500
+  },
+  "limits": {
+    "daily": 10000000,
+    "remaining": 8750000,
+    "resetAt": "2024-01-16T00:00:00Z"
   }
 }
 ```
